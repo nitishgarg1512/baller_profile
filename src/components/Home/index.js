@@ -1,12 +1,27 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
-const Home = () => (
+import actions from '../../actions';
+
+const Home = ({ register }) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>
-      Home Screen
-    </Text>
+    <TouchableOpacity onPress={() => register({})}>
+      <Text>
+        Home Screen
+      </Text>
+    </TouchableOpacity>
   </View>
 );
 
-export default Home;
+Home.propTypes = {
+  register: PropTypes.func.isRequired,
+};
+
+export default connect(
+  null,
+  {
+    ...actions.authentication,
+  },
+)(Home);
