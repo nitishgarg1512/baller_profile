@@ -27,15 +27,15 @@ export default {
   marginTop20: {
     marginTop: 20,
   },
-  marginTop40: {
-    marginTop: 40,
+  marginTop25: {
+    marginTop: 25,
   },
   submitButton: {
     backgroundColor: 'transparent',
     borderColor: '#fff',
     borderStyle: 'solid',
     borderWidth: 1,
-    paddingTop: 13,
+    paddingTop: 10,
     paddingBottom: 10,
     borderRadius: 41,
     marginLeft: 25,
@@ -78,14 +78,14 @@ export default {
   },
   logo: {
     flex: 1,
-    height: 130,
-    width: 130,
+    height: 110,
+    width: 110,
   },
   logoWelcome: {
     marginTop: 30,
     flex: 1,
-    height: 130,
-    width: 130,
+    height: 110,
+    width: 110,
   },
   headerContainer: {
     flex: 1,
@@ -102,25 +102,25 @@ export default {
   input: {
     color: '#fff',
     fontFamily: 'calibri',
-    fontSize: 20,
+    fontSize: 16,
     borderColor: '#fff',
   },
   inputLabel: {
     color: 'rgba(255,255,255,.3)',
     fontFamily: 'calibri-italic',
-    fontSize: 19,
+    fontSize: 16,
     flex: 1,
   },
   subeading2Login: {
     fontFamily: 'calibri',
     color: '#fff',
-    fontSize: 18,
+    fontSize: 15,
     paddingTop: 30,
   },
   loginLink: {
     fontFamily: 'calibri',
     color: '#0172c1',
-    fontSize: 18,
+    fontSize: 15,
     paddingTop: 30,
     paddingBottom: 50,
   },
@@ -135,8 +135,8 @@ export default {
     color: '#0172c1',
     textDecorationLine: 'underline',
     fontFamily: 'calibri-italic',
-    fontSize: 17,
+    fontSize: 15,
     textAlign: 'left',
-    marginTop: 30,
+    marginTop: 24,
   },
 };

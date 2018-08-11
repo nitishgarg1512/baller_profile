@@ -52,7 +52,7 @@ class Login extends React.Component {
                 <Input style={styles.input} />
               </Item>
               <View />
-              <Item floatingLabel style={styles.marginTop40}>
+              <Item floatingLabel style={styles.marginTop25}>
                 <Label style={styles.inputLabel}>
                   Type your password
                 </Label>

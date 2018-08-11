@@ -23,7 +23,7 @@ const First = () => (
           />
         </View>
         <View style={styles.flexContainer}>
-          <UppercasedText style={styles.display1}>
+          <UppercasedText style={styles.display1Step2}>
             Track your stats...
           </UppercasedText>
         </View>

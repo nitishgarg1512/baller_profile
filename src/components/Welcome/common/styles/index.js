@@ -12,11 +12,20 @@ export default {
     alignItems: 'center',
   },
   display1: {
-    fontSize: 36,
+    fontSize: 34,
     fontWeight: 'bold',
     color: '#fff',
     textTransform: 'uppercase',
     fontFamily: 'calibri',
+    textAlign: 'center',
+  },
+  display1Step2: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#fff',
+    textTransform: 'uppercase',
+    fontFamily: 'calibri',
+    textAlign: 'center',
   },
   backgroundImageStyle: {
     resizeMode: 'cover',
@@ -76,6 +85,8 @@ export default {
   flexContainer: {
     flex: 1,
     display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
@@ -89,14 +100,14 @@ export default {
   },
   logo: {
     flex: 1,
-    height: 130,
-    width: 130,
+    height: 110,
+    width: 110,
   },
   logoWelcome: {
     marginTop: 30,
     flex: 1,
-    height: 130,
-    width: 130,
+    height: 110,
+    width: 110,
   },
   headerContainer: {
     flex: 1,
@@ -107,8 +118,8 @@ export default {
   },
   footerChildContainer: {
     position: 'absolute',
-    bottom: 17,
-    right: 38,
+    bottom: 23,
+    right: 34,
   },
   skipButton: {
     fontFamily: 'calibri',

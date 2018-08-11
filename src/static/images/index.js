@@ -1,6 +1,6 @@
 import authBg1 from './auth-bg-1.png';
 import authBg2 from './auth-bg-2.png';
-import authBg3 from './auth-bg-3.png';
+import authBg3 from './auth-small-bg-3.jpg';
 import authBg4 from './auth-bg-4.png';
 import logo from './logo.png';
 
