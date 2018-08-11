@@ -1,26 +1,15 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { createStackNavigator } from 'react-navigation';
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Initial</Text>
-      </View>
-    );
-  }
-}
+import { Home } from './src/components';
+import { initialRoute } from './src/common/constants';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+const Router = createStackNavigator({
+  Home,
+}, {
+  initialRouteName: initialRoute,
 });
+
+const App = () => <Router />;
+
+export default App;
