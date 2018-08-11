@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import { Home } from './components';
+import { Authentication } from './components';
 import { initialRoute } from './common/constants';
 import { reducers, middleware } from './store';
 
 const Router = createStackNavigator({
-  Home,
+  Authentication,
 }, {
   initialRouteName: initialRoute,
 });
