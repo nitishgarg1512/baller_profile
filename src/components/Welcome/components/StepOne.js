@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, Image, ImageBackground } from 'react-native';
+import { View, Image, ImageBackground } from 'react-native';
 
 import styles from '../common/styles';
+import { UppercasedText } from '../../common/components';
+
 import images from '../../../static/images';
 
 const StepOne = () => (
@@ -20,9 +22,9 @@ const StepOne = () => (
           />
         </View>
         <View style={styles.flexContainer}>
-          <Text style={styles.display1}>
+          <UppercasedText style={styles.display1}>
             Play ball...
-          </Text>
+          </UppercasedText>
         </View>
       </View>
     </View>

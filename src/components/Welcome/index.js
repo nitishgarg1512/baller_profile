@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper';
 
 import { StepOne, StepTwo, StepThree, StepFour } from './components';
 import styles from './common/styles';
+
+import { UppercasedText } from '../common/components';
 
 import actions from '../../actions';
 
@@ -54,9 +56,9 @@ class Welcome extends React.Component {
             <StepThree />
           </Swiper>
           <TouchableOpacity onPress={this.handleSkipSwiper} style={styles.footerChildContainer}>
-            <Text style={styles.skipButton}>
+            <UppercasedText style={styles.skipButton}>
               Skip
-            </Text>
+            </UppercasedText>
           </TouchableOpacity>
         </React.Fragment>
       );
