@@ -8,7 +8,7 @@ export default {
         actions.AUTHENTICATION_REGISTRATION_SUCCESS,
         actions.AUTHENTICATION_REGISTRATION_FAILURE,
       ],
-      promise: client => client.post(paths.AUTHENTICATION_REGISTER, data),
+      promise: client => client.post(paths.api.AUTHENTICATION_REGISTER, data),
     },
   }),
 };

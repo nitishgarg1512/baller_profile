@@ -1,10 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
 
 import styles from '../common/styles';
 import images from '../../../static/images';
 
-const Welcome = () => (
+import { paths } from '../../../common/constants';
+
+const StepFour = ({ navigation }) => (
   <ImageBackground
     source={images.authBg4}
     style={styles.backgroundImageSize}
@@ -36,13 +39,19 @@ const Welcome = () => (
           <Text style={styles.subeading2Welcome}>
             Already have a BallerProfile?
           </Text>
-          <Text style={styles.loginLink}>
-            Login
-          </Text>
+          <TouchableOpacity onPress={() => navigation.push(paths.client.Login)}>
+            <Text style={styles.loginLink}>
+              Login
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   </ImageBackground>
 );
 
-export default Welcome;
+StepFour.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
+};
+
+export default StepFour;

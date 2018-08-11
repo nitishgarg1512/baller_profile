@@ -1,6 +1,6 @@
 import config from './config';
 
-const initialRoute = 'Authentication';
+const initialRoute = 'Welcome';
 
 export default config;
 
