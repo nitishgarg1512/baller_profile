@@ -13,6 +13,7 @@
     "prop-types": "^15.6.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.11.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
@@ -35,7 +36,7 @@
   },
   "rnpm": {
     "assets": [
-	    "./src/static/fonts/"
+      "./src/static/fonts/"
     ]
   }
 }
