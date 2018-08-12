@@ -100,14 +100,14 @@ export default {
   },
   logo: {
     flex: 1,
-    height: 110,
-    width: 110,
+    height: 100,
+    width: 100,
   },
   logoWelcome: {
     marginTop: 30,
     flex: 1,
-    height: 110,
-    width: 110,
+    height: 100,
+    width: 100,
   },
   headerContainer: {
     flex: 1,

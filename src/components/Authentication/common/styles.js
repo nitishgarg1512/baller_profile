@@ -21,20 +21,30 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  itemUsername: {
-    marginBottom: 30,
-  },
-  marginTop20: {
+  itemEmail: {
     marginTop: 20,
+    borderStyle: 'dotted',
+    borderBottomWidth: 2,
   },
-  marginTop25: {
+  itemPassword: {
     marginTop: 25,
+    borderStyle: 'dotted',
+    borderBottomWidth: 2,
   },
   submitButton: {
     backgroundColor: 'transparent',
     borderColor: '#fff',
     borderStyle: 'solid',
     borderWidth: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 41,
+    marginLeft: 25,
+    marginRight: 25,
+    width: 270,
+  },
+  reverseSubmitButton: {
+    backgroundColor: '#0172c1',
     paddingTop: 10,
     paddingBottom: 10,
     borderRadius: 41,
@@ -58,8 +68,6 @@ export default {
     height: '100%',
   },
   flexContainer: {
-    marginLeft: 25,
-    marginRight: 25,
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-start',
@@ -74,20 +82,22 @@ export default {
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
   logo: {
-    flex: 1,
-    height: 110,
-    width: 110,
+    flex: 'auto',
+    height: 100,
+    width: 100,
   },
   logoWelcome: {
     marginTop: 30,
     flex: 1,
-    height: 110,
-    width: 110,
+    height: 100,
+    width: 100,
   },
   headerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     flex: 1,
   },
   backgroundImage: {
@@ -99,11 +109,14 @@ export default {
     bottom: 17,
     right: 38,
   },
+  avoidingView: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   input: {
     color: '#fff',
     fontFamily: 'calibri',
-    fontSize: 16,
-    borderColor: '#fff',
+    fontSize: 19,
   },
   inputLabel: {
     color: 'rgba(255,255,255,.3)',

@@ -1,6 +1,6 @@
 const domain = 'ballerprofile.herokuapp.com';
-const protocol = 'http://';
 const port = undefined;
+const protocol = 'http://';
 
 const serverUrl = `${protocol}${domain}${port ? `:${port}` : ''}`;
 

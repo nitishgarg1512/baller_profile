@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StatusBar } from 'react-native';
 import Swiper from 'react-native-swiper';
 
 import { StepOne, StepTwo, StepThree, StepFour } from './components';
@@ -40,8 +40,10 @@ class Welcome extends React.Component {
     const { navigation } = this.props;
     const { activeStep } = this.state;
 
+    let content;
+
     if (activeStep < 3) {
-      return (
+      content = (
         <React.Fragment>
           <Swiper
             index={activeStep}
@@ -64,8 +66,15 @@ class Welcome extends React.Component {
       );
     }
 
+    if (activeStep === 3) {
+      content = <StepFour navigation={navigation} />;
+    }
+
     return (
-      <StepFour navigation={navigation} />
+      <React.Fragment>
+        <StatusBar hidden />
+        {content}
+      </React.Fragment>
     );
   }
 }
