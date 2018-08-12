@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { StatusBar, Image, Text, View, TouchableOpacity } from 'react-native';
 import { Icon, Item, Label, Input, Container, Content, Form } from 'native-base';
@@ -7,6 +8,7 @@ import styles from '../common/styles';
 import { UppercasedText } from '../../common/components';
 
 import images from '../../../static/images';
+import { paths } from '../../../common/constants';
 
 class Registration extends React.Component {
   static navigationOptions = {
@@ -57,10 +59,12 @@ class Registration extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
     const { showPassword, user } = this.state;
 
     return (
       <React.Fragment>
+        <StatusBar />
         <Container>
           <Content>
             <Form>
@@ -90,8 +94,8 @@ class Registration extends React.Component {
                 <Input secureTextEntry={!showPassword} value={user.confirmPassword} onChangeText={value => this.changeUserValue(value, 'confirmPassword')} />
               </Item>
               <View style={styles.registrationFlexContainer}>
-                <TouchableOpacity style={styles.registrationReverseSubmitButton}>
-                  <UppercasedText style={styles.submitButtonText}>
+                <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamSelection)} style={styles.registrationReverseSubmitButton}>
+                  <UppercasedText style={styles.registrationSubmitButtonText}>
                     Sign me up!
                   </UppercasedText>
                 </TouchableOpacity>
@@ -129,26 +133,32 @@ class Registration extends React.Component {
                   />
                 </TouchableOpacity>
               </View>
+              <View syle={styles.globalFlex}>
+                <Text style={styles.tosMain}>
+                  By creating a BallerProfile, you agree to our
+                </Text>
+                <View style={styles.tosChildren}>
+                  <Text style={styles.tosTerms}>
+                    Terms&nbsp;
+                  </Text>
+                  <Text>
+                    &&nbsp;
+                  </Text>
+                  <Text style={styles.tosConditions}>
+                    Conditions
+                  </Text>
+                </View>
+              </View>
             </Form>
           </Content>
-          <View syle={styles.tos}>
-            <Text style={styles.tosMain}>
-              By creating a BallerProfile, you agree to our
-            </Text>
-            <Text style={styles.tosMain}>
-              <Text style={styles.tosTerms}>
-                Terms&nbsp;
-              </Text>
-                &&nbsp;
-              <Text style={styles.tosConditions}>
-                Conditions
-              </Text>
-            </Text>
-          </View>
         </Container>
       </React.Fragment>
     );
   }
 }
+
+Registration.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
+};
 
 export default Registration;

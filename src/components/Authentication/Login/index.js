@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Text, Image, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
+import { StatusBar, View, Text, Image, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { Icon, Item, Label, Input } from 'native-base';
 
 import styles from '../common/styles';
@@ -89,6 +89,7 @@ class Login extends React.Component {
         style={styles.backgroundImageSize}
         imageStyle={styles.backgroundImageStyle}
       >
+        <StatusBar />
         <View style={styles.container}>
           <View style={styles.contentContainer}>
             <KeyboardAvoidingView keyboardVerticalOffset={0} style={styles.avoidingView} behavior="padding">
