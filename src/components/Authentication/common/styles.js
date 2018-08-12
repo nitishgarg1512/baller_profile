@@ -12,7 +12,7 @@ export default {
     fontFamily: 'calibri',
   },
   headerBaller: {
-    color: '#0172c1',
+    color: '#004372',
   },
   headerProfile: {
     color: '#e30000',
