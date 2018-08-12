@@ -31,7 +31,7 @@ const StepFour = ({ navigation }) => (
           </Text>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.submitButton}>
+          <TouchableOpacity onPress={() => navigation.push(paths.client.Registration)} style={styles.submitButton}>
             <Text style={styles.submitButtonText}>
               Sign Up ASAP
             </Text>

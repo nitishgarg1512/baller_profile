@@ -72,7 +72,6 @@ class Welcome extends React.Component {
 
     return (
       <React.Fragment>
-        <StatusBar hidden />
         {content}
       </React.Fragment>
     );

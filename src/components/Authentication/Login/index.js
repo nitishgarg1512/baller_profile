@@ -1,9 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, Image, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { Icon, Item, Label, Input } from 'native-base';
 
 import styles from '../common/styles';
 import images from '../../../static/images';
+
+import { paths } from '../../../common/constants';
 
 class Login extends React.Component {
   static navigationOptions = {
@@ -65,6 +68,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
     const { showPassword, user, showLogo } = this.state;
 
     const logoContent = showLogo
@@ -87,7 +91,7 @@ class Login extends React.Component {
       >
         <View style={styles.container}>
           <View style={styles.contentContainer}>
-            <KeyboardAvoidingView style={styles.avoidingView} behavior="padding">
+            <KeyboardAvoidingView keyboardVerticalOffset={0} style={styles.avoidingView} behavior="padding">
               {logoContent}
               <View style={styles.flexContainer}>
                 <Item floatingLabel style={styles.itemEmail}>
@@ -121,15 +125,15 @@ class Login extends React.Component {
                   </Text>
                 </View>
               </View>
-              <View style={styles.buttonContainer}>
+              <View style={showLogo ? styles.buttonContainer : styles.buttonContainerKeyboard}>
                 <TouchableOpacity style={user.email && user.password ? styles.reverseSubmitButton : styles.submitButton}>
                   <Text style={styles.submitButtonText}>
-                  Log in
+                    Log in
                   </Text>
                 </TouchableOpacity>
                 <Text style={styles.subeading2Login}>
                   Don&#39;t have a BallerProfile?&nbsp;
-                  <Text style={styles.loginLink}>
+                  <Text onPress={() => navigation.navigate(paths.client.Registration)} style={styles.loginLink}>
                     Sign me up
                   </Text>
                 </Text>
@@ -141,4 +145,9 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
+};
+
 export default Login;

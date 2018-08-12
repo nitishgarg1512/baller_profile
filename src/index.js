@@ -11,6 +11,7 @@ import { reducers, middleware } from './store';
 const Router = createStackNavigator({
   Welcome,
   Login: Authentication.Login,
+  Registration: Authentication.Registration,
 }, {
   initialRouteName: initialRoute,
 });
