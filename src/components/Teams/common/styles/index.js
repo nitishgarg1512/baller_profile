@@ -3,6 +3,38 @@ import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default {
+  thumbnailProp: {
+    height: 30,
+    width: 30,
+    marginRight: 10,
+  },
+  teamModalLeagueContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  teamModalProps: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  modalContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginTop: 30,
+  },
   marginBottom50: {
     marginBottom: 50,
   },
@@ -103,6 +135,23 @@ export default {
   footer: {
     position: 'absolute',
     bottom: 0,
+    width: '100%',
+  },
+  footerButtonModal: {
+    backgroundColor: '#000',
+    color: '#fff',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 16,
+    paddingBottom: 16,
+    elevation: 7,
+    shadowOffset: { width: 5, height: 5 },
+    shadowColor: 'grey',
+    shadowOpacity: 1,
+    shadowRadius: 10,
   },
   footerButton: {
     backgroundColor: '#000',
@@ -154,7 +203,13 @@ export default {
   bottomMainButtonTextConfirmation: {
     color: '#fff',
     fontSize: 18,
-    fontFamily: 'calibri-italic-bold',
+    fontFamily: 'calibri-italic',
+    textAlign: 'center',
+  },
+  bottomMainButtonTextModal: {
+    color: '#fff',
+    fontSize: 18,
+    fontFamily: 'calibri',
     textAlign: 'center',
   },
   bottomMainButtonText: {
@@ -195,10 +250,18 @@ export default {
     flexDirection: 'column',
   },
   teamSelectionTitle: {
+    marginTop: 20,
     fontFamily: 'calibri-bold',
     fontWeight: 'bold',
     color: '#000',
     fontSize: 25,
+    textAlign: 'center',
+  },
+  teamModalTitle: {
+    fontFamily: 'calibri-bold',
+    fontWeight: 'bold',
+    color: '#000',
+    fontSize: 28,
     textAlign: 'center',
   },
   itemLabel: {
@@ -222,6 +285,18 @@ export default {
     width: width - 50,
     marginBottom: 25,
   },
+  teamSelectionModalCardImage: {
+    borderRadius: 5,
+    borderWidth: 4,
+    borderColor: '#fff',
+    margin: 10,
+    marginBottom: 30,
+    elevation: 1,
+    shadowColor: 'grey',
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    shadowOffset: { width: 0, height: 0 },
+  },
   teamSelectionCardImage: {
     borderRadius: 5,
     borderWidth: 4,
@@ -239,6 +314,12 @@ export default {
     alignItems: 'center',
     flexDirection: 'column',
   },
+  teamSelectionModalCard: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
   teamSelectionCardDetails: {
     display: 'flex',
     flexDirection: 'column',
@@ -247,5 +328,15 @@ export default {
   teamSelectionCardDetailsText: {
     fontFamily: 'calibri-italic',
     fontSize: 16,
+  },
+  teamSelectionModalDetailsText: {
+    fontFamily: 'calibri-italic',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  teamModalLeague: {
+    fontFamily: 'calibri-italic',
+    fontSize: 18,
+    textAlign: 'center',
   },
 };
