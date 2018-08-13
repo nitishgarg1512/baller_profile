@@ -3,11 +3,14 @@ import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default {
+  marginBottom50: {
+    marginBottom: 50,
+  },
   inviteBallersText: {
     marginTop: 20,
     fontFamily: 'calibri',
     color: '#000',
-    fontSize: 19,
+    fontSize: 16,
   },
   inviteBallersContainer: {
     marginBottom: 90,

@@ -19,17 +19,17 @@ class Creation extends React.Component {
 
     return (
       <Container>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.displayFlexCenterRow}>
-          <UppercasedText style={styles.teamSelectionTitle}>
+        <Content style={styles.marginBottom50}>
+          <View style={styles.headerContainer}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.displayFlexCenterRow}>
+            <UppercasedText style={styles.teamSelectionTitle}>
               CREATE YOUR TEAM!
-          </UppercasedText>
-        </View>
-        <Content>
+            </UppercasedText>
+          </View>
           <View style={styles.displayFlexCenterRow}>
             <Item floatingLabel style={styles.findTeamItem}>
               <Label style={styles.itemLabel}>
