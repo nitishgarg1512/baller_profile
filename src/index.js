@@ -13,6 +13,8 @@ const Router = createStackNavigator({
   Login: Authentication.Login,
   Registration: Authentication.Registration,
   TeamSelection: Teams.Selection,
+  TeamCreation: Teams.Creation,
+  TeamConfirmation: Teams.Confirmation,
 }, {
   initialRouteName: initialRoute,
 });

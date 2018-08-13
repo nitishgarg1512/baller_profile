@@ -84,12 +84,10 @@ export default {
   },
   itemEmail: {
     marginTop: 20,
-    borderStyle: 'dotted',
     borderBottomWidth: 2,
   },
   itemPassword: {
     marginTop: 25,
-    borderStyle: 'dotted',
     borderBottomWidth: 2,
   },
   displayFlexCenter: {
@@ -252,7 +250,7 @@ export default {
     marginTop: 24,
   },
   registrationItem: {
-    marginBottom: 5,
+    marginBottom: 8,
     borderBottomColor: '#0172c1',
     marginLeft: 27,
     marginRight: 27,
