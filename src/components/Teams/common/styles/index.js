@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default {
   thumbnailProp: {
@@ -338,5 +338,13 @@ export default {
     fontFamily: 'calibri-italic',
     fontSize: 18,
     textAlign: 'center',
+  },
+  modal: {
+    height: height - 50,
+    width: width - 50,
+  },
+  modalContent: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
 };

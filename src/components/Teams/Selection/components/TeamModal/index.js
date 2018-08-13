@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Modal from 'react-native-modal';
+import Modal from 'react-native-modalbox';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Icon, Thumbnail } from 'native-base';
 
@@ -11,8 +11,11 @@ import { UppercasedText } from '../../../../common/components';
 import images from '../../../../../static/images';
 
 const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
-  <Modal isVisible={visible}>
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+  <Modal
+    isOpen={visible}
+    style={styles.modal}
+  >
+    <View style={styles.modalContent}>
       {selectedTeam && visible ? (
         <React.Fragment>
           <View style={styles.headerContainer}>
@@ -39,7 +42,7 @@ const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
                   {selectedTeam.ballers}
                 </Text>
                 <Text style={styles.teamSelectionModalDetailsText}>
-              Ballers
+                    Ballers
                 </Text>
               </View>
               <View style={styles.displayFlexCenterColumn}>
@@ -53,7 +56,7 @@ const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
                   <Thumbnail style={styles.thumbnailProp} small source={images.dimitri} />
                   <Text style={styles.teamModalLeague}>
                     {selectedTeam.captain}
-                (Captain)
+                      (Captain)
                   </Text>
                 </View>
               </View>
@@ -62,7 +65,7 @@ const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
           <View style={styles.footer}>
             <TouchableOpacity style={styles.footerButtonModal}>
               <UppercasedText style={styles.bottomMainButtonTextModal}>
-            I play for this team
+                  I play for this team
               </UppercasedText>
             </TouchableOpacity>
           </View>
