@@ -13,7 +13,10 @@ UppercasedText.defaultProps = {
 };
 
 UppercasedText.propTypes = {
-  style: PropTypes.shape({}),
+  style: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.arrayOf(PropTypes.shape({})),
+  ]),
   children: PropTypes.string.isRequired,
 };
 

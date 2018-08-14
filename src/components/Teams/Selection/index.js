@@ -42,11 +42,11 @@ class Selection extends React.Component {
 
     return (
       <React.Fragment>
-        <TeamModal visible={showModal} selectedTeam={selectedTeam} toggleModal={this.toggleModal} />
+        <TeamModal navigation={navigation} visible={showModal} selectedTeam={selectedTeam} toggleModal={this.toggleModal} />
         <Container>
           <View>
             <View style={styles.displayFlexCenterRow}>
-              <UppercasedText style={styles.teamSelectionTitle}>
+              <UppercasedText style={styles.TeamsSelectionTitle}>
                 Find your team!
               </UppercasedText>
             </View>
@@ -65,8 +65,8 @@ class Selection extends React.Component {
                 style={styles.teamScroller}
               >
                 <TouchableOpacity onPress={() => this.toggleModal(hashtag)}>
-                  <View style={styles.teamSelectionCard}>
-                    <View style={styles.teamSelectionCardImage}>
+                  <View style={styles.TeamsSelectionCard}>
+                    <View style={styles.TeamsSelectionCardImage}>
                       <Image
                         style={styles.teamCardImage}
                         source={images.hashtag}
@@ -74,18 +74,18 @@ class Selection extends React.Component {
                       />
                     </View>
                     <View style={styles.displayFlexCenterColumn}>
-                      <Text style={styles.teamSelectionCardDetailsText}>
+                      <Text style={styles.TeamsSelectionCardDetailsText}>
                         19 ballers
                       </Text>
-                      <Text style={styles.teamSelectionCardDetailsText}>
+                      <Text style={styles.TeamsSelectionCardDetailsText}>
                         Hashtag United
                       </Text>
                     </View>
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.toggleModal(aftv)}>
-                  <View style={styles.teamSelectionCard}>
-                    <View style={styles.teamSelectionCardImage}>
+                  <View style={styles.TeamsSelectionCard}>
+                    <View style={styles.TeamsSelectionCardImage}>
                       <Image
                         style={styles.teamCardImage}
                         source={images.aftv}
@@ -93,18 +93,18 @@ class Selection extends React.Component {
                       />
                     </View>
                     <View style={styles.displayFlexCenterColumn}>
-                      <Text style={styles.teamSelectionCardDetailsText}>
+                      <Text style={styles.TeamsSelectionCardDetailsText}>
                         21 ballers
                       </Text>
-                      <Text style={styles.teamSelectionCardDetailsText}>
+                      <Text style={styles.TeamsSelectionCardDetailsText}>
                         AFTV FC
                       </Text>
                     </View>
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.toggleModal(hashtag)}>
-                  <View style={styles.teamSelectionCard}>
-                    <View style={styles.teamSelectionCardImage}>
+                  <View style={styles.TeamsSelectionCard}>
+                    <View style={styles.TeamsSelectionCardImage}>
                       <Image
                         style={styles.teamCardImage}
                         source={images.hashtag}
@@ -112,10 +112,10 @@ class Selection extends React.Component {
                       />
                     </View>
                     <View style={styles.displayFlexCenterColumn}>
-                      <Text style={styles.teamSelectionCardDetailsText}>
+                      <Text style={styles.TeamsSelectionCardDetailsText}>
                         19 ballers
                       </Text>
-                      <Text style={styles.teamSelectionCardDetailsText}>
+                      <Text style={styles.TeamsSelectionCardDetailsText}>
                         Hashtag United
                       </Text>
                     </View>
@@ -125,7 +125,7 @@ class Selection extends React.Component {
             </View>
           </View>
           <View style={styles.bottomActions}>
-            <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamCreation)} style={styles.bottomMainButton}>
+            <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsCreation)} style={styles.bottomMainButton}>
               <UppercasedText style={styles.bottomMainButtonText}>
                 I can&#39;t find my team!
               </UppercasedText>

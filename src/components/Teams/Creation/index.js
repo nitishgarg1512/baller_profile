@@ -19,14 +19,14 @@ class Creation extends React.Component {
 
     return (
       <Container>
-        <Content style={styles.marginBottom50}>
+        <Content>
           <View style={styles.headerContainer}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
             </TouchableOpacity>
           </View>
           <View style={styles.displayFlexCenterRow}>
-            <UppercasedText style={styles.teamSelectionTitle}>
+            <UppercasedText style={styles.TeamsSelectionTitle}>
               CREATE YOUR TEAM!
             </UppercasedText>
           </View>
@@ -82,7 +82,7 @@ class Creation extends React.Component {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamConfirmation)} style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsConfrimation)} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Create team
             </UppercasedText>

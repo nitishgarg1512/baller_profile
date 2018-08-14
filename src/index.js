@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import { Welcome, Authentication, Teams } from './components';
+import { Welcome, Authentication, Teams, Profiles } from './components';
 import { initialRoute } from './common/constants';
 import { reducers, middleware } from './store';
 
@@ -12,9 +12,12 @@ const Router = createStackNavigator({
   Welcome,
   Login: Authentication.Login,
   Registration: Authentication.Registration,
-  TeamSelection: Teams.Selection,
-  TeamCreation: Teams.Creation,
-  TeamConfirmation: Teams.Confirmation,
+  TeamsSelection: Teams.Selection,
+  TeamsCreation: Teams.Creation,
+  TeamsConfrimation: Teams.Confirmation,
+  TeamsJoin: Teams.Join,
+  ProfilesCreation: Profiles.Creation,
+  TeamsNotified: Teams.Notified,
 }, {
   initialRouteName: initialRoute,
 });

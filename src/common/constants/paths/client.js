@@ -3,7 +3,10 @@ import keyMirror from 'keymirror';
 export default keyMirror({
   Login: null,
   Registration: null,
-  TeamCreation: null,
-  TeamSelection: null,
-  TeamConfirmation: null,
+  TeamsCreation: null,
+  TeamsSelection: null,
+  TeamsConfrimation: null,
+  TeamsJoin: null,
+  ProfilesCreation: null,
+  TeamsNotified: null,
 });

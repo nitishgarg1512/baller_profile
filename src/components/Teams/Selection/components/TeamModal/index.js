@@ -9,8 +9,9 @@ import styles from '../../../common/styles';
 import { UppercasedText } from '../../../../common/components';
 
 import images from '../../../../../static/images';
+import { paths } from '../../../../../common/constants';
 
-const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
+const TeamModal = ({ visible, toggleModal, selectedTeam = {}, navigation }) => (
   <Modal
     isOpen={visible}
     style={styles.modal}
@@ -29,8 +30,8 @@ const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
                 {selectedTeam.name}
               </UppercasedText>
             </View>
-            <View style={styles.teamSelectionModalCard}>
-              <View style={styles.teamSelectionModalCardImage}>
+            <View style={styles.TeamsSelectionModalCard}>
+              <View style={styles.TeamsSelectionModalCardImage}>
                 <Image
                   style={styles.teamCardImage}
                   source={selectedTeam.image}
@@ -38,10 +39,10 @@ const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
                 />
               </View>
               <View style={styles.displayFlexCenterColumn}>
-                <Text style={styles.teamSelectionModalDetailsText}>
+                <Text style={styles.TeamsSelectionModalDetailsText}>
                   {selectedTeam.ballers}
                 </Text>
-                <Text style={styles.teamSelectionModalDetailsText}>
+                <Text style={styles.TeamsSelectionModalDetailsText}>
                     Ballers
                 </Text>
               </View>
@@ -62,10 +63,10 @@ const TeamModal = ({ visible, toggleModal, selectedTeam = {} }) => (
               </View>
             </View>
           </View>
-          <View style={styles.footer}>
-            <TouchableOpacity style={styles.footerButtonModal}>
+          <View style={styles.footerModal}>
+            <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsJoin)} style={styles.footerButtonModal}>
               <UppercasedText style={styles.bottomMainButtonTextModal}>
-                  I play for this team
+                I play for this team
               </UppercasedText>
             </TouchableOpacity>
           </View>
@@ -85,6 +86,7 @@ TeamModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   selectedTeam: PropTypes.shape({}),
   toggleModal: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({}).isRequired,
 };
 
 export default TeamModal;

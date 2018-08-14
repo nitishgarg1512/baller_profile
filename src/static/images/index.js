@@ -9,6 +9,7 @@ import hashtag2 from './hashtag2.png';
 import insta from './insta.png';
 import league from './league.png';
 import logo from './logo.png';
+import shaarawy from './shaarawy.png';
 import twitter from './twitter.png';
 
 export default {
@@ -23,5 +24,6 @@ export default {
   insta,
   league,
   logo,
+  shaarawy,
   twitter,
 };

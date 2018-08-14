@@ -3,12 +3,16 @@ import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export default {
-  my70: {
-    marginTop: 70,
-    marginBottom: 70,
+  alignSelfCenter: {
+    alignSelf: 'center',
   },
-  borderRadiusCircle: {
-    borderRadius: 100,
+  wx50: {
+    width: width - 50,
+  },
+  profileCreationSubtitle: {
+    fontFamily: 'calibri-italic',
+    fontSize: 18,
+    color: '#000',
   },
   marginBottom80: {
     paddingBottom: 80,
@@ -312,7 +316,6 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    marginTop: 20,
   },
   displayFlexCenterColumn: {
     display: 'flex',
@@ -360,6 +363,12 @@ export default {
   },
   item: {
     width: width - 50,
+  },
+  findTeamDob: {
+    borderBottomColor: '#000',
+    borderBottomWidth: 1,
+    flex: 1,
+    marginBottom: 25,
   },
   findTeamItem: {
     borderBottomColor: '#000',
