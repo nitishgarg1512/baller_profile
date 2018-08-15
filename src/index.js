@@ -14,7 +14,7 @@ const Router = createStackNavigator({
   Registration: Authentication.Registration,
   TeamsSelection: Teams.Selection,
   TeamsCreation: Teams.Creation,
-  TeamsConfrimation: Teams.Confirmation,
+  TeamsConfirmation: Teams.Confirmation,
   TeamsJoin: Teams.Join,
   ProfilesCreation: Profiles.Creation,
   TeamsNotified: Teams.Notified,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Container, Input, Item, Label, Icon, Content } from 'native-base';
+import { Container, Content } from 'native-base';
 
 import styles from '../common/styles';
 

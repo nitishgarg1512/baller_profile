@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Container, Icon, Content } from 'native-base';
+import { Container, Content } from 'native-base';
 
 import styles from '../common/styles';
 
@@ -15,8 +14,6 @@ class Notified extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
-
     return (
       <Container>
         <Content style={styles.marginBottom50}>
@@ -25,16 +22,16 @@ class Notified extends React.Component {
               You&#39;re almost there!
             </UppercasedText>
           </View>
-          <View style={[styles.TeamsConfrimationPicContainer, styles.my70]}>
+          <View style={[styles.TeamsConfirmationPicContainer, styles.my70]}>
             <Image
               style={[styles.teamCardImage, styles.borderRadiusCircle]}
               source={images.aftv}
               resizeMode="contain"
             />
           </View>
-          <View style={styles.TeamsConfrimationMessageContainer}>
-            <Text style={styles.TeamsConfrimationSecondaryText}>
-              The AFTV FC team captaion and team admins have been notified... They will add you to the squad as soon as possible!
+          <View style={styles.TeamsConfirmationMessageContainer}>
+            <Text style={styles.TeamsConfirmationSecondaryText}>
+              The AFTV FC team captain and team admins have been notified... They will add you to the squad as soon as possible!
             </Text>
           </View>
         </Content>
@@ -49,9 +46,5 @@ class Notified extends React.Component {
     );
   }
 }
-
-Notified.propTypes = {
-  navigation: PropTypes.shape({}).isRequired,
-};
 
 export default Notified;

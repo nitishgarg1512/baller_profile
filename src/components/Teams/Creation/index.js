@@ -82,7 +82,7 @@ class Creation extends React.Component {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsConfrimation)} style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsConfirmation)} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Create team
             </UppercasedText>

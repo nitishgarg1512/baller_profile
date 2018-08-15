@@ -5,7 +5,7 @@ export default keyMirror({
   Registration: null,
   TeamsCreation: null,
   TeamsSelection: null,
-  TeamsConfrimation: null,
+  TeamsConfirmation: null,
   TeamsJoin: null,
   ProfilesCreation: null,
   TeamsNotified: null,

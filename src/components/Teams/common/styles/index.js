@@ -3,6 +3,9 @@ import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export default {
+  mt70: {
+    marginTop: 70,
+  },
   my70: {
     marginTop: 70,
     marginBottom: 70,
@@ -126,7 +129,7 @@ export default {
     fontSize: 23,
     color: '#fff',
   },
-  TeamsConfrimationMessageContainer: {
+  TeamsConfirmationMessageContainer: {
     paddingLeft: 30,
     paddingRight: 30,
     display: 'flex',
@@ -134,14 +137,14 @@ export default {
     alignItems: 'center',
     flexDirection: 'column',
   },
-  TeamsConfrimationSecondaryText: {
+  TeamsConfirmationSecondaryText: {
     paddingTop: 15,
     fontFamily: 'calibri',
     fontSize: 20,
     textAlign: 'center',
     color: '#000',
   },
-  TeamsConfrimationMainText: {
+  TeamsConfirmationMainText: {
     fontFamily: 'calibri-bold',
     fontSize: 25,
     color: '#000',
@@ -163,7 +166,7 @@ export default {
     alignItems: 'center',
     flexDirection: 'column',
   },
-  TeamsConfrimationPicContainer: {
+  TeamsConfirmationPicContainer: {
     marginTop: 20,
     marginBottom: 20,
     display: 'flex',
@@ -354,7 +357,7 @@ export default {
     height: 125,
     width: 125,
   },
-  TeamsConfrimationImage: {
+  TeamsConfirmationImage: {
     height: 180,
     width: 180,
   },

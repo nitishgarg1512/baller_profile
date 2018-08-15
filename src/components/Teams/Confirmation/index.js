@@ -19,7 +19,7 @@ class Confirmation extends React.Component {
 
     return (
       <Container>
-        <Content style={styles.marginBottom50}>
+        <Content>
           <View style={styles.headerContainer}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
@@ -30,32 +30,32 @@ class Confirmation extends React.Component {
               NEWTEAM UNITED
             </UppercasedText>
           </View>
-          <View style={styles.TeamsConfrimationPicContainer}>
+          <View style={styles.TeamsConfirmationPicContainer}>
             <Image
               style={styles.teamCardImage}
               source={images.hashtag2}
               resizeMode="contain"
             />
           </View>
-          <View style={styles.TeamsConfrimationMessageContainer}>
-            <Text style={styles.TeamsConfrimationMainText}>
+          <View style={styles.TeamsConfirmationMessageContainer}>
+            <Text style={styles.TeamsConfirmationMainText}>
               Congrats Dimitri,
             </Text>
-            <Text style={styles.TeamsConfrimationSecondaryText}>
+            <Text style={styles.TeamsConfirmationSecondaryText}>
               You are now the Captain and Admin of Newteam United!
             </Text>
           </View>
-        </Content>
-        <View style={styles.inviteBallersContainer}>
-          <TouchableOpacity style={styles.inviteBallersButton}>
-            <UppercasedText style={styles.inviteBallersButtonText}>
+          <View style={[styles.inviteBallersContainer, styles.mt70]}>
+            <TouchableOpacity style={styles.inviteBallersButton}>
+              <UppercasedText style={styles.inviteBallersButtonText}>
               Invite ballers
-            </UppercasedText>
-          </TouchableOpacity>
-          <Text style={styles.inviteBallersText}>
+              </UppercasedText>
+            </TouchableOpacity>
+            <Text style={styles.inviteBallersText}>
             Even Messi needs his teammates!
-          </Text>
-        </View>
+            </Text>
+          </View>
+        </Content>
         <View style={styles.footer}>
           <TouchableOpacity style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonTextConfirmation}>
