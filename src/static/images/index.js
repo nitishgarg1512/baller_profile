@@ -4,11 +4,14 @@ import authBg2 from './auth-bg-2.png';
 import authBg3 from './auth-small-bg-3.jpg';
 import authBg4 from './auth-bg-4.png';
 import dimitri from './dimitri.png';
+import england from './england.png';
 import hashtag from './hashtag.png';
 import hashtag2 from './hashtag2.png';
 import insta from './insta.png';
 import league from './league.png';
+import lm from './lm.png';
 import logo from './logo.png';
+import profilebg from './profilebg.png';
 import shaarawy from './shaarawy.png';
 import twitter from './twitter.png';
 
@@ -19,11 +22,14 @@ export default {
   authBg3,
   authBg4,
   dimitri,
+  england,
   hashtag,
   hashtag2,
   insta,
   league,
+  lm,
   logo,
+  profilebg,
   shaarawy,
   twitter,
 };

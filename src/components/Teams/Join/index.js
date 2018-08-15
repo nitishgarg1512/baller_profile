@@ -37,29 +37,31 @@ class Join extends React.Component {
           </View>
           <View style={[{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }]}>
             <View style={[styles.displayFlexSpaceBetweenRow, styles.py10, styles.wx80]}>
-              <View style={styles.displayFlexCenterColumn}>
-                <View style={styles.TeamsJoinCardImage}>
-                  <Image
-                    style={styles.joinTeamCardImage}
-                    source={images.shaarawy}
-                    resizeMode="contain"
-                  />
-                </View>
-                <Text style={[styles.playerNameText, styles.py10]}>
-                  Dimitri Gbo
-                </Text>
-                <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
-                  Goalkeeper
-                </Text>
-                <Text style={styles.playerNameSecondaryText}>
-                  Team admin
-                </Text>
-                <TouchableOpacity style={[styles.playerFollowButton]}>
-                  <Text style={styles.playerFollowButtonText}>
-                    Follow
+              <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesView)}>
+                <View style={styles.displayFlexCenterColumn}>
+                  <View style={styles.TeamsJoinCardImage}>
+                    <Image
+                      style={styles.joinTeamCardImage}
+                      source={images.shaarawy}
+                      resizeMode="contain"
+                    />
+                  </View>
+                  <Text style={[styles.playerNameText, styles.py10]}>
+                    Dimitri Gbo
                   </Text>
-                </TouchableOpacity>
-              </View>
+                  <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
+                    Goalkeeper
+                  </Text>
+                  <Text style={styles.playerNameSecondaryText}>
+                    Team admin
+                  </Text>
+                  <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesView)} style={[styles.playerFollowButton]}>
+                    <Text style={styles.playerFollowButtonText}>
+                      Follow
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
               <View style={styles.displayFlexCenterColumn}>
                 <View style={styles.TeamsJoinCardImage}>
                   <Image

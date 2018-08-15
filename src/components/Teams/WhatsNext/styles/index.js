@@ -1,3 +1,7 @@
+import { Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
 export default {
   my80: {
     marginTop: 80,
@@ -61,9 +65,7 @@ export default {
     paddingTop: 15,
     paddingBottom: 15,
     borderRadius: 0,
-    marginLeft: 25,
-    marginRight: 25,
-    width: 330,
+    width: width - 50,
   },
   subeading2Welcome: {
     fontFamily: 'calibri',

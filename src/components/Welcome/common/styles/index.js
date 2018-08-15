@@ -1,3 +1,7 @@
+import { Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
 export default {
   container: {
     flex: 1,
@@ -42,9 +46,7 @@ export default {
     paddingTop: 13,
     paddingBottom: 10,
     borderRadius: 41,
-    marginLeft: 25,
-    marginRight: 25,
-    width: 330,
+    width: width - 50,
   },
   subeading2Welcome: {
     fontFamily: 'calibri',

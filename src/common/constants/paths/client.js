@@ -10,4 +10,5 @@ export default keyMirror({
   TeamsNotified: null,
   TeamsSelection: null,
   WhatsNext: null,
+  ProfilesView: null,
 });
