@@ -150,7 +150,7 @@ export default {
   playerFollowButtonText: {
     fontFamily: 'calibri-bold',
     fontSize: 13,
-    color: '#0c406a',
+    color: '#0071c0',
   },
   skillPillScore: {
     marginLeft: 2,
@@ -186,8 +186,8 @@ export default {
   },
   playerFollowButton: {
     borderRadius: 41,
-    borderColor: '#0c406a',
-    borderWidth: 2,
+    borderColor: '#0071c0',
+    borderWidth: 0.8,
     padding: 3,
     paddingLeft: 12,
     paddingRight: 12,

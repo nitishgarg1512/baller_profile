@@ -22,13 +22,13 @@ export default {
   playerFollowButtonText: {
     fontFamily: 'calibri-bold',
     fontSize: 18,
-    color: '#0c406a',
+    color: '#0071c0',
   },
   playerFollowButton: {
     marginTop: 15,
     borderRadius: 10,
-    borderColor: '#0c406a',
-    borderWidth: 2,
+    borderColor: '#0071c0',
+    borderWidth: 0.8,
     padding: 6,
     paddingLeft: 25,
     paddingRight: 25,

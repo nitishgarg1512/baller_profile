@@ -6,6 +6,7 @@ import { Icon, Thumbnail, Right } from 'native-base';
 import styles from './styles';
 
 import images from '../../../static/images';
+import { paths } from '../../../common/constants';
 
 class ProfileView extends React.Component {
   static navigationOptions = {
@@ -55,7 +56,7 @@ class ProfileView extends React.Component {
                       </View>
                       <View style={styles.detailsContainer}>
                         <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                        <TouchableOpacity style={[styles.playerFollowButton]}>
+                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections)} style={[styles.playerFollowButton]}>
                           <Text style={styles.playerFollowButtonText}>
                             Follow
                           </Text>

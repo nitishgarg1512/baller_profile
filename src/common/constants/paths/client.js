@@ -11,4 +11,5 @@ export default keyMirror({
   TeamsSelection: null,
   WhatsNext: null,
   ProfilesView: null,
+  ProfilesConnections: null,
 });
