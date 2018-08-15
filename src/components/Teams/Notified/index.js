@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Container, Content } from 'native-base';
@@ -7,6 +8,7 @@ import styles from '../common/styles';
 import { UppercasedText } from '../../common/components';
 
 import images from '../../../static/images';
+import { paths } from '../../../common/constants';
 
 class Notified extends React.Component {
   static navigationOptions = {
@@ -14,6 +16,8 @@ class Notified extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <Container>
         <Content style={styles.marginBottom50}>
@@ -36,7 +40,7 @@ class Notified extends React.Component {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.WhatsNext)} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonTextConfirmation}>
               Done
             </UppercasedText>
@@ -46,5 +50,9 @@ class Notified extends React.Component {
     );
   }
 }
+
+Notified.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
+};
 
 export default Notified;

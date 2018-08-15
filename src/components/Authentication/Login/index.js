@@ -111,7 +111,7 @@ class Login extends React.Component {
                   <Label style={styles.inputLabel}>
                     Type your password
                   </Label>
-                  <Icon onPress={() => this.handleShowPassword()} style={styles.icon} type="FontAwesome" name={showPassword ? 'eye-slash' : 'eye'} />
+                  <Icon onPress={() => this.handleShowPassword()} style={[styles.icon, styles.colorWhite]} type="FontAwesome" name={showPassword ? 'eye-slash' : 'eye'} />
                   <Input
                     selectionColor="#fff"
                     onChangeText={value => this.changeUserValue(value, 'password')}

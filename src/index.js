@@ -18,6 +18,7 @@ const Router = createStackNavigator({
   TeamsJoin: Teams.Join,
   ProfilesCreation: Profiles.Creation,
   TeamsNotified: Teams.Notified,
+  WhatsNext: Teams.WhatsNext,
 }, {
   initialRouteName: initialRoute,
 });

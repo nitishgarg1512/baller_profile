@@ -3,6 +3,9 @@ import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default {
+  colorWhite: {
+    color: '#fff',
+  },
   tosChildren: {
     display: 'flex',
     justifyContent: 'center',

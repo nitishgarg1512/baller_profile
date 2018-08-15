@@ -3,6 +3,7 @@ import Creation from './Creation';
 import Join from './Join';
 import Notified from './Notified';
 import Selection from './Selection';
+import WhatsNext from './WhatsNext';
 
 export default {
   Confirmation,
@@ -10,4 +11,5 @@ export default {
   Join,
   Notified,
   Selection,
+  WhatsNext,
 };
