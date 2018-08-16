@@ -12,4 +12,5 @@ export default keyMirror({
   WhatsNext: null,
   ProfilesView: null,
   ProfilesConnections: null,
+  ProfilesNationality: null,
 });

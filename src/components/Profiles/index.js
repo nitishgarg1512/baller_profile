@@ -1,9 +1,11 @@
-import Creation from './Creation';
-import View from './View';
 import ConnectionsView from './ConnectionsView';
+import Creation from './Creation';
+import NationalityView from './NationalityView';
+import View from './View';
 
 export default {
-  Creation,
-  View,
   ConnectionsView,
+  Creation,
+  NationalityView,
+  View,
 };

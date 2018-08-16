@@ -13,6 +13,7 @@ import lm from './lm.png';
 import logo from './logo.png';
 import profilebg from './profilebg.png';
 import shaarawy from './shaarawy.png';
+import spain from './spain.png';
 import twitter from './twitter.png';
 
 export default {
@@ -31,5 +32,6 @@ export default {
   logo,
   profilebg,
   shaarawy,
+  spain,
   twitter,
 };
