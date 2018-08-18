@@ -53,7 +53,7 @@ export default {
     fontFamily: 'calibri',
     fontSize: 16,
     textAlign: 'center',
-    color: '#4088c9',
+    color: '#0172c1',
     textDecorationLine: 'underline',
   },
   container: {
@@ -278,7 +278,7 @@ export default {
   },
   instaButton: {
     borderColor: '#9220a3',
-    borderWidth: 3,
+    borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 41,
     width: width - 50,
@@ -297,7 +297,7 @@ export default {
   twitterButton: {
     marginTop: 17,
     borderColor: '#26a6d1',
-    borderWidth: 3,
+    borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 41,
     width: width - 50,

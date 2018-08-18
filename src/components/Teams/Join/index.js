@@ -27,7 +27,7 @@ class Join extends React.Component {
     return (
       <Container>
         <Content>
-          <View style={[styles.displayFlexCenterRowCreation, styles.marginTop20]}>
+          <View style={[{ borderTopWidth: 0.6, borderColor: 'rgba(0,0,0,.3)', borderBottomWidth: 0.6 }, styles.displayFlexCenterRowCreation, styles.py20]}>
             <UppercasedText style={styles.TeamsJoinMainText}>
               2&nbsp;
             </UppercasedText>
@@ -36,32 +36,32 @@ class Join extends React.Component {
             </UppercasedText>
           </View>
           <View style={[{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }]}>
-            <View style={[styles.displayFlexSpaceBetweenRow, styles.py10, styles.wx80]}>
-              <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesView)}>
-                <View style={styles.displayFlexCenterColumn}>
-                  <View style={styles.TeamsJoinCardImage}>
-                    <Image
-                      style={styles.joinTeamCardImage}
-                      source={images.shaarawy}
-                      resizeMode="contain"
-                    />
-                  </View>
-                  <Text style={[styles.playerNameText, styles.py10]}>
-                    Dimitri Gbo
-                  </Text>
-                  <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
-                    Goalkeeper
-                  </Text>
-                  <Text style={styles.playerNameSecondaryText}>
-                    Team admin
-                  </Text>
-                  <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesView)} style={[styles.playerFollowButton]}>
-                    <Text style={styles.playerFollowButtonText}>
-                      Follow
-                    </Text>
-                  </TouchableOpacity>
+            <TouchableOpacity style={{ paddingTop: 15, paddingBottom: 15, flex: 1, borderRightWidth: 0.6, borderRightColor: 'rgba(0,0,0,.3)' }} onPress={() => navigation.navigate(paths.client.ProfilesView)}>
+              <View style={styles.displayFlexCenterColumn}>
+                <View style={styles.TeamsJoinCardImage}>
+                  <Image
+                    style={styles.joinTeamCardImage}
+                    source={images.shaarawy}
+                    resizeMode="contain"
+                  />
                 </View>
-              </TouchableOpacity>
+                <Text style={[styles.playerNameText, styles.py10]}>
+                Dimitri Gbo
+                </Text>
+                <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
+                Goalkeeper
+                </Text>
+                <Text style={styles.playerNameSecondaryText}>
+                Team admin
+                </Text>
+                <TouchableOpacity style={[styles.playerFollowButton]}>
+                  <Text style={styles.playerFollowButtonText}>
+                  Follow
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ paddingTop: 15, paddingBottom: 15, flex: 1, borderRightWidth: 0.6, borderRightColor: 'rgba(0,0,0,.3)' }} onPress={() => navigation.navigate(paths.client.ProfilesView)}>
               <View style={styles.displayFlexCenterColumn}>
                 <View style={styles.TeamsJoinCardImage}>
                   <Image
@@ -85,9 +85,9 @@ class Join extends React.Component {
                   </Text>
                 </TouchableOpacity>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
-          <View style={[styles.displayFlexCenterRowCreation, styles.marginTop50]}>
+          <View style={[{ borderTopWidth: 0.6, borderColor: 'rgba(0,0,0,.3)', borderBottomWidth: 0.6 }, styles.displayFlexCenterRowCreation, styles.py20]}>
             <UppercasedText style={styles.TeamsJoinMainText}>
               6&nbsp;
             </UppercasedText>
@@ -96,7 +96,32 @@ class Join extends React.Component {
             </UppercasedText>
           </View>
           <View style={[{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }]}>
-            <View style={[styles.displayFlexSpaceBetweenRow, styles.py10, styles.wx80]}>
+            <TouchableOpacity style={{ paddingTop: 15, paddingBottom: 15, flex: 1, borderRightWidth: 0.6, borderRightColor: 'rgba(0,0,0,.3)' }} onPress={() => navigation.navigate(paths.client.ProfilesView)}>
+              <View style={styles.displayFlexCenterColumn}>
+                <View style={styles.TeamsJoinCardImage}>
+                  <Image
+                    style={styles.joinTeamCardImage}
+                    source={images.shaarawy}
+                    resizeMode="contain"
+                  />
+                </View>
+                <Text style={[styles.playerNameText, styles.py10]}>
+                Dimitri Gbo
+                </Text>
+                <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
+                Goalkeeper
+                </Text>
+                <Text style={styles.playerNameSecondaryText}>
+                Team admin
+                </Text>
+                <TouchableOpacity style={[styles.playerFollowButton]}>
+                  <Text style={styles.playerFollowButtonText}>
+                  Follow
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ paddingTop: 15, paddingBottom: 15, flex: 1, borderRightWidth: 0.6, borderRightColor: 'rgba(0,0,0,.3)' }} onPress={() => navigation.navigate(paths.client.ProfilesView)}>
               <View style={styles.displayFlexCenterColumn}>
                 <View style={styles.TeamsJoinCardImage}>
                   <Image
@@ -120,30 +145,7 @@ class Join extends React.Component {
                   </Text>
                 </TouchableOpacity>
               </View>
-              <View style={styles.displayFlexCenterColumn}>
-                <View style={styles.TeamsJoinCardImage}>
-                  <Image
-                    style={styles.joinTeamCardImage}
-                    source={images.shaarawy}
-                    resizeMode="contain"
-                  />
-                </View>
-                <Text style={[styles.playerNameText, styles.py10]}>
-                  Dimitri Gbo
-                </Text>
-                <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
-                  Goalkeeper
-                </Text>
-                <Text style={styles.playerNameSecondaryText}>
-                  Team admin
-                </Text>
-                <TouchableOpacity style={[styles.playerFollowButton]}>
-                  <Text style={styles.playerFollowButtonText}>
-                    Follow
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </Content>
         <View style={[styles.footer]}>

@@ -40,7 +40,7 @@ class Notified extends React.Component {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsView)} style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.WhatsNext)} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonTextConfirmation}>
               Done
             </UppercasedText>

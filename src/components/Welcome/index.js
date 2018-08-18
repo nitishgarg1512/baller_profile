@@ -59,7 +59,7 @@ class Welcome extends React.Component {
           </Swiper>
           <TouchableOpacity onPress={this.handleSkipSwiper} style={styles.footerChildContainer}>
             <UppercasedText style={styles.skipButton}>
-              Skip
+              {activeStep !== 2 ? 'Skip' : 'Done'}
             </UppercasedText>
           </TouchableOpacity>
         </React.Fragment>

@@ -45,7 +45,7 @@ class WhatsNext extends React.Component {
                   Why use BallerProfile?
                 </UppercasedText>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.submitButton, styles.my20, styles.backgroundRed]}>
+              <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesView)} style={[styles.submitButton, styles.my20, styles.backgroundRed]}>
                 <UppercasedText style={styles.submitButtonText}>
                   Visit my profile page
                 </UppercasedText>

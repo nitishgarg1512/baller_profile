@@ -7,7 +7,7 @@ export default {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,.9)',
+    backgroundColor: 'rgba(0,0,0,.79)',
     display: 'flex',
   },
   contentContainer: {

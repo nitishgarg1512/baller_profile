@@ -17,7 +17,7 @@ class Registration extends React.Component {
         <Text style={styles.headerMain}>
           Create your&nbsp;
           <Text style={styles.headerBaller}>
-            Baller&nbsp;
+            Baller
           </Text>
           <Text style={styles.headerProfile}>
             Profile
@@ -94,7 +94,7 @@ class Registration extends React.Component {
                 <Input secureTextEntry={!showPassword} value={user.confirmPassword} onChangeText={value => this.changeUserValue(value, 'confirmPassword')} />
               </Item>
               <View style={styles.registrationFlexContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate(paths.client.WhatsNext)} style={styles.registrationReverseSubmitButton}>
+                <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSelection)} style={styles.registrationReverseSubmitButton}>
                   <UppercasedText style={styles.registrationSubmitButtonText}>
                     Sign me up!
                   </UppercasedText>
@@ -109,7 +109,7 @@ class Registration extends React.Component {
                 <TouchableOpacity style={styles.instaButton}>
                   <View style={styles.displayFlexCenter}>
                     <Text style={styles.instaText}>
-                      Continue with insta
+                      Continue with Instagram
                     </Text>
                   </View>
                   <Image

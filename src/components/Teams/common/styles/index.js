@@ -3,6 +3,10 @@ import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export default {
+  py20: {
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
   mt70: {
     marginTop: 70,
   },
@@ -15,6 +19,9 @@ export default {
   },
   marginBottom80: {
     paddingBottom: 80,
+  },
+  pt50: {
+    paddingTop: 50,
   },
   marginTop50: {
     marginTop: 50,
@@ -296,7 +303,6 @@ export default {
     borderBottomWidth: 1,
   },
   teamScroller: {
-    marginLeft: 20,
     paddingTop: 12,
     paddingBottom: 15,
     marginBottom: 10,

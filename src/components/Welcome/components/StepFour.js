@@ -24,7 +24,7 @@ const StepFour = ({ navigation }) => (
         </View>
         <View style={styles.flexContainer}>
           <Text style={styles.display1Welcome}>
-            Welcome to baller Profile
+            Welcome to BallerProfile
           </Text>
           <Text style={styles.subheadingWelcome}>
             Find the hottest talent outside of pro sports!

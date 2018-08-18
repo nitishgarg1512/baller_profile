@@ -71,7 +71,7 @@ export default {
     paddingTop: 20,
     display: 'flex',
     justifyContent: 'flex-end',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     flexDirection: 'column',
   },
   scoreContent: {

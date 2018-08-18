@@ -76,26 +76,30 @@ class ProfileView extends React.Component {
                   <View style={styles.profileContentMainPadding}>
                     <View style={styles.displayFlexRowBasic}>
                       <View style={styles.scoreAltContent}>
-                        <View style={styles.flexStartRow}>
-                          <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
+                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections)}>
+                          <View style={styles.flexStartRow}>
+                            <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
+                            <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
                             305
-                          </Text>
-                        </View>
-                        <View style={styles.flexStartRow}>
-                          <Icon style={styles.colorScoreBlue} name="arrow-left" type="Entypo" />
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
+                            </Text>
+                          </View>
+                          <View style={styles.flexStartRow}>
+                            <Icon style={styles.colorScoreBlue} name="arrow-left" type="Entypo" />
+                            <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
                             11,035
-                          </Text>
-                        </View>
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
                       </View>
                       <View style={styles.scoreContainer}>
-                        <View style={styles.scoreContent}>
-                          <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
+                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections)}>
+                          <View style={styles.scoreContent}>
+                            <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
+                            <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
                             15009
-                          </Text>
-                        </View>
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
                       </View>
                       <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesNationality)}>
                         <View style={styles.conutryContainer}>
