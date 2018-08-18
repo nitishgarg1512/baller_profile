@@ -1,6 +1,6 @@
 import config from './config';
 
-const initialRoute = 'ProfilesNationality';
+const initialRoute = 'TeamsView';
 
 export default config;
 

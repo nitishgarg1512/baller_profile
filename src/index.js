@@ -22,6 +22,10 @@ const Router = createStackNavigator({
   ProfilesView: Profiles.View,
   ProfilesConnections: Profiles.ConnectionsView,
   ProfilesNationality: Profiles.NationalityView,
+  ProfilesRating: Profiles.Rating,
+  TeamsView: Teams.View,
+  TeamsSquad: Teams.Squad,
+  MatchCreation: Teams.MatchCreation,
 }, {
   initialRouteName: initialRoute,
 });

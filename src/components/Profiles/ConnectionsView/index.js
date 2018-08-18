@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Thumbnail } from 'native-base';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
@@ -8,25 +8,25 @@ import styles from './styles';
 import images from '../../../static/images';
 
 const FirstRoute = () => (
-  <View style={{ justifyContent: 'center', width: Dimensions.get('window').width - 25, alignItems: 'center', alignSelf: 'center', flexDirection: 'column' }}>
-    <View style={{ marginTop: 10, marginBottom: 10, elevation: 1, borderRadius: 5, backgroundColor: '#fff', width: '100%', padding: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+  <View style={styles.playerCardContainer}>
+    <View style={styles.playerCard}>
+      <View style={styles.flexCenterRow}>
         <View style={styles.borderRadiusCircle}>
           <Thumbnail
             style={[styles.profileImage]}
             source={images.lm}
           />
         </View>
-        <View style={{ marginLeft: 10, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-            <Text style={{ fontFamily: 'calibri-italic', color: '#000', fontSize: 15 }}>
+        <View style={styles.playerCardName}>
+          <View style={styles.flexCenterRow}>
+            <Text style={styles.nameText}>
               Dimitri Gbo&nbsp;
             </Text>
-            <Text style={{ fontFamily: 'calibri-italic', color: 'rgba(0,0,0,.3)', fontSize: 11 }}>
+            <Text style={styles.tagText}>
               @Dimzinho
             </Text>
           </View>
-          <Text style={{ fontFamily: 'calibri-italic', color: 'rgba(0,0,0,.3)', fontSize: 13 }}>
+          <Text style={styles.descText}>
             CDM for Strictly Ballers
           </Text>
         </View>
@@ -37,24 +37,24 @@ const FirstRoute = () => (
         </Text>
       </TouchableOpacity>
     </View>
-    <View style={{ marginBottom: 10, elevation: 1, borderRadius: 5, backgroundColor: '#fff', width: '100%', padding: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+    <View style={styles.playerCard}>
+      <View style={styles.flexCenterRow}>
         <View style={styles.borderRadiusCircle}>
           <Thumbnail
             style={[styles.profileImage]}
             source={images.lm}
           />
         </View>
-        <View style={{ marginLeft: 10, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-            <Text style={{ fontFamily: 'calibri-italic', color: '#000', fontSize: 15 }}>
+        <View style={styles.playerCardName}>
+          <View style={styles.flexCenterRow}>
+            <Text style={styles.nameText}>
               Mena Ntueba&nbsp;
             </Text>
-            <Text style={{ fontFamily: 'calibri-italic', color: 'rgba(0,0,0,.3)', fontSize: 11 }}>
+            <Text style={styles.tagText}>
               @Menchizedek
             </Text>
           </View>
-          <Text style={{ fontFamily: 'calibri-italic', color: 'rgba(0,0,0,.3)', fontSize: 13 }}>
+          <Text style={styles.descText}>
             CM for Strictly Ballers
           </Text>
         </View>
@@ -65,24 +65,24 @@ const FirstRoute = () => (
         </Text>
       </TouchableOpacity>
     </View>
-    <View style={{ marginBottom: 10, elevation: 1, borderRadius: 5, backgroundColor: '#fff', width: '100%', padding: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+    <View style={styles.playerCard}>
+      <View style={styles.flexCenterRow}>
         <View style={styles.borderRadiusCircle}>
           <Thumbnail
             style={[styles.profileImage]}
             source={images.lm}
           />
         </View>
-        <View style={{ marginLeft: 10, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-          <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-            <Text style={{ fontFamily: 'calibri-italic', color: '#000', fontSize: 15 }}>
+        <View style={styles.playerCardName}>
+          <View style={styles.flexCenterRow}>
+            <Text style={styles.nameText}>
               Roysten Drenthe&nbsp;
             </Text>
-            <Text style={{ fontFamily: 'calibri-italic', color: 'rgba(0,0,0,.3)', fontSize: 11 }}>
+            <Text style={styles.tagText}>
               @RoysDrent
             </Text>
           </View>
-          <Text style={{ fontFamily: 'calibri-italic', color: 'rgba(0,0,0,.3)', fontSize: 13 }}>
+          <Text style={styles.descText}>
             ST for Madridista
           </Text>
         </View>
@@ -99,7 +99,7 @@ const FirstRoute = () => (
 class ConnectionsView extends React.Component {
   static navigationOptions = {
     headerTitle: (
-      <Text style={{ fontFamily: 'calibri', fontSize: 20, color: '#fff' }}>
+      <Text style={styles.navigationText}>
         Connections
       </Text>
     ),
@@ -128,7 +128,7 @@ class ConnectionsView extends React.Component {
     return (
       <TabView
         navigationState={this.state}
-        tabStyle={{ backgroundColor: '#fff' }}
+        tabStyle={styles.bgWhite}
         renderScene={SceneMap({
           first: FirstRoute,
           second: FirstRoute,
@@ -153,23 +153,23 @@ class ConnectionsView extends React.Component {
               }
 
               return (
-                <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  <Text style={routes[index].key === key ? { fontFamily: 'calibri-italic', color: '#0071c0' } : { fontFamily: 'calibri-italic' }}>
+                <View style={styles.flexCenterColumn}>
+                  <Text style={routes[index].key === key ? styles.activeTab : styles.disabledTab}>
                     {title}
                   </Text>
-                  <Text style={routes[index].key === key ? { fontFamily: 'calibri-italic', color: '#0071c0' } : { fontFamily: 'calibri-italic' }}>
+                  <Text style={routes[index].key === key ? styles.activeTab : styles.disabledTab}>
                     {statisticsContent}
                   </Text>
                 </View>
               );
             }}
-            indicatorStyle={{ backgroundColor: '#0071c0' }}
-            labelStyle={{ color: '#0071c0', fontFamily: 'calibri-italic' }}
-            style={{ backgroundColor: '#fff' }}
+            indicatorStyle={styles.bgBlue}
+            labelStyle={styles.labelText}
+            style={styles.bgWhite}
           />
         )}
         onIndexChange={changedIndex => this.setState({ index: changedIndex })}
-        initialLayout={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }}
+        initialLayout={styles.h100w100}
       />
     );
   }

@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { Icon, Thumbnail, Right } from 'native-base';
+import { Icon, Thumbnail } from 'native-base';
 
 import styles from './styles';
 
 import images from '../../../static/images';
 import { paths } from '../../../common/constants';
 
-class ProfileView extends React.Component {
+class TeamsView extends React.Component {
   static navigationOptions = {
     header: null,
   }
@@ -30,7 +30,7 @@ class ProfileView extends React.Component {
               </TouchableOpacity>
               <View style={styles.searchPlayer}>
                 <Text style={[styles.fontBasic, styles.fontSize20, styles.colorBlack]}>
-                  @ Dimzinho
+                  @Ballers2018
                 </Text>
               </View>
             </View>
@@ -42,7 +42,7 @@ class ProfileView extends React.Component {
                 <View style={styles.borderRadiusCircle}>
                   <Thumbnail
                     style={[styles.profileImage]}
-                    source={images.lm}
+                    source={images.chelsea}
                   />
                 </View>
                 <View style={styles.profileContentMainCard}>
@@ -65,10 +65,10 @@ class ProfileView extends React.Component {
                     </View>
                     <View style={styles.pt20}>
                       <Text style={[styles.fontSize20, styles.fontItalic, styles.colorBlack]}>
-                        Dimitro Gbo
+                        Strictly Ballers
                       </Text>
                       <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                        Centre Midfielder for stricktly Ballers
+                        @Ballers2018
                       </Text>
                     </View>
                   </View>
@@ -79,21 +79,7 @@ class ProfileView extends React.Component {
                         <View style={styles.flexStartRow}>
                           <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                           <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                            305
-                          </Text>
-                        </View>
-                        <View style={styles.flexStartRow}>
-                          <Icon style={styles.colorScoreBlue} name="arrow-left" type="Entypo" />
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                            11,035
-                          </Text>
-                        </View>
-                      </View>
-                      <View style={styles.scoreContainer}>
-                        <View style={styles.scoreContent}>
-                          <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                            15009
+                            35
                           </Text>
                         </View>
                       </View>
@@ -101,12 +87,12 @@ class ProfileView extends React.Component {
                         <View style={styles.conutryContainer}>
                           <View style={styles.flexStartRow}>
                             <Image
-                              style={styles.h5w5}
-                              source={images.england}
+                              style={styles.h3w3}
+                              source={images.logo}
                               resizeMode="contain"
                             />
                             <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                              12,041
+                              84
                             </Text>
                           </View>
                         </View>
@@ -116,38 +102,75 @@ class ProfileView extends React.Component {
                 </View>
               </View>
               <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
-                <View style={styles.profileContentMainPadding}>
-                  <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                    Appearances
-                  </Text>
+                <View style={[styles.profileContentMainPadding]}>
+                  <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSquad)}>
+                    <View style={styles.flexSpaceBetweenRow}>
+                      <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
+                        Squad
+                      </Text>
+                      <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
+                        14 players
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
                 <View style={styles.hrLineSecondary} />
                 <View style={styles.profileContentMainPadding}>
-                  <View style={[styles.flexCenterRow, styles.mt10]}>
-                    <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                      2017/2018
-                    </Text>
-                    <Right>
-                      <View style={styles.flexCenterRow}>
-                        <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                        22
-                        </Text>
-                        <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
+                  <View style={styles.squadPlayer}>
+                    <View style={styles.squadContainer}>
+                      <View style={styles.borderRadiusCircleSquad}>
+                        <Thumbnail
+                          style={[styles.profileImageSquad]}
+                          source={images.lm}
+                        />
                       </View>
-                    </Right>
+                      <View style={styles.playerCardName}>
+                        <View style={styles.flexCenterRow}>
+                          <Text style={styles.nameText}>
+                            Lionel messi&nbsp;
+                          </Text>
+                          <Text style={styles.tagText}>
+                            @LioMessi
+                          </Text>
+                        </View>
+                        <Text style={styles.descText}>
+                          Striker
+                        </Text>
+                      </View>
+                    </View>
+                    <TouchableOpacity style={[styles.playerFollowButton]}>
+                      <Text style={styles.playerFollowButtonText}>
+                        Admin
+                      </Text>
+                    </TouchableOpacity>
                   </View>
-                  <View style={[styles.flexCenterRow, styles.mt10]}>
-                    <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                      Total
-                    </Text>
-                    <Right>
-                      <View style={styles.flexCenterRow}>
-                        <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                          101
-                        </Text>
-                        <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
+                  <View style={styles.squadPlayer}>
+                    <View style={styles.squadContainer}>
+                      <View style={styles.borderRadiusCircleSquad}>
+                        <Thumbnail
+                          style={[styles.profileImageSquad]}
+                          source={images.lm}
+                        />
                       </View>
-                    </Right>
+                      <View style={styles.playerCardName}>
+                        <View style={styles.flexCenterRow}>
+                          <Text style={styles.nameText}>
+                            Lionel messi&nbsp;
+                          </Text>
+                          <Text style={styles.tagText}>
+                            @LioMessi
+                          </Text>
+                        </View>
+                        <Text style={styles.descText}>
+                          Striker
+                        </Text>
+                      </View>
+                    </View>
+                    <TouchableOpacity style={[styles.playerFollowButton]}>
+                      <Text style={styles.playerFollowButtonText}>
+                        Admin
+                      </Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
@@ -155,31 +178,14 @@ class ProfileView extends React.Component {
                 <View style={styles.profileContentMainPadding}>
                   <View style={styles.flexSpaceBetweenRow}>
                     <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                      Ratings
+                      Upcoming fixtures
                     </Text>
-                    <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                      12 Attributes - 105 Ratings
-                    </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate(paths.client.MatchCreation)}>
+                      <Icon name="plus" type="Feather" style={styles.plusIcon} />
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.hrLineSecondary} />
-                <View style={styles.profileContentMainPadding}>
-                  <View style={styles.skillPillContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesRating)} style={[styles.skillPill]}>
-                      <Text style={styles.skillPillText}>
-                        Dribbling
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.skillPillScore]}>
-                      <Text style={styles.skillPillText}>
-                        19
-                      </Text>
-                    </TouchableOpacity>
-                    <Right>
-                      <Icon style={[styles.colorLightBlue, styles.fontSize30, styles.ml10]} name="plus" type="EvilIcons" />
-                    </Right>
-                  </View>
-                </View>
               </View>
             </View>
           </ScrollView>
@@ -189,8 +195,8 @@ class ProfileView extends React.Component {
   }
 }
 
-ProfileView.propTypes = {
+TeamsView.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
 };
 
-export default ProfileView;
+export default TeamsView;

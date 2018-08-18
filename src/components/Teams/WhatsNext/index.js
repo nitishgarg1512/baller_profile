@@ -58,7 +58,7 @@ class WhatsNext extends React.Component {
             </View>
           </ScrollView>
           <View style={[styles.headerCloseContainer]}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSelection)}>
               <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
             </TouchableOpacity>
           </View>

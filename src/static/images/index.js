@@ -15,8 +15,24 @@ import profilebg from './profilebg.png';
 import shaarawy from './shaarawy.png';
 import spain from './spain.png';
 import twitter from './twitter.png';
+import chelsea from './chelsea.png';
+import pedro from './pedro.png';
+import alvaro from './alvaro.jpg';
+import andres from './andres.jpg';
+import diego from './diego.jpg';
+import insta2 from './insta2.png';
+import twitter2 from './twitter2.png';
+import whatsapp from './whatsapp.png';
 
 export default {
+  insta2,
+  twitter2,
+  whatsapp,
+  diego,
+  alvaro,
+  andres,
+  chelsea,
+  pedro,
   aftv,
   authBg1,
   authBg2,
