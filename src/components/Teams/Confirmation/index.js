@@ -7,6 +7,7 @@ import styles from '../common/styles';
 
 import { UppercasedText } from '../../common/components';
 
+import { paths } from '../../../common/constants';
 import images from '../../../static/images';
 
 class Confirmation extends React.Component {
@@ -57,7 +58,7 @@ class Confirmation extends React.Component {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsView)} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonTextConfirmation}>
               Done
             </UppercasedText>

@@ -21,12 +21,36 @@ class Join extends React.Component {
     ),
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+    };
+  }
+
+  toggleFollow = (id) => {
+    this.setState({
+      [id]: !this.state[id],
+    });
+  }
+
   render() {
     const { navigation } = this.props;
 
     return (
       <Container>
         <Content>
+          <TouchableOpacity onPress={() => this.setState({ 1: true, 2: true, 3: true, 4: true })}>
+            <View style={[{ backgroundColor: '#0071c0' }, styles.displayFlexCenterRowCreation, styles.py20]}>
+              <UppercasedText style={styles.followAllText}>
+                Click to follow all players
+              </UppercasedText>
+            </View>
+          </TouchableOpacity>
           <View style={[{ borderTopWidth: 0.6, borderColor: 'rgba(0,0,0,.3)', borderBottomWidth: 0.6 }, styles.displayFlexCenterRowCreation, styles.py20]}>
             <UppercasedText style={styles.TeamsJoinMainText}>
               2&nbsp;
@@ -54,9 +78,9 @@ class Join extends React.Component {
                 <Text style={styles.playerNameSecondaryText}>
                 Team admin
                 </Text>
-                <TouchableOpacity style={[styles.playerFollowButton]}>
-                  <Text style={styles.playerFollowButtonText}>
-                  Follow
+                <TouchableOpacity onPress={() => this.toggleFollow(1)} style={[this.state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                  <Text style={this.state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                    {this.state[1] ? 'Following' : 'Follow'}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -79,9 +103,9 @@ class Join extends React.Component {
                 <Text style={styles.playerNameSecondaryText}>
                   Team admin
                 </Text>
-                <TouchableOpacity style={[styles.playerFollowButton]}>
-                  <Text style={styles.playerFollowButtonText}>
-                    Follow
+                <TouchableOpacity onPress={() => this.toggleFollow(2)} style={[this.state[2] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                  <Text style={this.state[2] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                    {this.state[2] ? 'Following' : 'Follow'}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -114,9 +138,9 @@ class Join extends React.Component {
                 <Text style={styles.playerNameSecondaryText}>
                 Team admin
                 </Text>
-                <TouchableOpacity style={[styles.playerFollowButton]}>
-                  <Text style={styles.playerFollowButtonText}>
-                  Follow
+                <TouchableOpacity onPress={() => this.toggleFollow(3)} style={[this.state[3] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                  <Text style={this.state[3] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                    {this.state[3] ? 'Following' : 'Follow'}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -139,9 +163,9 @@ class Join extends React.Component {
                 <Text style={styles.playerNameSecondaryText}>
                   Team admin
                 </Text>
-                <TouchableOpacity style={[styles.playerFollowButton]}>
-                  <Text style={styles.playerFollowButtonText}>
-                    Follow
+                <TouchableOpacity onPress={() => this.toggleFollow(4)} style={[this.state[4] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                  <Text style={this.state[4] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                    {this.state[4] ? 'Following' : 'Follow'}
                   </Text>
                 </TouchableOpacity>
               </View>

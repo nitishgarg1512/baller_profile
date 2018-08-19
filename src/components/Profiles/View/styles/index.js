@@ -150,6 +150,11 @@ export default {
   mt20: {
     marginTop: 20,
   },
+  playerFollowingButtonText: {
+    fontFamily: 'calibri-bold',
+    fontSize: 13,
+    color: '#fff',
+  },
   playerFollowButtonText: {
     fontFamily: 'calibri-bold',
     fontSize: 13,
@@ -186,6 +191,14 @@ export default {
     fontFamily: 'calibri-italic',
     fontSize: 16,
     color: '#fff',
+  },
+  playerFollowingButton: {
+    borderRadius: 41,
+    backgroundColor: '#0071c0',
+    padding: 3,
+    paddingLeft: 12,
+    paddingRight: 12,
+    marginLeft: 12,
   },
   playerFollowButton: {
     borderRadius: 41,

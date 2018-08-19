@@ -14,8 +14,25 @@ class Creation extends React.Component {
     header: null,
   }
 
+  constructor() {
+    super();
+
+    this.state = {
+
+    };
+  }
+
+  handleChange = (key, value) => {
+    this.setState({
+      [key]: value,
+    });
+  }
+
   render() {
     const { navigation } = this.props;
+    const { playingPosition, gender, nationalityMain, nationalitySecondary, region, postcode, day, month, year } = this.state;
+
+    const isComplete = playingPosition && gender && nationalityMain && nationalitySecondary && region && postcode && day && month && year;
 
     return (
       <Container>
@@ -48,9 +65,9 @@ class Creation extends React.Component {
               </Label>
               <Icon type="FontAwesome" name="caret-down" />
               <Input
-                disabled
+                value={playingPosition}
+                onChangeText={event => this.handleChange('playingPosition', event)}
                 selectionColor="#fff"
-                value=""
               />
             </Item>
           </View>
@@ -60,7 +77,8 @@ class Creation extends React.Component {
                 Nationality (main)
               </Label>
               <Input
-                disabled
+                value={nationalityMain}
+                onChangeText={event => this.handleChange('nationalityMain', event)}
                 selectionColor="#fff"
               />
             </Item>
@@ -71,7 +89,8 @@ class Creation extends React.Component {
                 Nationality (secondary)
               </Label>
               <Input
-                disabled
+                value={nationalitySecondary}
+                onChangeText={event => this.handleChange('nationalitySecondary', event)}
                 selectionColor="#fff"
               />
             </Item>
@@ -83,9 +102,9 @@ class Creation extends React.Component {
               </Label>
               <Icon type="FontAwesome" name="caret-down" />
               <Input
-                disabled
+                value={gender}
+                onChangeText={event => this.handleChange('gender', event)}
                 selectionColor="#fff"
-                value=""
               />
             </Item>
           </View>
@@ -96,9 +115,9 @@ class Creation extends React.Component {
               </Label>
               <Icon type="FontAwesome" name="caret-down" />
               <Input
-                disabled
+                value={postcode}
+                onChangeText={event => this.handleChange('postcode', event)}
                 selectionColor="#fff"
-                value=""
               />
             </Item>
           </View>
@@ -108,7 +127,8 @@ class Creation extends React.Component {
                 Region
               </Label>
               <Input
-                disabled
+                value={region}
+                onChangeText={event => this.handleChange('region', event)}
                 selectionColor="#fff"
               />
             </Item>
@@ -124,7 +144,8 @@ class Creation extends React.Component {
                 </Label>
                 <Icon type="FontAwesome" name="caret-down" />
                 <Input
-                  disabled
+                  value={day}
+                  onChangeText={event => this.handleChange('day', event)}
                   selectionColor="#fff"
                 />
               </Item>
@@ -134,7 +155,8 @@ class Creation extends React.Component {
                 </Label>
                 <Icon type="FontAwesome" name="caret-down" />
                 <Input
-                  disabled
+                  value={month}
+                  onChangeText={event => this.handleChange('month', event)}
                   selectionColor="#fff"
                 />
               </Item>
@@ -144,7 +166,8 @@ class Creation extends React.Component {
                 </Label>
                 <Icon type="FontAwesome" name="caret-down" />
                 <Input
-                  disabled
+                  value={year}
+                  onChangeText={event => this.handleChange('year', event)}
                   selectionColor="#fff"
                 />
               </Item>
@@ -152,7 +175,7 @@ class Creation extends React.Component {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsNotified)} style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsNotified)} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Done
             </UppercasedText>

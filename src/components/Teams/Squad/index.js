@@ -7,7 +7,7 @@ import styles from './styles';
 
 import images from '../../../static/images';
 
-const FirstRoute = () => (
+const FirstRoute = (toggleFollow, state) => (
   <View style={styles.playerCardContainer}>
     <View style={styles.playerCard}>
       <View style={styles.flexCenterRow}>
@@ -31,9 +31,9 @@ const FirstRoute = () => (
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={[styles.playerFollowingButton]}>
-        <Text style={styles.playerFollowingButtonText}>
-          Following
+      <TouchableOpacity onPress={() => toggleFollow(1)} style={[state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+        <Text style={state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+          {state[1] ? 'Following' : 'Follow'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -57,11 +57,19 @@ const FirstRoute = () => (
           <Text style={styles.descText}>
             Centre Midfielder
           </Text>
+          <View style={{ marginTop: 3, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+            <TouchableOpacity style={{ borderRadius: 5, borderWidth: 0.6, borderColor: '#0071c0', padding: 5, paddingLeft: 7, paddingRight: 7, marginRight: 7 }}>
+              <Text style={{ fontFamily: 'calibri', fontSize: 12, color: '#0071c0' }}>
+                Admin
+              </Text>
+            </TouchableOpacity>
+            <Icon name="copyright" type="MaterialIcons" style={{ fontSize: 14, color: '#0071c0' }} />
+          </View>
         </View>
       </View>
-      <TouchableOpacity style={[styles.playerFollowButton]}>
-        <Text style={styles.playerFollowButtonText}>
-          Follow
+      <TouchableOpacity onPress={() => toggleFollow(2)} style={[state[2] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+        <Text style={state[2] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+          {state[2] ? 'Following' : 'Follow'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -87,9 +95,9 @@ const FirstRoute = () => (
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={[styles.playerFollowButton]}>
-        <Text style={styles.playerFollowButtonText}>
-          Follow
+      <TouchableOpacity onPress={() => toggleFollow(3)} style={[state[3] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+        <Text style={state[3] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+          {state[3] ? 'Following' : 'Follow'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -157,7 +165,16 @@ class Squad extends React.Component {
         { key: 'first', title: 'Current squad' },
         { key: 'second', title: 'Invite players' },
       ],
+      1: false,
+      2: false,
+      3: false,
     };
+  }
+
+  toggleFollow = (id) => {
+    this.setState({
+      [id]: !this.state[id],
+    });
   }
 
   render() {
@@ -168,7 +185,7 @@ class Squad extends React.Component {
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: FirstRoute,
+          first: () => FirstRoute(this.toggleFollow, this.state),
           second: SecondRoute,
         })}
         renderTabBar={props => (

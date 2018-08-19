@@ -225,6 +225,17 @@ export default {
     shadowOpacity: 1,
     shadowRadius: 10,
   },
+  footerButtonDisabled: {
+    backgroundColor: 'rgba(0,0,0,.5)',
+    color: '#fff',
+    width,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 16,
+    paddingBottom: 16,
+  },
   footerButton: {
     backgroundColor: '#000',
     color: '#fff',

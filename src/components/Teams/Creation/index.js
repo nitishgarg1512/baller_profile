@@ -14,8 +14,25 @@ class Creation extends React.Component {
     header: null,
   }
 
+  constructor() {
+    super();
+
+    this.state = {
+
+    };
+  }
+
+  handleChange = (key, value) => {
+    this.setState({
+      [key]: value,
+    });
+  }
+
   render() {
     const { navigation } = this.props;
+    const { location, league, format, name } = this.state;
+
+    const isComplete = location && league && format && name;
 
     return (
       <Container>
@@ -35,7 +52,10 @@ class Creation extends React.Component {
               <Label style={styles.itemLabel}>
                 Type your team&#39;s name here...
               </Label>
-              <Input />
+              <Input
+                value={name}
+                onChangeText={event => this.handleChange('name', event)}
+              />
             </Item>
           </View>
           <View style={styles.profilePicContainer}>
@@ -51,7 +71,10 @@ class Creation extends React.Component {
               <Label style={styles.itemLabel}>
                 What league do they play in?
               </Label>
-              <Input />
+              <Input
+                value={league}
+                onChangeText={event => this.handleChange('league', event)}
+              />
             </Item>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
@@ -61,9 +84,8 @@ class Creation extends React.Component {
               </Label>
               <Icon type="FontAwesome" name="caret-down" />
               <Input
-                disabled
-                selectionColor="#fff"
-                value=""
+                value={location}
+                onChangeText={event => this.handleChange('location', event)}
               />
             </Item>
           </View>
@@ -74,15 +96,14 @@ class Creation extends React.Component {
               </Label>
               <Icon type="FontAwesome" name="caret-down" />
               <Input
-                disabled
-                selectionColor="#fff"
-                value=""
+                value={format}
+                onChangeText={event => this.handleChange('format', event)}
               />
             </Item>
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsConfirmation)} style={styles.footerButton}>
+          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsConfirmation)} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Create team
             </UppercasedText>

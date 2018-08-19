@@ -22,7 +22,7 @@ class Notified extends React.Component {
       <Container>
         <Content style={styles.marginBottom50}>
           <View style={styles.displayFlexCenterRow}>
-            <UppercasedText style={styles.TeamsSelectionTitle}>
+            <UppercasedText style={styles.almostThereTitle}>
               You&#39;re almost there!
             </UppercasedText>
           </View>
@@ -34,7 +34,7 @@ class Notified extends React.Component {
             />
           </View>
           <View style={styles.TeamsConfirmationMessageContainer}>
-            <Text style={styles.TeamsConfirmationSecondaryText}>
+            <Text style={[styles.TeamsConfirmationSecondaryText, { fontFamily: 'calibri-italic' }]}>
               The AFTV FC team captain and team admins have been notified... They will add you to the squad as soon as possible!
             </Text>
           </View>

@@ -148,8 +148,9 @@ export default {
     flexDirection: 'row',
   },
   h3w3: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
+    marginRight: 7,
   },
   pl5: {
     paddingLeft: 5,
@@ -369,6 +370,12 @@ export default {
   squadContainer: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  viewSquadContainer: {
+    display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
   },

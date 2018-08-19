@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, ScrollView, Image, Text, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Container, Input, Item, Label } from 'native-base';
 
 import { TeamModal } from './components';
@@ -25,6 +25,10 @@ class Selection extends React.Component {
       showModal: false,
       selectedTeam: undefined,
     };
+  }
+
+  componentDidMount() {
+    StatusBar.setHidden(false);
   }
 
   toggleModal = (team) => {

@@ -13,6 +13,14 @@ class ProfileView extends React.Component {
     header: null,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      following: false,
+    };
+  }
+
   render() {
     const { navigation } = this.props;
 
@@ -56,9 +64,9 @@ class ProfileView extends React.Component {
                       </View>
                       <View style={styles.detailsContainer}>
                         <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections)} style={[styles.playerFollowButton]}>
-                          <Text style={styles.playerFollowButtonText}>
-                            Follow
+                        <TouchableOpacity onPress={() => this.setState({ following: !this.state.following })} style={[this.state.following ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                          <Text style={this.state.following ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                            {this.state.following ? 'Following' : 'Follow'}
                           </Text>
                         </TouchableOpacity>
                       </View>

@@ -24,6 +24,14 @@ class Welcome extends React.Component {
     };
   }
 
+  componentDidMount() {
+    StatusBar.setHidden(true);
+  }
+
+  componentWillUnmount() {
+    StatusBar.setHidden(false);
+  }
+
   handleChangeIndex = (index) => {
     this.setState({
       activeStep: index,
@@ -72,7 +80,6 @@ class Welcome extends React.Component {
 
     return (
       <React.Fragment>
-        <StatusBar hidden />
         {content}
       </React.Fragment>
     );

@@ -108,7 +108,7 @@ export default {
   nameText: {
     fontFamily: 'calibri-italic',
     color: '#000',
-    fontSize: 15,
+    fontSize: 14,
   },
   tagText: {
     fontFamily: 'calibri-italic',

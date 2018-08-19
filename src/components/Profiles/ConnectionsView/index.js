@@ -7,7 +7,7 @@ import styles from './styles';
 
 import images from '../../../static/images';
 
-const FirstRoute = () => (
+const FirstRoute = (toggleFollow, state) => (
   <View style={styles.playerCardContainer}>
     <View style={styles.playerCard}>
       <View style={styles.flexCenterRow}>
@@ -31,9 +31,9 @@ const FirstRoute = () => (
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={[styles.playerFollowingButton]}>
-        <Text style={styles.playerFollowingButtonText}>
-          Following
+      <TouchableOpacity onPress={() => toggleFollow(1)} style={[state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+        <Text style={state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+          {state[1] ? 'Following' : 'Follow'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -59,9 +59,9 @@ const FirstRoute = () => (
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={[styles.playerFollowButton]}>
-        <Text style={styles.playerFollowButtonText}>
-          Follow
+      <TouchableOpacity onPress={() => toggleFollow(2)} style={[state[2] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+        <Text style={state[2] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+          {state[2] ? 'Following' : 'Follow'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -87,9 +87,9 @@ const FirstRoute = () => (
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={[styles.playerFollowButton]}>
-        <Text style={styles.playerFollowButtonText}>
-          Follow
+      <TouchableOpacity onPress={() => toggleFollow(3)} style={[state[3] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+        <Text style={state[3] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+          {state[3] ? 'Following' : 'Follow'}
         </Text>
       </TouchableOpacity>
     </View>
@@ -119,7 +119,16 @@ class ConnectionsView extends React.Component {
         { key: 'second', title: 'Following' },
         { key: 'third', title: 'Selected' },
       ],
+      1: false,
+      2: false,
+      3: false,
     };
+  }
+
+  toggleFollow = (id) => {
+    this.setState({
+      [id]: !this.state[id],
+    });
   }
 
   render() {
@@ -130,9 +139,9 @@ class ConnectionsView extends React.Component {
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: FirstRoute,
-          second: FirstRoute,
-          third: FirstRoute,
+          first: () => FirstRoute(this.toggleFollow, this.state),
+          second: () => FirstRoute(this.toggleFollow, this.state),
+          third: () => FirstRoute(this.toggleFollow, this.state),
         })}
         renderTabBar={props => (
           <TabBar

@@ -1,6 +1,6 @@
 import config from './config';
 
-const initialRoute = 'ProfilesView';
+const initialRoute = 'Welcome';
 
 export default config;
 

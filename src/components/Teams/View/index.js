@@ -103,16 +103,14 @@ class TeamsView extends React.Component {
               </View>
               <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
                 <View style={[styles.profileContentMainPadding]}>
-                  <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSquad)}>
-                    <View style={styles.flexSpaceBetweenRow}>
-                      <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                        Squad
-                      </Text>
-                      <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                        14 players
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
+                  <View style={styles.flexSpaceBetweenRow}>
+                    <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
+                      Squad
+                    </Text>
+                    <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
+                      14
+                    </Text>
+                  </View>
                 </View>
                 <View style={styles.hrLineSecondary} />
                 <View style={styles.profileContentMainPadding}>
@@ -166,6 +164,7 @@ class TeamsView extends React.Component {
                         </Text>
                       </View>
                     </View>
+                    <Icon name="copyright" type="MaterialIcons" style={{ color: '#0071c0', fontSize: 15, justifyContent: 'flex-end' }} />
                     <TouchableOpacity style={[styles.playerFollowButton]}>
                       <Text style={styles.playerFollowButtonText}>
                         Admin
@@ -173,6 +172,13 @@ class TeamsView extends React.Component {
                     </TouchableOpacity>
                   </View>
                 </View>
+                <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSquad)}>
+                  <View style={[styles.viewSquadContainer, { paddingTop: 10, paddingBottom: 10, borderTopWidth: 0.3, borderColor: 'rgba(0,0,0,.4)' }]}>
+                    <Text style={{ fontFamily: 'calibri-italic', textAlign: 'center' }}>
+                      View full squad
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               </View>
               <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
                 <View style={styles.profileContentMainPadding}>

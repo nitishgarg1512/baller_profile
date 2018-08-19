@@ -107,10 +107,16 @@ export default {
   },
   disabledTab: {
     fontFamily: 'calibri-italic',
+    fontSize: 18,
+    paddingTop: 6,
+    paddingBottom: 6,
   },
   activeTab: {
     fontFamily: 'calibri-italic',
     color: '#0071c0',
+    fontSize: 18,
+    paddingTop: 6,
+    paddingBottom: 6,
   },
   flexCenterColumn: {
     display: 'flex',
