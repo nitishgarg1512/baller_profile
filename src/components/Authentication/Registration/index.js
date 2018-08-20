@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import { omit, merge } from 'lodash';
 import { StatusBar, Image, Text, View, TouchableOpacity } from 'react-native';
-import { Icon, Item, Label, Input, Container, Content, Form } from 'native-base';
+import { Container, Content, Form as NativeForm } from 'native-base';
+
+import selectors from './selectors';
+import validations from './validations';
 
 import styles from '../common/styles';
 
-import { UppercasedText } from '../../common/components';
+import { UppercasedText, Input, Form } from '../../common/components';
 
+import actions from '../../../actions';
 import images from '../../../static/images';
-import { paths } from '../../../common/constants';
+import { forms } from '../../../common/constants';
 
-class Registration extends React.Component {
+class Registration extends Form {
   static navigationOptions = {
     headerTitle: (
       <View style={styles.displayFlexCenterRow}>
@@ -31,70 +37,66 @@ class Registration extends React.Component {
     super(props);
 
     this.state = {
-      showPassword: false,
-      user: {
-        email: '',
-        password: '',
-      },
+      errors: {},
+      validating: {},
     };
+
+    this.formId = forms.REGISTRATION;
+    this.validations = validations;
   }
 
-  handleShowPassword = () => {
-    const { showPassword } = this.state;
-
-    this.setState({
-      showPassword: !showPassword,
-    });
-  }
-
-  changeUserValue = (value, key) => {
-    const { user } = this.state;
-
-    this.setState({
-      user: {
-        ...user,
-        [key]: value,
-      },
-    });
+  handleRegistration = () => {
+    this.handleSubmit()
+      .then((canSubmit) => {
+        const { values, register } = this.props;
+        if (canSubmit) {
+          register(merge(omit(values, ['confirm_password']), { type: 'P' }));
+        }
+        return canSubmit;
+      });
   }
 
   render() {
-    const { navigation } = this.props;
-    const { showPassword, user } = this.state;
-
     return (
       <React.Fragment>
         <StatusBar />
         <Container>
           <Content>
-            <Form>
-              <Item style={styles.registrationItem} floatingLabel>
-                <Label style={styles.inputLabelRegistration}>
-                  Choose a username
-                </Label>
-                <Input value={user.username} onChangeText={value => this.changeUserValue(value, 'username')} />
-              </Item>
-              <Item style={styles.registrationItem} floatingLabel>
-                <Label style={styles.inputLabelRegistration}>
-                  Email address
-                </Label>
-                <Input value={user.email} onChangeText={value => this.changeUserValue(value, 'email')} />
-              </Item>
-              <Item style={styles.registrationItem} floatingLabel>
-                <Label style={styles.inputLabelRegistration}>
-                  Select password
-                </Label>
-                <Input secureTextEntry={!showPassword} value={user.password} onChangeText={value => this.changeUserValue(value, 'password')} />
-                <Icon onPress={() => this.handleShowPassword()} style={styles.icon} type="FontAwesome" name={showPassword ? 'eye-slash' : 'eye'} />
-              </Item>
-              <Item style={styles.registrationItem} floatingLabel>
-                <Label style={styles.inputLabelRegistration}>
-                  Confirm your password
-                </Label>
-                <Input secureTextEntry={!showPassword} value={user.confirmPassword} onChangeText={value => this.changeUserValue(value, 'confirmPassword')} />
-              </Item>
+            <NativeForm>
+              <Input
+                itemStyle={styles.registrationItem}
+                {...this.getFieldProps('username')}
+                label="Choose a username"
+                labelStyle={styles.inputLabelRegistration}
+              />
+              <Input
+                itemStyle={styles.registrationItem}
+                {...this.getFieldProps('email')}
+                label="Email address"
+                labelStyle={styles.inputLabelRegistration}
+              />
+              <Input
+                itemStyle={styles.registrationItem}
+                {...this.getFieldProps('phone_number')}
+                label="Phone number"
+                labelStyle={styles.inputLabelRegistration}
+              />
+              <Input
+                itemStyle={styles.registrationItem}
+                {...this.getFieldProps('password')}
+                label="Select password"
+                labelStyle={styles.inputLabelRegistration}
+                type="password"
+              />
+              <Input
+                itemStyle={styles.registrationItem}
+                {...this.getFieldProps('confirm_password')}
+                label="Confirm your password"
+                type="password"
+                labelStyle={styles.inputLabelRegistration}
+              />
               <View style={styles.registrationFlexContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSelection)} style={styles.registrationReverseSubmitButton}>
+                <TouchableOpacity onPress={this.handleRegistration} style={styles.registrationReverseSubmitButton}>
                   <UppercasedText style={styles.registrationSubmitButtonText}>
                     Sign me up!
                   </UppercasedText>
@@ -149,7 +151,7 @@ class Registration extends React.Component {
                   </Text>
                 </View>
               </View>
-            </Form>
+            </NativeForm>
           </Content>
         </Container>
       </React.Fragment>
@@ -161,4 +163,10 @@ Registration.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
 };
 
-export default Registration;
+export default connect(
+  selectors,
+  {
+    ...actions.forms,
+    ...actions.authentication,
+  },
+)(Registration);

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'react-native-axios';
 
 import { actions } from '../common/constants';
 
@@ -10,8 +10,7 @@ export default () => ({ dispatch, getState }) => next => (action) => {
   const callAPIAction = action[actions.API_CALL];
 
   if (typeof callAPIAction === 'undefined' || !callAPIAction.promise) {
-    return Promise.resolve()
-      .then(() => next(action));
+    return next(action);
   }
 
   const { promise, types, ...restParams } = callAPIAction;
