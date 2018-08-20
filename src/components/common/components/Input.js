@@ -31,8 +31,12 @@ class Input extends React.Component {
       inputAddon = addon;
     }
 
+    if (error) {
+      inputAddon = <Icon name="close-o" type="EvilIcons" />;
+    }
+
     return (
-      <Item floatingLabel style={itemStyle}>
+      <Item floatingLabel style={error ? { ...itemStyle, borderBottomColor: 'red' } : itemStyle} error={!!error}>
         <Label style={labelStyle}>
           {label}
         </Label>
