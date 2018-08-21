@@ -10,6 +10,10 @@ const actionMap = {
   [actions.AUTHENTICATION_REGISTRATION_REQUEST]: state => ({ ...state, isSubmitting: true, hasRegistered: false }),
   [actions.AUTHENTICATION_REGISTRATION_SUCCESS]: state => ({ ...state, isSubmitting: false, hasRegistered: true }),
   [actions.AUTHENTICATION_REGISTRATION_FAILURE]: state => ({ ...state, isSubmitting: false, hasRegistered: false }),
+
+  [actions.AUTHENTICATION_LOGIN_REQUEST]: state => ({ ...state, isSubmitting: true, hasRegistered: false }),
+  [actions.AUTHENTICATION_LOGIN_SUCCESS]: state => ({ ...state, isSubmitting: false, hasRegistered: true }),
+  [actions.AUTHENTICATION_LOGIN_FAILURE]: state => ({ ...state, isSubmitting: false, hasRegistered: false }),
 };
 
 export default (state = initialState, action) => {

@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, ScrollView, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
+import { View, ScrollView, Image, Text, TouchableOpacity, StatusBar, ActivityIndicator } from 'react-native';
 import { Container, Input, Item, Label } from 'native-base';
 
+import selectors from './selectors';
 import { TeamModal } from './components';
 
 import styles from '../common/styles';
 
 import { UppercasedText } from '../../common/components';
 
+import actions from '../../../actions';
 import images from '../../../static/images';
 import { aftv, hashtag } from '../../../static/json';
 import { paths } from '../../../common/constants';
@@ -28,7 +31,11 @@ class Selection extends React.Component {
   }
 
   componentDidMount() {
+    const { getTeams } = this.props;
+
     StatusBar.setHidden(false);
+
+    getTeams();
   }
 
   toggleModal = (team) => {
@@ -41,7 +48,7 @@ class Selection extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, teams } = this.props;
     const { showModal, selectedTeam } = this.state;
 
     return (
@@ -68,63 +75,27 @@ class Selection extends React.Component {
                 horizontal
                 style={styles.teamScroller}
               >
-                <TouchableOpacity onPress={() => this.toggleModal(hashtag)}>
-                  <View style={styles.TeamsSelectionCard}>
-                    <View style={styles.TeamsSelectionCardImage}>
-                      <Image
-                        style={styles.teamCardImage}
-                        source={images.hashtag}
-                        resizeMode="contain"
-                      />
+                {teams.map(() => (
+                  <TouchableOpacity onPress={() => this.toggleModal(hashtag)}>
+                    <View style={styles.TeamsSelectionCard}>
+                      <View style={styles.TeamsSelectionCardImage}>
+                        <Image
+                          style={styles.teamCardImage}
+                          source={images.hashtag}
+                          resizeMode="contain"
+                        />
+                      </View>
+                      <View style={styles.displayFlexCenterColumn}>
+                        <Text style={styles.TeamsSelectionCardDetailsText}>
+                          19 ballers
+                        </Text>
+                        <Text style={styles.TeamsSelectionCardDetailsText}>
+                          Hashtag United
+                        </Text>
+                      </View>
                     </View>
-                    <View style={styles.displayFlexCenterColumn}>
-                      <Text style={styles.TeamsSelectionCardDetailsText}>
-                        19 ballers
-                      </Text>
-                      <Text style={styles.TeamsSelectionCardDetailsText}>
-                        Hashtag United
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.toggleModal(aftv)}>
-                  <View style={styles.TeamsSelectionCard}>
-                    <View style={styles.TeamsSelectionCardImage}>
-                      <Image
-                        style={styles.teamCardImage}
-                        source={images.aftv}
-                        resizeMode="contain"
-                      />
-                    </View>
-                    <View style={styles.displayFlexCenterColumn}>
-                      <Text style={styles.TeamsSelectionCardDetailsText}>
-                        21 ballers
-                      </Text>
-                      <Text style={styles.TeamsSelectionCardDetailsText}>
-                        AFTV FC
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.toggleModal(hashtag)}>
-                  <View style={styles.TeamsSelectionCard}>
-                    <View style={styles.TeamsSelectionCardImage}>
-                      <Image
-                        style={styles.teamCardImage}
-                        source={images.hashtag}
-                        resizeMode="contain"
-                      />
-                    </View>
-                    <View style={styles.displayFlexCenterColumn}>
-                      <Text style={styles.TeamsSelectionCardDetailsText}>
-                        19 ballers
-                      </Text>
-                      <Text style={styles.TeamsSelectionCardDetailsText}>
-                        Hashtag United
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
+                  </TouchableOpacity>
+                ))}
               </ScrollView>
             </View>
           </View>
@@ -146,6 +117,14 @@ class Selection extends React.Component {
 
 Selection.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
+  getTeams: PropTypes.func.isRequired,
+  teams: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-export default Selection;
+export default connect(
+  selectors,
+  {
+    ...actions.teams,
+  },
+)(Selection);

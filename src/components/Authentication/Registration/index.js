@@ -14,7 +14,7 @@ import { UppercasedText, Input, Form } from '../../common/components';
 
 import actions from '../../../actions';
 import images from '../../../static/images';
-import { forms } from '../../../common/constants';
+import { paths, forms } from '../../../common/constants';
 
 class Registration extends Form {
   static navigationOptions = {
@@ -48,15 +48,20 @@ class Registration extends Form {
   handleRegistration = () => {
     this.handleSubmit()
       .then((canSubmit) => {
-        const { values, register } = this.props;
+        const { values, register, navigation } = this.props;
         if (canSubmit) {
-          register(merge(omit(values, ['confirm_password']), { type: 'P' }));
+          const newValues = merge(omit(values, ['confirm_password']), { type: 'P' });
+
+          register(newValues)
+            .then(() => navigation.navigate(paths.client.Login));
         }
         return canSubmit;
       });
   }
 
   render() {
+    const { isSubmitting } = this.props;
+
     return (
       <React.Fragment>
         <StatusBar />
@@ -77,12 +82,6 @@ class Registration extends Form {
               />
               <Input
                 itemStyle={styles.registrationItem}
-                {...this.getFieldProps('phone_number')}
-                label="Phone number"
-                labelStyle={styles.inputLabelRegistration}
-              />
-              <Input
-                itemStyle={styles.registrationItem}
                 {...this.getFieldProps('password')}
                 label="Select password"
                 labelStyle={styles.inputLabelRegistration}
@@ -96,7 +95,7 @@ class Registration extends Form {
                 labelStyle={styles.inputLabelRegistration}
               />
               <View style={styles.registrationFlexContainer}>
-                <TouchableOpacity onPress={this.handleRegistration} style={styles.registrationReverseSubmitButton}>
+                <TouchableOpacity disabled={isSubmitting} onPress={this.handleRegistration} style={[styles.registrationReverseSubmitButton, isSubmitting ? { backgroundColor: 'rgba(1,114,193, 0.5)' } : {}]}>
                   <UppercasedText style={styles.registrationSubmitButtonText}>
                     Sign me up!
                   </UppercasedText>

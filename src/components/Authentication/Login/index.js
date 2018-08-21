@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import { StatusBar, View, Text, Image, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
-import { Icon, Item, Label, Input } from 'native-base';
+
+import selectors from './selectors';
+import validations from './validations';
 
 import styles from '../common/styles';
+
+import { Input, Form } from '../../common/components';
+
+import actions from '../../../actions';
 import images from '../../../static/images';
+import { paths, forms } from '../../../common/constants';
 
-import { paths } from '../../../common/constants';
-
-class Login extends React.Component {
+class Login extends Form {
   static navigationOptions = {
     header: null,
   }
@@ -17,13 +23,13 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      showPassword: false,
       showLogo: true,
-      user: {
-        email: '',
-        password: '',
-      },
+      validating: {},
+      errors: {},
     };
+
+    this.formId = forms.LOGIN;
+    this.validations = validations;
   }
 
   componentDidMount() {
@@ -34,25 +40,6 @@ class Login extends React.Component {
   componentWillUnmount() {
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
-  }
-
-  handleShowPassword = () => {
-    const { showPassword } = this.state;
-
-    this.setState({
-      showPassword: !showPassword,
-    });
-  }
-
-  changeUserValue = (value, key) => {
-    const { user } = this.state;
-
-    this.setState({
-      user: {
-        ...user,
-        [key]: value,
-      },
-    });
   }
 
   hideLogo = () => {
@@ -67,9 +54,21 @@ class Login extends React.Component {
     });
   }
 
+  handleLogin = () => {
+    this.handleSubmit()
+      .then((canSubmit) => {
+        const { values, login, navigation } = this.props;
+        if (canSubmit) {
+          login(values)
+            .then(() => navigation.navigate(paths.client.TeamsSelection));
+        }
+        return canSubmit;
+      });
+  }
+
   render() {
-    const { navigation } = this.props;
-    const { showPassword, user, showLogo } = this.state;
+    const { navigation, values, isSubmitting } = this.props;
+    const { showLogo } = this.state;
 
     const logoContent = showLogo
       ? (
@@ -95,31 +94,22 @@ class Login extends React.Component {
             <KeyboardAvoidingView keyboardVerticalOffset={0} style={styles.avoidingView} behavior="padding">
               {logoContent}
               <View style={styles.flexContainer}>
-                <Item floatingLabel style={styles.itemEmail}>
-                  <Label style={styles.inputLabel}>
-                    Username or Email address
-                  </Label>
-                  <Input
-                    selectionColor="#fff"
-                    onChangeText={event => this.changeUserValue(event, 'email')}
-                    value={user.email}
-                    style={styles.input}
-                  />
-                </Item>
+                <Input
+                  itemStyle={styles.itemEmail}
+                  {...this.getFieldProps('email')}
+                  label="Email address"
+                  labelStyle={styles.inputLabel}
+                  style={styles.input}
+                />
+                <Input
+                  itemStyle={styles.itemPassword}
+                  {...this.getFieldProps('password')}
+                  label="Password"
+                  labelStyle={styles.inputLabel}
+                  type="password"
+                  style={styles.input}
+                />
                 <View />
-                <Item floatingLabel style={styles.itemPassword}>
-                  <Label style={styles.inputLabel}>
-                    Type your password
-                  </Label>
-                  <Icon onPress={() => this.handleShowPassword()} style={[styles.icon, styles.colorWhite]} type="FontAwesome" name={showPassword ? 'eye-slash' : 'eye'} />
-                  <Input
-                    selectionColor="#fff"
-                    onChangeText={value => this.changeUserValue(value, 'password')}
-                    value={user.password}
-                    style={styles.input}
-                    secureTextEntry={!showPassword}
-                  />
-                </Item>
                 <View style={styles.forgotPasswordContainer}>
                   <Text style={styles.forgotPassword}>
                     Forgot your password?
@@ -127,7 +117,7 @@ class Login extends React.Component {
                 </View>
               </View>
               <View style={showLogo ? styles.buttonContainer : styles.buttonContainerKeyboard}>
-                <TouchableOpacity style={user.email && user.password ? styles.reverseSubmitButton : styles.submitButton}>
+                <TouchableOpacity disabled={!(values.email && values.password) || isSubmitting} onPress={this.handleLogin} style={values.email && values.password ? styles.reverseSubmitButton : styles.submitButton}>
                   <Text style={styles.submitButtonText}>
                     Log in
                   </Text>
@@ -151,4 +141,10 @@ Login.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
 };
 
-export default Login;
+export default connect(
+  selectors,
+  {
+    ...actions.forms,
+    ...actions.authentication,
+  },
+)(Login);
