@@ -14,11 +14,13 @@ const actionMap = {
   [actions.AUTHENTICATION_LOGIN_REQUEST]: state => ({ ...state, isSubmitting: true, hasRegistered: false }),
   [actions.AUTHENTICATION_LOGIN_SUCCESS]: state => ({ ...state, isSubmitting: false, hasRegistered: true }),
   [actions.AUTHENTICATION_LOGIN_FAILURE]: state => ({ ...state, isSubmitting: false, hasRegistered: false }),
+
+  [actions.AUTHENTICATION_REDIRECT]: state => ({ ...state, redirectToLogin: true }),
 };
 
 export default (state = initialState, action) => {
   if ([401, 403].includes(get(action, 'error.response.status'))) {
-    // add redirect
+    return actionMap[actions.AUTHENTICATION_REDIRECT](state, action);
   }
 
   if (actionMap[action.type]) {

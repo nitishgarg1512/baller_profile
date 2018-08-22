@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { StatusBar, View, Text, Image, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
+import { StatusBar, View, Text, Image, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Keyboard, AsyncStorage } from 'react-native';
 
 import selectors from './selectors';
 import validations from './validations';
@@ -60,7 +60,10 @@ class Login extends Form {
         const { values, login, navigation } = this.props;
         if (canSubmit) {
           login(values)
-            .then(() => navigation.navigate(paths.client.TeamsSelection));
+            .then(({ result }) => {
+              AsyncStorage.setItem('token', result.data.key)
+                .then(() => navigation.navigate(paths.client.TeamsSelection));
+            });
         }
         return canSubmit;
       });

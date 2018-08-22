@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -8,10 +8,15 @@ import { Welcome, Authentication, Teams, Profiles } from './components';
 import { initialRoute } from './common/constants';
 import { reducers, middleware } from './store';
 
-const Router = createStackNavigator({
+const AppRouter = createStackNavigator({
   Welcome,
   Login: Authentication.Login,
   Registration: Authentication.Registration,
+}, {
+  initialRouteName: 'Welcome',
+});
+
+const AuthRouter = createStackNavigator({
   TeamsSelection: Teams.Selection,
   TeamsCreation: Teams.Creation,
   TeamsConfirmation: Teams.Confirmation,
@@ -27,14 +32,22 @@ const Router = createStackNavigator({
   TeamsSquad: Teams.Squad,
   MatchCreation: Teams.MatchCreation,
 }, {
-  initialRouteName: initialRoute,
+  initialRouteName: 'TeamsSelection',
+});
+
+const InitialRouter = createSwitchNavigator({
+  RouterSelection: Authentication.Selection,
+  Auth: AuthRouter,
+  App: AppRouter,
+}, {
+  initialRouteName: 'RouterSelection',
 });
 
 const store = createStore(reducers, applyMiddleware(thunk, middleware()));
 
 const App = () => (
   <Provider store={store}>
-    <Router />
+    <InitialRouter />
   </Provider>
 );
 

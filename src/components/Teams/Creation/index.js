@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Container, Input, Item, Label, Icon, Content } from 'native-base';
+import { Container, Icon, Content } from 'native-base';
+
+import selectors from './selectors';
+import validations from './validations';
 
 import styles from '../common/styles';
 
-import { UppercasedText } from '../../common/components';
+import { UppercasedText, Form, Input } from '../../common/components';
 
-import { paths } from '../../../common/constants';
+import actions from '../../../actions';
+import { paths, forms } from '../../../common/constants';
 
-class Creation extends React.Component {
+class Creation extends Form {
   static navigationOptions = {
     header: null,
   }
@@ -18,19 +23,30 @@ class Creation extends React.Component {
     super();
 
     this.state = {
-
+      validating: {},
+      errors: {},
     };
+
+    this.validations = validations;
+    this.formId = forms.TEAMS_CREATION;
   }
 
-  handleChange = (key, value) => {
-    this.setState({
-      [key]: value,
-    });
+  handleCreate = () => {
+    this.handleSubmit()
+      .then((canSubmit) => {
+        if (canSubmit) {
+          const { createTeam, values } = this.props;
+
+          createTeam(values);
+        }
+
+        return canSubmit;
+      });
   }
 
   render() {
-    const { navigation } = this.props;
-    const { location, league, format, name } = this.state;
+    const { navigation, values } = this.props;
+    const { location, league, format, name } = values;
 
     const isComplete = location && league && format && name;
 
@@ -48,15 +64,12 @@ class Creation extends React.Component {
             </UppercasedText>
           </View>
           <View style={styles.displayFlexCenterRow}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Type your team&#39;s name here...
-              </Label>
-              <Input
-                value={name}
-                onChangeText={event => this.handleChange('name', event)}
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('name')}
+              labelStyle={styles.itemLabel}
+              itemStyle={styles.findTeamItem}
+              label="Enter your team's name"
+            />
           </View>
           <View style={styles.profilePicContainer}>
             <View style={styles.profilePic}>
@@ -67,43 +80,34 @@ class Creation extends React.Component {
             </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                What league do they play in?
-              </Label>
-              <Input
-                value={league}
-                onChangeText={event => this.handleChange('league', event)}
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('league')}
+              labelStyle={styles.itemLabel}
+              label="What league do they play in?"
+              itemStyle={styles.findTeamItem}
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Select league location
-              </Label>
-              <Icon type="FontAwesome" name="caret-down" />
-              <Input
-                value={location}
-                onChangeText={event => this.handleChange('location', event)}
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('location')}
+              labelStyle={styles.itemLabel}
+              label="Select league location"
+              itemStyle={styles.findTeamItem}
+              addon={<Icon type="FontAwesome" name="caret-down" />}
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                What format is this league?
-              </Label>
-              <Icon type="FontAwesome" name="caret-down" />
-              <Input
-                value={format}
-                onChangeText={event => this.handleChange('format', event)}
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('format')}
+              labelStyle={styles.itemLabel}
+              label="What format is this league?"
+              itemStyle={styles.findTeamItem}
+              addon={<Icon type="FontAwesome" name="caret-down" />}
+            />
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsConfirmation)} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
+          <TouchableOpacity onPress={() => this.handleCreate()} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Create team
             </UppercasedText>
@@ -118,4 +122,10 @@ Creation.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
 };
 
-export default Creation;
+export default connect(
+  selectors,
+  {
+    ...actions.forms,
+    ...actions.team,
+  },
+)(Creation);

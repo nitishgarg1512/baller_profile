@@ -1,4 +1,5 @@
 import axios from 'react-native-axios';
+import { AsyncStorage } from 'react-native';
 
 import { actions } from '../common/constants';
 
@@ -18,12 +19,13 @@ export default () => ({ dispatch, getState }) => next => (action) => {
 
   next({ ...restParams, type: REQUEST });
 
-  return promise(axios.create(), dispatch)
-    .then(
-      result => next({ ...restParams, result, type: SUCCESS }),
-      (error) => {
-        next({ ...restParams, error, type: FAILURE });
-        return Promise.reject(error);
-      },
-    );
+  return AsyncStorage.getItem('token')
+    .then(token => promise(axios.create({ headers: { Authorization: `Token ${token}` } }), dispatch)
+      .then(
+        result => next({ ...restParams, result, type: SUCCESS }),
+        (error) => {
+          next({ ...restParams, error, type: FAILURE });
+          return Promise.reject(error);
+        },
+      ));
 };
