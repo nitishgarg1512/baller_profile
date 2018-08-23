@@ -11,4 +11,15 @@ export default {
       promise: client => client.post(paths.api.TEAMS_CREATE, data),
     },
   }),
+
+  getTeam: id => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.TEAM_GET_REQUEST,
+        actions.TEAM_GET_SUCCESS,
+        actions.TEAM_GET_FAILURE,
+      ],
+      promise: client => client.get(paths.build(paths.api.TEAMS_ID, id)),
+    },
+  }),
 };

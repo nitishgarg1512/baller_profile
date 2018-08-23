@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
+import { omit } from 'lodash';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Container, Icon, Content } from 'native-base';
 
@@ -35,9 +37,22 @@ class Creation extends Form {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
-          const { createTeam, values } = this.props;
+          const { getAuthUser, createTeam, values, navigation } = this.props;
 
-          createTeam(values);
+          getAuthUser()
+            .then(({ result }) => {
+              const newValues = {
+                ...omit(values, ['league', 'format', 'location']),
+                captain: result.data.pk,
+                vice_captain: 1,
+                date_create: moment(new Date()).format('YYYY-MM-DD'),
+              };
+
+              createTeam(newValues)
+                .then((data) => {
+                  navigation.navigate(paths.client.TeamsConfirmation, { id: data.result.data.id });
+                });
+            });
         }
 
         return canSubmit;
@@ -46,9 +61,9 @@ class Creation extends Form {
 
   render() {
     const { navigation, values } = this.props;
-    const { location, league, format, name } = values;
+    const { location, league, format } = values;
 
-    const isComplete = location && league && format && name;
+    const isComplete = location && league && format && values.team_name;
 
     return (
       <Container>
@@ -65,7 +80,7 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRow}>
             <Input
-              {...this.getFieldProps('name')}
+              {...this.getFieldProps('team_name')}
               labelStyle={styles.itemLabel}
               itemStyle={styles.findTeamItem}
               label="Enter your team's name"
@@ -78,6 +93,22 @@ class Creation extends Form {
                 Add a profile pic
               </Text>
             </View>
+          </View>
+          <View style={styles.displayFlexCenterRowCreation}>
+            <Input
+              {...this.getFieldProps('abbreviated_name')}
+              labelStyle={styles.itemLabel}
+              label="Team abbreviated name"
+              itemStyle={styles.findTeamItem}
+            />
+          </View>
+          <View style={styles.displayFlexCenterRowCreation}>
+            <Input
+              {...this.getFieldProps('nickname')}
+              labelStyle={styles.itemLabel}
+              label="Team nickname"
+              itemStyle={styles.findTeamItem}
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <Input
@@ -127,5 +158,6 @@ export default connect(
   {
     ...actions.forms,
     ...actions.team,
+    ...actions.user,
   },
 )(Creation);

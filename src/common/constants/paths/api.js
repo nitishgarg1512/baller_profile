@@ -5,4 +5,6 @@ export default {
   AUTHENTICATION_REGISTER: `${serverUrl}/api/register/`,
   TEAMS: `${serverUrl}/api/teams`,
   TEAMS_CREATE: `${serverUrl}/api/teams`,
+  USER_AUTH: `${serverUrl}/api/auth/user`,
+  TEAMS_ID: `${serverUrl}/api/teams/:id`,
 };

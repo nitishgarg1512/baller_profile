@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 import { View, ScrollView, Image, Text, TouchableOpacity, StatusBar, ActivityIndicator } from 'react-native';
 import { Container, Input, Item, Label } from 'native-base';
 
@@ -35,7 +36,16 @@ class Selection extends React.Component {
 
     StatusBar.setHidden(false);
 
-    getTeams();
+    getTeams()
+      .then(({ result }) => this.setState({ teams: result.data }));
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { teams } = this.props;
+
+    if (!isEqual(newProps.teams, teams)) {
+      console.error(newProps.teams);
+    }
   }
 
   toggleModal = (team) => {
@@ -48,8 +58,8 @@ class Selection extends React.Component {
   }
 
   render() {
-    const { navigation, teams } = this.props;
-    const { showModal, selectedTeam } = this.state;
+    const { navigation } = this.props;
+    const { showModal, selectedTeam, teams } = this.state;
 
     return (
       <React.Fragment>
@@ -75,8 +85,8 @@ class Selection extends React.Component {
                 horizontal
                 style={styles.teamScroller}
               >
-                {teams.map(() => (
-                  <TouchableOpacity onPress={() => this.toggleModal(hashtag)}>
+                {teams && teams.map(team => (
+                  <TouchableOpacity key={team.id} onPress={() => this.toggleModal(hashtag)}>
                     <View style={styles.TeamsSelectionCard}>
                       <View style={styles.TeamsSelectionCardImage}>
                         <Image
@@ -90,7 +100,7 @@ class Selection extends React.Component {
                           19 ballers
                         </Text>
                         <Text style={styles.TeamsSelectionCardDetailsText}>
-                          Hashtag United
+                          {team.team_name}
                         </Text>
                       </View>
                     </View>
