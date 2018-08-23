@@ -25,11 +25,12 @@ class TeamsView extends React.Component {
   }
 
   componentDidMount() {
-    const { navigation, getTeam } = this.props;
+    const { navigation, getTeam, getTeamPlayers } = this.props;
 
     const id = navigation.getParam('id');
 
-    getTeam(id);
+    getTeam(id)
+      .then(() => getTeamPlayers(id));
   }
 
   render() {
@@ -131,69 +132,42 @@ class TeamsView extends React.Component {
                         Squad
                       </Text>
                       <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                        14
+                        {team && team.players && team.players.length}
                       </Text>
                     </View>
                   </View>
                   <View style={styles.hrLineSecondary} />
                   <View style={styles.profileContentMainPadding}>
-                    <View style={styles.squadPlayer}>
-                      <View style={styles.squadContainer}>
-                        <View style={styles.borderRadiusCircleSquad}>
-                          <Thumbnail
-                            style={[styles.profileImageSquad]}
-                            source={images.lm}
-                          />
-                        </View>
-                        <View style={styles.playerCardName}>
-                          <View style={styles.flexCenterRow}>
-                            <Text style={styles.nameText}>
-                              Lionel messi&nbsp;
-                            </Text>
-                            <Text style={styles.tagText}>
-                              @LioMessi
+                    {team && team.players && team.players.map(player => (
+                      <View key={player.id} style={styles.squadPlayer}>
+                        <View style={styles.squadContainer}>
+                          <View style={styles.borderRadiusCircleSquad}>
+                            <Thumbnail
+                              style={[styles.profileImageSquad]}
+                              source={images.lm}
+                            />
+                          </View>
+                          <View style={styles.playerCardName}>
+                            <View style={styles.flexCenterRow}>
+                              <Text style={styles.nameText}>
+                                {`${player.user.firstName} ${player.user.lastName}&nbsp;`}
+                              </Text>
+                              <Text style={styles.tagText}>
+                                {`@${player.user.username}`}
+                              </Text>
+                            </View>
+                            <Text style={styles.descText}>
+                              Striker
                             </Text>
                           </View>
-                          <Text style={styles.descText}>
-                            Striker
+                        </View>
+                        <TouchableOpacity style={[styles.playerFollowButton]}>
+                          <Text style={styles.playerFollowButtonText}>
+                            Admin
                           </Text>
-                        </View>
+                        </TouchableOpacity>
                       </View>
-                      <TouchableOpacity style={[styles.playerFollowButton]}>
-                        <Text style={styles.playerFollowButtonText}>
-                          Admin
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={styles.squadPlayer}>
-                      <View style={styles.squadContainer}>
-                        <View style={styles.borderRadiusCircleSquad}>
-                          <Thumbnail
-                            style={[styles.profileImageSquad]}
-                            source={images.lm}
-                          />
-                        </View>
-                        <View style={styles.playerCardName}>
-                          <View style={styles.flexCenterRow}>
-                            <Text style={styles.nameText}>
-                            Lionel messi&nbsp;
-                            </Text>
-                            <Text style={styles.tagText}>
-                            @LioMessi
-                            </Text>
-                          </View>
-                          <Text style={styles.descText}>
-                          Striker
-                          </Text>
-                        </View>
-                      </View>
-                      <Icon name="copyright" type="MaterialIcons" style={{ color: '#0071c0', fontSize: 15, justifyContent: 'flex-end' }} />
-                      <TouchableOpacity style={[styles.playerFollowButton]}>
-                        <Text style={styles.playerFollowButtonText}>
-                        Admin
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
+                    ))}
                   </View>
                   <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSquad)}>
                     <View style={[styles.viewSquadContainer, { paddingTop: 10, paddingBottom: 10, borderTopWidth: 0.3, borderColor: 'rgba(0,0,0,.4)' }]}>

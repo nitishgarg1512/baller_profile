@@ -49,7 +49,7 @@ class Confirmation extends React.Component {
             </View>
             <View style={styles.displayFlexCenterRow}>
               <UppercasedText style={styles.TeamsSelectionTitle}>
-                {team.team_name}
+                {team && team.team_name ? team.team_name : ''}
               </UppercasedText>
             </View>
             <View style={styles.TeamsConfirmationPicContainer}>
@@ -85,7 +85,7 @@ class Confirmation extends React.Component {
           <View style={styles.footer}>
             <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsView, { id: team.id })} style={styles.footerButton}>
               <UppercasedText style={styles.bottomMainButtonTextConfirmation}>
-              Done
+                Done
               </UppercasedText>
             </TouchableOpacity>
           </View>

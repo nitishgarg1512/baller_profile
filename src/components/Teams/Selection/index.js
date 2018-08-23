@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
 import { View, ScrollView, Image, Text, TouchableOpacity, StatusBar, ActivityIndicator } from 'react-native';
 import { Container, Input, Item, Label } from 'native-base';
 
@@ -36,16 +35,7 @@ class Selection extends React.Component {
 
     StatusBar.setHidden(false);
 
-    getTeams()
-      .then(({ result }) => this.setState({ teams: result.data }));
-  }
-
-  componentWillReceiveProps(newProps) {
-    const { teams } = this.props;
-
-    if (!isEqual(newProps.teams, teams)) {
-      console.error(newProps.teams);
-    }
+    getTeams();
   }
 
   toggleModal = (team) => {
@@ -58,70 +48,76 @@ class Selection extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const { showModal, selectedTeam, teams } = this.state;
+    const { navigation, teams, isLoading } = this.props;
+    const { showModal, selectedTeam } = this.state;
 
-    return (
-      <React.Fragment>
-        <TeamModal navigation={navigation} visible={showModal} selectedTeam={selectedTeam} toggleModal={this.toggleModal} />
-        <Container>
-          <View>
-            <View style={styles.displayFlexCenterRow}>
-              <UppercasedText style={styles.TeamsSelectionTitle}>
+    let content = <ActivityIndicator />;
+
+    if (!isLoading && teams) {
+      content = (
+        <React.Fragment>
+          <TeamModal navigation={navigation} visible={showModal} selectedTeam={selectedTeam} toggleModal={this.toggleModal} />
+          <Container>
+            <View>
+              <View style={styles.displayFlexCenterRow}>
+                <UppercasedText style={styles.TeamsSelectionTitle}>
                 Find your team!
-              </UppercasedText>
-            </View>
-            <View style={styles.displayFlexCenterRow}>
-              <Item floatingLabel style={styles.findTeamItem}>
-                <Label style={styles.itemLabel}>
+                </UppercasedText>
+              </View>
+              <View style={styles.displayFlexCenterRow}>
+                <Item floatingLabel style={styles.findTeamItem}>
+                  <Label style={styles.itemLabel}>
                   Type your team&#39;s name here...
-                </Label>
-                <Input />
-              </Item>
-            </View>
-            <View style={styles.scrollerContainer}>
-              <ScrollView
-                showsHorizontalScrollIndicator={false}
-                horizontal
-                style={styles.teamScroller}
-              >
-                {teams && teams.map(team => (
-                  <TouchableOpacity key={team.id} onPress={() => this.toggleModal(hashtag)}>
-                    <View style={styles.TeamsSelectionCard}>
-                      <View style={styles.TeamsSelectionCardImage}>
-                        <Image
-                          style={styles.teamCardImage}
-                          source={images.hashtag}
-                          resizeMode="contain"
-                        />
-                      </View>
-                      <View style={styles.displayFlexCenterColumn}>
-                        <Text style={styles.TeamsSelectionCardDetailsText}>
+                  </Label>
+                  <Input />
+                </Item>
+              </View>
+              <View style={styles.scrollerContainer}>
+                <ScrollView
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                  style={styles.teamScroller}
+                >
+                  {teams && teams.map(team => (
+                    <TouchableOpacity key={team.id} onPress={() => this.toggleModal(hashtag)}>
+                      <View style={styles.TeamsSelectionCard}>
+                        <View style={styles.TeamsSelectionCardImage}>
+                          <Image
+                            style={styles.teamCardImage}
+                            source={images.hashtag}
+                            resizeMode="contain"
+                          />
+                        </View>
+                        <View style={styles.displayFlexCenterColumn}>
+                          <Text style={styles.TeamsSelectionCardDetailsText}>
                           19 ballers
-                        </Text>
-                        <Text style={styles.TeamsSelectionCardDetailsText}>
-                          {team.team_name}
-                        </Text>
+                          </Text>
+                          <Text style={styles.TeamsSelectionCardDetailsText}>
+                            {team.team_name}
+                          </Text>
+                        </View>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
             </View>
-          </View>
-          <View style={styles.bottomActions}>
-            <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsCreation)} style={styles.bottomMainButton}>
-              <UppercasedText style={styles.bottomMainButtonText}>
+            <View style={styles.bottomActions}>
+              <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsCreation)} style={styles.bottomMainButton}>
+                <UppercasedText style={styles.bottomMainButtonText}>
                 I can&#39;t find my team!
-              </UppercasedText>
-            </TouchableOpacity>
-            <Text style={styles.bottomSecondaryText}>
+                </UppercasedText>
+              </TouchableOpacity>
+              <Text style={styles.bottomSecondaryText}>
               I don&#39;t play anymore!
-            </Text>
-          </View>
-        </Container>
-      </React.Fragment>
-    );
+              </Text>
+            </View>
+          </Container>
+        </React.Fragment>
+      );
+    }
+
+    return content;
   }
 }
 

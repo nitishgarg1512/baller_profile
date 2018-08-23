@@ -7,7 +7,7 @@ const initialState = {
 
 const actionMap = {
   [actions.TEAMS_GET_REQUEST]: state => ({ ...state, isLoading: true }),
-  [actions.TEAMS_GET_SUCCESS]: (state, { result }) => ({ ...state, isLoading: false, teams: result.data }),
+  [actions.TEAMS_GET_SUCCESS]: (state, { result }) => ({ ...state, isLoading: false, data: result.data }),
   [actions.TEAMS_GET_FAILURE]: state => ({ ...state, isLoading: false }),
 };
 

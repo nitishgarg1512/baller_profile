@@ -22,4 +22,15 @@ export default {
       promise: client => client.get(paths.build(paths.api.TEAMS_ID, id)),
     },
   }),
+
+  getTeamPlayers: id => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.TEAM_GET_PLAYERS_REQUEST,
+        actions.TEAM_GET_PLAYERS_SUCCESS,
+        actions.TEAM_GET_PLAYERS_FAILURE,
+      ],
+      promise: client => client.get(paths.build(paths.api.TEAMS_ID_PLAYERS, id)),
+    },
+  }),
 };
