@@ -34,6 +34,7 @@ class TeamsView extends React.Component {
   }
 
   render() {
+    const { following } = this.state;
     const { navigation, isLoading, team } = this.props;
 
     let content = <ActivityIndicator />;
@@ -80,9 +81,9 @@ class TeamsView extends React.Component {
                         </View>
                         <View style={styles.detailsContainer}>
                           <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                          <TouchableOpacity onPress={() => this.setState({ following: !this.state.following })} style={[this.state.following ? styles.playerFollowingButton : styles.playerFollowButton]}>
-                            <Text style={this.state.following ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-                              {this.state.following ? 'Following' : 'Follow'}
+                          <TouchableOpacity onPress={() => this.setState({ following: !following })} style={[following ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                            <Text style={following ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                              {following ? 'Following' : 'Follow'}
                             </Text>
                           </TouchableOpacity>
                         </View>
@@ -203,6 +204,10 @@ class TeamsView extends React.Component {
 
 TeamsView.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
+  getTeam: PropTypes.func.isRequired,
+  getTeamPlayers: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  team: PropTypes.shape({}).isRequired,
 };
 
 export default connect(

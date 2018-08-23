@@ -13,7 +13,7 @@ import { UppercasedText } from '../../common/components';
 
 import actions from '../../../actions';
 import images from '../../../static/images';
-import { aftv, hashtag } from '../../../static/json';
+import { hashtag } from '../../../static/json';
 import { paths } from '../../../common/constants';
 
 class Selection extends React.Component {

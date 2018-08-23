@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { TouchableOpacity, View, Text, Image } from 'react-native';
 
@@ -38,3 +39,10 @@ class TeamCard extends React.Component {
     );
   }
 }
+
+TeamCard.propTypes = {
+  team: PropTypes.shape({}).isRequired,
+  getTeamPlayers: PropTypes.func.isRequired,
+};
+
+export default TeamCard;

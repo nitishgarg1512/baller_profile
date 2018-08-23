@@ -99,6 +99,11 @@ class Confirmation extends React.Component {
 
 Confirmation.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
+  getTeam: PropTypes.func.isRequired,
+  getAuthUser: PropTypes.func.isRequired,
+  team: PropTypes.shape({}).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  user: PropTypes.shape({}).isRequired,
 };
 
 export default connect(
