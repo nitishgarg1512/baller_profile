@@ -32,10 +32,18 @@ class Confirmation extends React.Component {
   render() {
     const { navigation, team, isLoading, user } = this.props;
 
-    let content = <ActivityIndicator />;
+    let content = (
+      <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={50} color="rgba(0,0,0,.6)" />
+      </View>
+    );
 
     if (isLoading) {
-      content = <ActivityIndicator />;
+      content = (
+        <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size={50} color="rgba(0,0,0,.6)" />
+        </View>
+      );
     }
 
     if (!isLoading && Object.keys(team).length > 0 && user) {
@@ -55,8 +63,8 @@ class Confirmation extends React.Component {
             <View style={styles.TeamsConfirmationPicContainer}>
               <Image
                 style={styles.teamCardImage}
-                source={images.hashtag2}
-                resizeMode="contain"
+                source={team && team.team_image ? team.team_image : images.team}
+                resizeMode="cover"
               />
             </View>
             <View style={styles.TeamsConfirmationMessageContainer}>

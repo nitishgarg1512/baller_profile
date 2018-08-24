@@ -9,98 +9,38 @@ import images from '../../../static/images';
 
 const FirstRoute = (toggleFollow, state) => (
   <View style={styles.playerCardContainer}>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.diego}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Diego Costa&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @DCosta15
-            </Text>
+    {state.players.map(player => (
+      <View key={player.id} style={styles.playerCard}>
+        <View style={styles.flexCenterRow}>
+          <View style={styles.borderRadiusCircle}>
+            <Thumbnail
+              style={[styles.profileImage]}
+              source={player.profile_image ? player.profile_image : images.user}
+            />
           </View>
-          <Text style={styles.descText}>
-            Central Attacking Midfielder
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(1)} style={[state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[1] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.andres}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Andres Iniesta&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @AndIniesta
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            Centre Midfielder
-          </Text>
-          <View style={{ marginTop: 3, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-            <TouchableOpacity style={{ borderRadius: 5, borderWidth: 0.6, borderColor: '#0071c0', padding: 5, paddingLeft: 7, paddingRight: 7, marginRight: 7 }}>
-              <Text style={{ fontFamily: 'calibri', fontSize: 12, color: '#0071c0' }}>
-                Admin
+          <View style={styles.playerCardName}>
+            <View style={styles.flexCenterRow}>
+              <Text style={styles.nameText}>
+                {player.first_name}
+                {player.last_name}
+                &nbsp;
               </Text>
-            </TouchableOpacity>
-            <Icon name="copyright" type="MaterialIcons" style={{ fontSize: 14, color: '#0071c0' }} />
-          </View>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(2)} style={[state[2] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[2] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[2] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.alvaro}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Alvaro Morata&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @AlMorata
+              <Text style={styles.tagText}>
+                {`@${player.username}`}
+              </Text>
+            </View>
+            <Text style={styles.descText}>
+              Central Attacking Midfielder
             </Text>
           </View>
-          <Text style={styles.descText}>
-            Striker
+        </View>
+        <TouchableOpacity onPress={() => toggleFollow(1)} style={[state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
+          <Text style={state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+            {state[1] ? 'Following' : 'Follow'}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => toggleFollow(3)} style={[state[3] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[3] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[3] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    ))}
   </View>
 );
 
@@ -144,20 +84,20 @@ const SecondRoute = () => (
 );
 
 class Squad extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerTitle: (
       <Text style={styles.navigationText}>
-        Strictly Ballers
+        {navigation.getParam('team').team_name}
       </Text>
     ),
     headerStyle: {
       backgroundColor: '#0071c0',
     },
     headerTintColor: 'white',
-  }
+  })
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       index: 0,
@@ -168,6 +108,8 @@ class Squad extends React.Component {
       1: false,
       2: false,
       3: false,
+      team: props.navigation.getParam('team'),
+      players: props.navigation.getParam('players'),
     };
   }
 
@@ -178,7 +120,7 @@ class Squad extends React.Component {
   }
 
   render() {
-    const { index, routes } = this.state;
+    const { index, routes, players, team } = this.state;
 
     return (
       <TabView
@@ -197,7 +139,7 @@ class Squad extends React.Component {
               let statisticsContent = '';
 
               if (key === 'first') {
-                statisticsContent = '14';
+                statisticsContent = players.length;
               }
 
               return (

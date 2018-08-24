@@ -23,10 +23,14 @@ import diego from './diego.jpg';
 import insta2 from './insta2.png';
 import twitter2 from './twitter2.png';
 import whatsapp from './whatsapp.png';
+import user from './user.jpg';
+import team from './team.png';
 
 export default {
   insta2,
+  team,
   twitter2,
+  user,
   whatsapp,
   diego,
   alvaro,

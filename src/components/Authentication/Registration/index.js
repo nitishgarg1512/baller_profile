@@ -82,6 +82,18 @@ class Registration extends Form {
               />
               <Input
                 itemStyle={styles.registrationItem}
+                {...this.getFieldProps('first_name')}
+                label="First name"
+                labelStyle={styles.inputLabelRegistration}
+              />
+              <Input
+                itemStyle={styles.registrationItem}
+                {...this.getFieldProps('last_name')}
+                label="Last name"
+                labelStyle={styles.inputLabelRegistration}
+              />
+              <Input
+                itemStyle={styles.registrationItem}
                 {...this.getFieldProps('password')}
                 label="Select password"
                 labelStyle={styles.inputLabelRegistration}

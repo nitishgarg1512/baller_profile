@@ -35,9 +35,13 @@ class TeamsView extends React.Component {
 
   render() {
     const { following } = this.state;
-    const { navigation, isLoading, team } = this.props;
+    const { navigation, isLoading, team, players } = this.props;
 
-    let content = <ActivityIndicator />;
+    let content = (
+      <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={50} color="rgba(0,0,0,.6)" />
+      </View>
+    );
 
     if (!isLoading && team) {
       content = (
@@ -67,7 +71,7 @@ class TeamsView extends React.Component {
                   <View style={styles.borderRadiusCircle}>
                     <Thumbnail
                       style={[styles.profileImage]}
-                      source={images.chelsea}
+                      source={team && team.team_image ? team.team_image : images.team}
                     />
                   </View>
                   <View style={styles.profileContentMainCard}>
@@ -133,25 +137,26 @@ class TeamsView extends React.Component {
                         Squad
                       </Text>
                       <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                        {team && team.players && team.players.length}
+                        {team && players && players.length}
                       </Text>
                     </View>
                   </View>
                   <View style={styles.hrLineSecondary} />
                   <View style={styles.profileContentMainPadding}>
-                    {team && team.players && team.players.map(player => (
+                    {team && players && players.map(player => (
                       <View key={player.id} style={styles.squadPlayer}>
                         <View style={styles.squadContainer}>
                           <View style={styles.borderRadiusCircleSquad}>
                             <Thumbnail
                               style={[styles.profileImageSquad]}
-                              source={images.lm}
+                              source={player.profile_image ? player.profile_image : images.user}
                             />
                           </View>
                           <View style={styles.playerCardName}>
                             <View style={styles.flexCenterRow}>
                               <Text style={styles.nameText}>
-                                {`${player.user.firstName} ${player.user.lastName}&nbsp;`}
+                                {`${player.user.first_name} ${player.user.last_name}`}
+                                &nbsp;
                               </Text>
                               <Text style={styles.tagText}>
                                 {`@${player.user.username}`}
@@ -162,18 +167,23 @@ class TeamsView extends React.Component {
                             </Text>
                           </View>
                         </View>
-                        <TouchableOpacity style={[styles.playerFollowButton]}>
-                          <Text style={styles.playerFollowButtonText}>
-                            Admin
-                          </Text>
-                        </TouchableOpacity>
+                        {team && team.admin.indexOf(player.id) !== -1
+                          ? (
+                            <TouchableOpacity style={[styles.playerFollowButton]}>
+                              <Text style={styles.playerFollowButtonText}>
+                              Admin
+                              </Text>
+                            </TouchableOpacity>
+                          )
+                          : null
+                        }
                       </View>
                     ))}
                   </View>
-                  <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSquad)}>
+                  <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsSquad, { team, players })}>
                     <View style={[styles.viewSquadContainer, { paddingTop: 10, paddingBottom: 10, borderTopWidth: 0.3, borderColor: 'rgba(0,0,0,.4)' }]}>
                       <Text style={{ fontFamily: 'calibri-italic', textAlign: 'center' }}>
-                      View full squad
+                        View full squad
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -182,7 +192,7 @@ class TeamsView extends React.Component {
                   <View style={styles.profileContentMainPadding}>
                     <View style={styles.flexSpaceBetweenRow}>
                       <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                      Upcoming fixtures
+                        Upcoming fixtures
                       </Text>
                       <TouchableOpacity onPress={() => navigation.navigate(paths.client.MatchCreation)}>
                         <Icon name="plus" type="Feather" style={styles.plusIcon} />
