@@ -5,6 +5,7 @@ import teams from './teams';
 import forms from './forms';
 import team from './team';
 import user from './user';
+import player from './player';
 
 export default combineReducers({
   authentication,
@@ -12,4 +13,5 @@ export default combineReducers({
   forms,
   team,
   user,
+  player,
 });

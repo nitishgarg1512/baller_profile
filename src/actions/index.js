@@ -1,13 +1,15 @@
 import authentication from './authentication';
 import forms from './forms';
-import teams from './teams';
+import player from './player';
 import team from './team';
+import teams from './teams';
 import user from './user';
 
 export default {
   authentication,
-  teams,
   forms,
+  player,
   team,
+  teams,
   user,
 };

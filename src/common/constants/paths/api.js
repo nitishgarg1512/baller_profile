@@ -9,4 +9,5 @@ export default {
   TEAMS_ID: `${serverUrl}/api/teams/:id`,
   TEAMS_ID_PLAYERS: `${serverUrl}/api/teams/:id/players/`,
   USERS_ID: `${serverUrl}/api/users/:id`,
+  PLAYERS_ID: `${serverUrl}/api/players/:id`,
 };

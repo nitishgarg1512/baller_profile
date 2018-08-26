@@ -32,4 +32,7 @@ export default keyMirror({
   USER_GET_FAILURE: null,
   USER_GET_REQUEST: null,
   USER_GET_SUCCESS: null,
+  PLAYER_GET_REQUEST: null,
+  PLAYER_GET_SUCCESS: null,
+  PLAYER_GET_FAILURE: null,
 });

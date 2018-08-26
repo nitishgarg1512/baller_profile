@@ -91,7 +91,7 @@ class Confirmation extends React.Component {
             </View>
           </Content>
           <View style={styles.footer}>
-            <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsView, { id: team.id })} style={styles.footerButton}>
+            <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesCreation, { team_name: team.team_name, username: user.username })} style={styles.footerButton}>
               <UppercasedText style={styles.bottomMainButtonTextConfirmation}>
                 Done
               </UppercasedText>

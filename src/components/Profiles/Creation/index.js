@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Container, Input, Item, Label, Icon, Content } from 'native-base';
+import { Container, Icon, Content } from 'native-base';
+
+import selectors from './selectors';
 
 import styles from '../common/styles';
 
-import { UppercasedText } from '../../common/components';
+import { UppercasedText, Form, Input } from '../../common/components';
 
-import { paths } from '../../../common/constants';
+import actions from '../../../actions';
+import { paths, forms } from '../../../common/constants';
 
-class Creation extends React.Component {
+class Creation extends Form {
   static navigationOptions = {
     header: null,
   }
@@ -18,8 +22,11 @@ class Creation extends React.Component {
     super();
 
     this.state = {
-
+      errors: {},
+      validating: {},
     };
+
+    this.formId = forms.PROFILES_CREATION;
   }
 
   handleChange = (key, value) => {
@@ -29,10 +36,10 @@ class Creation extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const { playingPosition, gender, nationalityMain, nationalitySecondary, region, postcode, day, month, year } = this.state;
+    const { navigation, values } = this.props;
+    const { playing_position, gender, nationality_main, nationality_secondary, region, postcode, day, month, year } = values;
 
-    const isComplete = playingPosition && gender && nationalityMain && nationalitySecondary && region && postcode && day && month && year;
+    const isComplete = playing_position && gender && nationality_main && nationality_secondary && region && postcode && day && month && year;
 
     return (
       <Container>
@@ -42,12 +49,14 @@ class Creation extends React.Component {
               Create your player profile
             </Text>
             <Text style={[styles.profileCreationSubtitle, styles.py10]}>
-              Add your details to join the AFTV FC squad
+              Add your details to join the
+              {navigation.getParam('team_name')}
+              squad
             </Text>
           </View>
           <View style={styles.displayFlexCenterRow}>
             <UppercasedText style={[styles.profileCreationSubtitle, styles.py10]}>
-              DIMITRIGBO
+              {navigation.getParam('username')}
             </UppercasedText>
           </View>
           <View style={styles.profilePicContainer}>
@@ -59,118 +68,82 @@ class Creation extends React.Component {
             </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Playing position
-              </Label>
-              <Icon type="FontAwesome" name="caret-down" />
-              <Input
-                value={playingPosition}
-                onChangeText={event => this.handleChange('playingPosition', event)}
-                selectionColor="#fff"
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('playing_position')}
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              addon={<Icon type="FontAwesome" name="caret-down" />}
+              label="Playing position"
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Nationality (main)
-              </Label>
-              <Input
-                value={nationalityMain}
-                onChangeText={event => this.handleChange('nationalityMain', event)}
-                selectionColor="#fff"
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('nationality_main')}
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              label="Nationality (main)"
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Nationality (secondary)
-              </Label>
-              <Input
-                value={nationalitySecondary}
-                onChangeText={event => this.handleChange('nationalitySecondary', event)}
-                selectionColor="#fff"
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('nationality_secondary')}
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              label="Nationality (secondary)"
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Gender
-              </Label>
-              <Icon type="FontAwesome" name="caret-down" />
-              <Input
-                value={gender}
-                onChangeText={event => this.handleChange('gender', event)}
-                selectionColor="#fff"
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('gender')}
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              label="Gender"
+              addon={<Icon type="FontAwesome" name="caret-down" />}
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Postcode (1st half of postcode)
-              </Label>
-              <Icon type="FontAwesome" name="caret-down" />
-              <Input
-                value={postcode}
-                onChangeText={event => this.handleChange('postcode', event)}
-                selectionColor="#fff"
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('postcode')}
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              label="Postcode (1st half of postcode)"
+              addon={<Icon type="FontAwesome" name="caret-down" />}
+            />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Item floatingLabel style={styles.findTeamItem}>
-              <Label style={styles.itemLabel}>
-                Region
-              </Label>
-              <Input
-                value={region}
-                onChangeText={event => this.handleChange('region', event)}
-                selectionColor="#fff"
-              />
-            </Item>
+            <Input
+              {...this.getFieldProps('region')}
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              label="Region"
+            />
           </View>
           <View style={[styles.py10, styles.wx50, styles.alignSelfCenter]}>
             <Text style={styles.itemLabel}>
               D.O.B
             </Text>
             <View style={styles.displayFlexCenterRowCreation}>
-              <Item floatingLabel style={styles.findTeamDob}>
-                <Label style={styles.itemLabel}>
-                  Day
-                </Label>
-                <Icon type="FontAwesome" name="caret-down" />
-                <Input
-                  value={day}
-                  onChangeText={event => this.handleChange('day', event)}
-                  selectionColor="#fff"
-                />
-              </Item>
-              <Item floatingLabel style={styles.findTeamDob}>
-                <Label style={styles.itemLabel}>
-                  Month
-                </Label>
-                <Icon type="FontAwesome" name="caret-down" />
-                <Input
-                  value={month}
-                  onChangeText={event => this.handleChange('month', event)}
-                  selectionColor="#fff"
-                />
-              </Item>
-              <Item floatingLabel style={styles.findTeamDob}>
-                <Label style={styles.itemLabel}>
-                  Year
-                </Label>
-                <Icon type="FontAwesome" name="caret-down" />
-                <Input
-                  value={year}
-                  onChangeText={event => this.handleChange('year', event)}
-                  selectionColor="#fff"
-                />
-              </Item>
+              <Input
+                {...this.getFieldProps('day')}
+                itemStyle={styles.findTeamDob}
+                labelStyle={styles.itemLabel}
+                label="Day"
+                addon={<Icon type="FontAwesome" name="caret-down" />}
+              />
+              <Input
+                {...this.getFieldProps('month')}
+                itemStyle={styles.findTeamDob}
+                labelStyle={styles.itemLabel}
+                label="Month"
+                addon={<Icon type="FontAwesome" name="caret-down" />}
+              />
+              <Input
+                {...this.getFieldProps('year')}
+                itemStyle={styles.findTeamDob}
+                labelStyle={styles.itemLabel}
+                label="Year"
+                addon={<Icon type="FontAwesome" name="caret-down" />}
+              />
             </View>
           </View>
         </Content>
@@ -190,4 +163,9 @@ Creation.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
 };
 
-export default Creation;
+export default connect(
+  selectors,
+  {
+    ...actions.forms,
+  },
+)(Creation);

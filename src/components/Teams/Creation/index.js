@@ -42,8 +42,8 @@ class Creation extends Form {
           getAuthUser()
             .then(({ result }) => {
               const newValues = {
-                ...omit(values, ['league', 'format', 'location']),
-                captain: result.data.pk,
+                ...omit(values, ['format', 'location']),
+                captain: 1,
                 vice_captain: 1,
                 date_create: moment(new Date()).format('YYYY-MM-DD'),
               };
