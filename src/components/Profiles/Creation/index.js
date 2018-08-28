@@ -8,7 +8,7 @@ import selectors from './selectors';
 
 import styles from '../common/styles';
 
-import { UppercasedText, Form, Input } from '../../common/components';
+import { UppercasedText, Form, Input, Select } from '../../common/components';
 
 import actions from '../../../actions';
 import { paths, forms } from '../../../common/constants';
@@ -16,6 +16,13 @@ import { paths, forms } from '../../../common/constants';
 class Creation extends Form {
   static navigationOptions = {
     header: null,
+  }
+
+  componentDidMount() {
+    const { getLeagues, getNations } = this.props;
+
+    getLeagues();
+    getNations();
   }
 
   constructor() {
@@ -36,10 +43,10 @@ class Creation extends Form {
   }
 
   render() {
-    const { navigation, values } = this.props;
-    const { playing_position, gender, nationality_main, nationality_secondary, region, postcode, day, month, year } = values;
+    const { navigation, values, gendersOptions, nationsOptions, playingPositionsOptions } = this.props;
+    const { region, postcode } = values;
 
-    const isComplete = playing_position && gender && nationality_main && nationality_secondary && region && postcode && day && month && year;
+    const isComplete = region && postcode;
 
     return (
       <Container>
@@ -56,7 +63,7 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRow}>
             <UppercasedText style={[styles.profileCreationSubtitle, styles.py10]}>
-              {navigation.getParam('username')}
+              {navigation.getParam('username') || 'Marko'}
             </UppercasedText>
           </View>
           <View style={styles.profilePicContainer}>
@@ -68,37 +75,39 @@ class Creation extends Form {
             </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('playing_position')}
               itemStyle={styles.findTeamItem}
               labelStyle={styles.itemLabel}
-              addon={<Icon type="FontAwesome" name="caret-down" />}
               label="Playing position"
+              options={playingPositionsOptions}
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('nationality_main')}
               itemStyle={styles.findTeamItem}
               labelStyle={styles.itemLabel}
               label="Nationality (main)"
+              options={nationsOptions}
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('nationality_secondary')}
               itemStyle={styles.findTeamItem}
               labelStyle={styles.itemLabel}
               label="Nationality (secondary)"
+              options={nationsOptions}
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('gender')}
               itemStyle={styles.findTeamItem}
               labelStyle={styles.itemLabel}
               label="Gender"
-              addon={<Icon type="FontAwesome" name="caret-down" />}
+              options={gendersOptions}
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
@@ -167,5 +176,7 @@ export default connect(
   selectors,
   {
     ...actions.forms,
+    ...actions.nations,
+    ...actions.leagues,
   },
 )(Creation);

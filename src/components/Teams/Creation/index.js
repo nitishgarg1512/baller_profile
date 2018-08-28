@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { omit } from 'lodash';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Container, Icon, Content } from 'native-base';
 
@@ -44,12 +43,15 @@ class Creation extends Form {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
-          const { getAuthUser, createTeam, values, navigation } = this.props;
+          const { getAuthUser, createTeam, values, navigation, formatsOptions, nationsOptions, leaguesOptions } = this.props;
 
           getAuthUser()
             .then(({ result }) => {
               const newValues = {
-                ...omit(values, ['format', 'location']),
+                ...values,
+                location: values.location ? values.location : nationsOptions[0].value,
+                format: values.format ? values.format : formatsOptions[0].value,
+                league: values.league ? values.league : leaguesOptions[0].value,
                 captain: 1,
                 vice_captain: 1,
                 date_create: moment(new Date()).format('YYYY-MM-DD'),
@@ -68,9 +70,9 @@ class Creation extends Form {
 
   render() {
     const { navigation, values, leaguesOptions, nationsOptions, formatsOptions } = this.props;
-    const { location, league, format } = values;
+    const { abbreviated_name, nickname, team_name } = values;
 
-    const isComplete = location && league && format && values.team_name;
+    const isComplete = team_name && abbreviated_name && nickname;
 
     return (
       <Container>
