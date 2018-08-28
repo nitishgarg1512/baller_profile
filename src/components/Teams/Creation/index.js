@@ -11,7 +11,7 @@ import validations from './validations';
 
 import styles from '../common/styles';
 
-import { UppercasedText, Form, Input } from '../../common/components';
+import { UppercasedText, Form, Input, Select } from '../../common/components';
 
 import actions from '../../../actions';
 import { paths, forms } from '../../../common/constants';
@@ -19,6 +19,13 @@ import { paths, forms } from '../../../common/constants';
 class Creation extends Form {
   static navigationOptions = {
     header: null,
+  }
+
+  componentDidMount() {
+    const { getLeagues, getNations } = this.props;
+
+    getLeagues();
+    getNations();
   }
 
   constructor() {
@@ -60,7 +67,7 @@ class Creation extends Form {
   }
 
   render() {
-    const { navigation, values } = this.props;
+    const { navigation, values, leaguesOptions, nationsOptions, formatsOptions } = this.props;
     const { location, league, format } = values;
 
     const isComplete = location && league && format && values.team_name;
@@ -111,29 +118,30 @@ class Creation extends Form {
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('league')}
               labelStyle={styles.itemLabel}
               label="What league do they play in?"
               itemStyle={styles.findTeamItem}
+              options={leaguesOptions}
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('location')}
               labelStyle={styles.itemLabel}
               label="Select league location"
               itemStyle={styles.findTeamItem}
-              addon={<Icon type="FontAwesome" name="caret-down" />}
+              options={nationsOptions}
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
+            <Select
               {...this.getFieldProps('format')}
               labelStyle={styles.itemLabel}
               label="What format is this league?"
               itemStyle={styles.findTeamItem}
-              addon={<Icon type="FontAwesome" name="caret-down" />}
+              options={formatsOptions}
             />
           </View>
         </Content>
@@ -159,5 +167,7 @@ export default connect(
     ...actions.forms,
     ...actions.team,
     ...actions.user,
+    ...actions.leagues,
+    ...actions.nations,
   },
 )(Creation);

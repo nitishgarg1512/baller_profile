@@ -32,7 +32,7 @@ const AuthRouter = createStackNavigator({
   TeamsSquad: Teams.Squad,
   MatchCreation: Teams.MatchCreation,
 }, {
-  initialRouteName: 'ProfilesView',
+  initialRouteName: 'TeamsSelection',
 });
 
 const InitialRouter = createSwitchNavigator({
