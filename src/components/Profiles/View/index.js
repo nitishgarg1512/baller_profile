@@ -34,7 +34,7 @@ class ProfileView extends React.Component {
   }
 
   render() {
-    const { navigation, player, isLoading } = this.props;
+    const { navigation, player, isLoading, createRelationship } = this.props;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -83,7 +83,7 @@ class ProfileView extends React.Component {
                         </View>
                         <View style={styles.detailsContainer}>
                           <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                          <TouchableOpacity onPress={() => this.setState({ following: !this.state.following })} style={[this.state.following ? styles.playerFollowingButton : styles.playerFollowButton]}>
+                          <TouchableOpacity onPress={() => createRelationship(player.user.id)} style={[this.state.following ? styles.playerFollowingButton : styles.playerFollowButton]}>
                             <Text style={this.state.following ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
                               {this.state.following ? 'Following' : 'Follow'}
                             </Text>
@@ -233,5 +233,6 @@ export default connect(
   selectors,
   {
     ...actions.player,
+    ...actions.relationship,
   },
 )(ProfileView);

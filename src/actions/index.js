@@ -5,9 +5,11 @@ import team from './team';
 import teams from './teams';
 import user from './user';
 import leagues from './leagues';
+import relationship from './relationship';
 import nations from './nations';
 
 export default {
+  relationship,
   authentication,
   nations,
   forms,
