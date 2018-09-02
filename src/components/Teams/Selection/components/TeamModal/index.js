@@ -51,7 +51,7 @@ class TeamModal extends React.Component {
                   <View style={styles.TeamsSelectionModalCardImage}>
                     <Image
                       style={styles.teamCardImage}
-                      source={selectedTeam.team_image ? selectedTeam.team_image : images.team}
+                      source={selectedTeam.team_badge ? selectedTeam.team_badge : images.team}
                       resizeMode="cover"
                     />
                   </View>

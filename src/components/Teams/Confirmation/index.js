@@ -63,7 +63,7 @@ class Confirmation extends React.Component {
             <View style={styles.TeamsConfirmationPicContainer}>
               <Image
                 style={styles.teamCardImage}
-                source={team && team.team_image ? team.team_image : images.team}
+                source={team && team.team_badge ? team.team_badge : images.team}
                 resizeMode="cover"
               />
             </View>

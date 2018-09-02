@@ -1,9 +1,10 @@
+import ImagePicker from 'react-native-image-picker';
 import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
-import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { Container, Icon, Content } from 'native-base';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { connect } from 'react-redux';
 
 import selectors from './selectors';
 import validations from './validations';
@@ -39,11 +40,22 @@ class Creation extends Form {
     this.formId = forms.TEAMS_CREATION;
   }
 
+  handleSetImage = () => {
+    ImagePicker.showImagePicker((response) => {
+      const source = { uri: `data:image/jpeg;base64,${response.data}` };
+
+      this.setState({
+        avatarSource: source,
+      });
+    });
+  }
+
   handleCreate = () => {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
           const { getAuthUser, createTeam, values, navigation, formatsOptions, nationsOptions, leaguesOptions } = this.props;
+          const { avatarSource } = this.state;
 
           getAuthUser()
             .then(({ result }) => {
@@ -54,6 +66,7 @@ class Creation extends Form {
                 league: values.league ? values.league : leaguesOptions[0].value,
                 captain: 1,
                 vice_captain: 1,
+                team_badge: avatarSource,
                 date_create: moment(new Date()).format('YYYY-MM-DD'),
               };
 
@@ -70,6 +83,7 @@ class Creation extends Form {
 
   render() {
     const { navigation, values, leaguesOptions, nationsOptions, formatsOptions } = this.props;
+    const { avatarSource } = this.state;
     const { abbreviated_name, nickname, team_name } = values;
 
     const isComplete = team_name && abbreviated_name && nickname;
@@ -95,14 +109,29 @@ class Creation extends Form {
               label="Enter your team's name"
             />
           </View>
-          <View style={styles.profilePicContainer}>
-            <View style={styles.profilePic}>
-              <Icon type="Feather" name="plus" style={styles.profilePicIcon} />
-              <Text style={styles.profilePicText}>
+          <TouchableOpacity onPress={this.handleSetImage}>
+            {avatarSource
+              ? (
+                <View style={styles.profilePicContainer}>
+                  <Image
+                    style={styles.pic}
+                    source={avatarSource}
+                    resizeMode="contain"
+                  />
+                </View>
+              )
+              : (
+                <View style={styles.profilePicContainer}>
+                  <View style={styles.profilePic}>
+                    <Icon type="Feather" name="plus" style={styles.profilePicIcon} />
+                    <Text style={styles.profilePicText}>
                 Add a profile pic
-              </Text>
-            </View>
-          </View>
+                    </Text>
+                  </View>
+                </View>
+              )
+          }
+          </TouchableOpacity>
           <View style={styles.displayFlexCenterRowCreation}>
             <Input
               {...this.getFieldProps('abbreviated_name')}

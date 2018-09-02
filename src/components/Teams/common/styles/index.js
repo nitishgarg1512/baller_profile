@@ -205,6 +205,10 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  pic: {
+    height: 180,
+    width: 180,
+  },
   headerIcon: {
     fontSize: 35,
     color: 'rgba(0,0,0,.3)',

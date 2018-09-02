@@ -33,7 +33,7 @@ class TeamCard extends React.Component {
           <View style={styles.TeamsSelectionCardImage}>
             <Image
               style={styles.teamCardImage}
-              source={team.team_image ? team.team_image : images.team}
+              source={team.team_badge ? team.team_badge : images.team}
               resizeMode="cover"
             />
           </View>
