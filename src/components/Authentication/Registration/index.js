@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { omit, merge } from 'lodash';
-import { StatusBar, Image, Text, View, TouchableOpacity } from 'react-native';
+import { StatusBar, Image, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Container, Content, Form as NativeForm } from 'native-base';
 
 import selectors from './selectors';
@@ -48,12 +48,16 @@ class Registration extends Form {
   handleRegistration = () => {
     this.handleSubmit()
       .then((canSubmit) => {
-        const { values, register, navigation } = this.props;
+        const { values, register, navigation, login } = this.props;
         if (canSubmit) {
           const newValues = merge(omit(values, ['confirm_password']), { type: 'P' });
 
           register(newValues)
-            .then(() => navigation.navigate(paths.client.Login));
+            .then(() => login(newValues))
+            .then(({ result }) => {
+              AsyncStorage.setItem('token', result.data.key)
+                .then(() => navigation.navigate(paths.client.TeamsSelection));
+            });
         }
         return canSubmit;
       });

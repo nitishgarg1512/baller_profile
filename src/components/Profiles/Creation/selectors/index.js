@@ -9,4 +9,5 @@ export default state => ({
   formatsOptions: map(formats, format => ({ label: format.label, value: format.value })),
   gendersOptions: map(genders, gender => ({ label: gender.label, value: gender.value })),
   playingPositionsOptions: map(playingPositions, position => ({ label: position.label, value: position.value })),
+  authUser: state.user.authData,
 });

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { omit } from 'lodash';
 import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Container, Icon, Content } from 'native-base';
@@ -36,10 +37,21 @@ class Creation extends Form {
     this.formId = forms.PROFILES_CREATION;
   }
 
-  handleChange = (key, value) => {
-    this.setState({
-      [key]: value,
-    });
+  handleCreate = () => {
+    this.handleSubmit()
+      .then((canSubmit) => {
+        if (canSubmit) {
+          const { updatePlayer, values, navigation, getPlayerByUsername, authUser } = this.props;
+
+          getPlayerByUsername(authUser.username)
+            .then(({ result }) => {
+              updatePlayer(values, result.data[0].id)
+                .then(() => navigation.navigate(paths.client.WhatsNext));
+            });
+        }
+
+        return canSubmit;
+      });
   }
 
   render() {
@@ -157,7 +169,7 @@ class Creation extends Form {
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsNotified)} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
+          <TouchableOpacity onPress={this.handleCreate} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Done
             </UppercasedText>
@@ -178,5 +190,6 @@ export default connect(
     ...actions.forms,
     ...actions.nations,
     ...actions.leagues,
+    ...actions.player,
   },
 )(Creation);

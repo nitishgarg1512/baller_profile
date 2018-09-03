@@ -70,7 +70,7 @@ class Confirmation extends React.Component {
             <View style={styles.TeamsConfirmationMessageContainer}>
               <Text style={styles.TeamsConfirmationMainText}>
                 Congrats&nbsp;
-                {user && user.first_name && user.first_name.length > 0 ? user.first_name.length : user.username}
+                {user && user.first_name && user.first_name.length > 0 ? user.first_name : user.username}
                 ,
               </Text>
               <Text style={styles.TeamsConfirmationSecondaryText}>

@@ -2,12 +2,13 @@ import { actions } from '../../common/constants';
 
 const initialState = {
   data: {},
+  authData: {},
   isLoading: false,
 };
 
 const actionMap = {
   [actions.USER_AUTH_GET_REQUEST]: state => ({ ...state, isLoading: true }),
-  [actions.USER_AUTH_GET_SUCCESS]: (state, { result }) => ({ ...state, isLoading: false, data: result.data }),
+  [actions.USER_AUTH_GET_SUCCESS]: (state, { result }) => ({ ...state, isLoading: false, authData: result.data }),
   [actions.USER_AUTH_GET_FAILURE]: state => ({ ...state, isLoading: false }),
 
   [actions.USER_GET_REQUEST]: state => ({ ...state, isLoading: true }),
