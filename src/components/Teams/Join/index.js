@@ -4,6 +4,8 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 
+import selectors from './selectors';
+
 import styles from '../common/styles';
 
 import { UppercasedText } from '../../common/components';
@@ -59,6 +61,19 @@ class Join extends React.Component {
     });
   }
 
+  handleJoin = () => {
+    const { createRequest, authUser } = this.props;
+    const { team } = this.state;
+
+    const requestData = {
+      to_team: team.id,
+      from_user: authUser.pk,
+      status: 'Waiting',
+    };
+
+    return createRequest(requestData);
+  }
+
   render() {
     const { navigation, createRelationship } = this.props;
     const { players, team } = this.state;
@@ -111,7 +126,7 @@ class Join extends React.Component {
           </View>
         </Content>
         <View style={[styles.footer]}>
-          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesCreation)} style={styles.footerButton}>
+          <TouchableOpacity onPress={() => this.handleJoin()} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonText}>
               {`Join ${team ? team.abbreviated_name : ''}`}
             </UppercasedText>
@@ -127,9 +142,10 @@ Join.propTypes = {
 };
 
 export default connect(
-  null,
+  selectors,
   {
     ...actions.player,
     ...actions.relationship,
+    ...actions.request,
   },
 )(Join);
