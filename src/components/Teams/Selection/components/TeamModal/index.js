@@ -83,7 +83,7 @@ class TeamModal extends React.Component {
                 </View>
               </View>
               <View style={styles.footerModal}>
-                <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsJoin)} style={styles.footerButtonModal}>
+                <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsJoin, { team: selectedTeam, players: selectedTeam.players })} style={styles.footerButtonModal}>
                   <UppercasedText style={styles.bottomMainButtonTextModal}>
                 I play for this team
                   </UppercasedText>

@@ -7,6 +7,7 @@ import user from './user';
 import leagues from './leagues';
 import relationship from './relationship';
 import nations from './nations';
+import request from './request';
 
 export default {
   relationship,
@@ -18,4 +19,5 @@ export default {
   teams,
   leagues,
   user,
+  request,
 };

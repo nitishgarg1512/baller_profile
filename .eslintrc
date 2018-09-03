@@ -39,6 +39,7 @@
     "jsx-a11y/no-static-element-interaction": 0,
     "react/no-array-index-key": 0,
     "camelcase": 0,
+    "react/jsx-one-expression-per-line": 0,
     "jsx-a11y/anchor-is-valid": [
       "error",
       {

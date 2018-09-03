@@ -30,7 +30,7 @@ class ProfileView extends React.Component {
 
     const id = navigation.getParam('id');
 
-    getPlayer(1);
+    getPlayer(id);
   }
 
   render() {

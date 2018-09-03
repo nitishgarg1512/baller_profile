@@ -14,4 +14,5 @@ export default {
   USER_AUTH: `${serverUrl}/api/auth/user`,
   RELATIONSHIPS: `${serverUrl}/api/relationships/`,
   PLAYERS_SINGLE: `${serverUrl}/api/players`,
+  REQUESTS: `${serverUrl}/api/requests/`,
 };
