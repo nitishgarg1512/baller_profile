@@ -53,7 +53,7 @@ class Selection extends React.Component {
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size={50} color="rgba(0,0,0,.6)" />
+        <ActivityIndicator size="large" color="rgba(0,0,0,.6)" />
       </View>
     );
 

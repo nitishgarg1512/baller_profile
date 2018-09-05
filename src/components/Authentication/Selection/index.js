@@ -16,6 +16,12 @@ class Selection extends React.Component {
           getAuthUser()
             .then(() => {
               navigation.navigate('Auth');
+            })
+            .catch(() => {
+              AsyncStorage.clear()
+                .then(() => {
+                  navigation.navigate('App');
+                });
             });
         } else {
           navigation.navigate('App');

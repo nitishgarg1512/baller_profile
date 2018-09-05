@@ -71,10 +71,7 @@ class Join extends React.Component {
       status: 'Waiting',
     };
 
-    createRequest(requestData)
-      .end((err, res) => {
-        console.error(err, res);
-      });
+    createRequest(requestData);
   }
 
   render() {

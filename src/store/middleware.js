@@ -1,4 +1,4 @@
-import axios from 'react-native-axios';
+import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 
 import { actions } from '../common/constants';
