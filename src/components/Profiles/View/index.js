@@ -179,19 +179,21 @@ class ProfileView extends React.Component {
                 </View>
                 <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
                   <View style={styles.profileContentMainPadding}>
-                    <View style={styles.flexSpaceBetweenRow}>
-                      <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                        Ratings
-                      </Text>
-                      <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                        0 Attributes - 0 Ratings
-                      </Text>
-                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesRating, { player })}>
+                      <View style={styles.flexSpaceBetweenRow}>
+                        <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
+                          Ratings
+                        </Text>
+                        <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
+                          0 Attributes - 0 Ratings
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                   <View style={styles.hrLineSecondary} />
                   <View style={styles.profileContentMainPadding}>
                     <View style={styles.skillPillContainer}>
-                      <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesRating)} style={[styles.skillPill]}>
+                      <TouchableOpacity style={[styles.skillPill]}>
                         <Text style={styles.skillPillText}>
                           Dribbling
                         </Text>
