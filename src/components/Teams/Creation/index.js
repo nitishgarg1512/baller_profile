@@ -125,7 +125,7 @@ class Creation extends Form {
                   <View style={styles.profilePic}>
                     <Icon type="Feather" name="plus" style={styles.profilePicIcon} />
                     <Text style={styles.profilePicText}>
-                Add a profile pic
+                      Add a profile pic
                     </Text>
                   </View>
                 </View>

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import { Welcome, Authentication, Teams, Profiles } from './components';
+import { Welcome, Authentication, Teams, Profiles, Root } from './components';
 import { initialRoute } from './common/constants';
 import { reducers, middleware } from './store';
 
@@ -47,7 +47,9 @@ const store = createStore(reducers, applyMiddleware(thunk, middleware()));
 
 const App = () => (
   <Provider store={store}>
-    <InitialRouter />
+    <Root>
+      <InitialRouter />
+    </Root>
   </Provider>
 );
 

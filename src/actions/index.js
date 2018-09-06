@@ -8,9 +8,11 @@ import leagues from './leagues';
 import relationship from './relationship';
 import nations from './nations';
 import request from './request';
+import toasts from './toasts';
 
 export default {
   relationship,
+  toasts,
   authentication,
   nations,
   forms,

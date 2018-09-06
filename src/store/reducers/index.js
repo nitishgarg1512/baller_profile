@@ -8,6 +8,7 @@ import user from './user';
 import player from './player';
 import leagues from './leagues';
 import nations from './nations';
+import toasts from './toasts';
 
 export default combineReducers({
   authentication,
@@ -18,4 +19,5 @@ export default combineReducers({
   team,
   user,
   player,
+  toasts,
 });
