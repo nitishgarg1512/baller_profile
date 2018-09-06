@@ -1,4 +1,5 @@
 export default state => ({
   player: state.player.data,
-  isLoading: state.player.isLoading,
+  players: state.players.data,
+  isLoading: state.player.isLoading || state.players.isLoading,
 });

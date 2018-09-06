@@ -17,24 +17,19 @@ class ProfileView extends React.Component {
     header: null,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      following: false,
-    };
-  }
-
   componentDidMount() {
-    const { navigation, getPlayer } = this.props;
+    const { navigation, getPlayer, getPlayersByNation } = this.props;
 
     const id = navigation.getParam('id');
 
-    getPlayer(id);
+    getPlayer(id)
+      .then(({ result }) => {
+        getPlayersByNation(result.data.nationality);
+      });
   }
 
   render() {
-    const { navigation, player, isLoading, createRelationship } = this.props;
+    const { navigation, player, isLoading, createRelationship, players } = this.props;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -83,9 +78,9 @@ class ProfileView extends React.Component {
                         </View>
                         <View style={styles.detailsContainer}>
                           <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                          <TouchableOpacity onPress={() => createRelationship(player.user.id)} style={[this.state.following ? styles.playerFollowingButton : styles.playerFollowButton]}>
-                            <Text style={this.state.following ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-                              {this.state.following ? 'Following' : 'Follow'}
+                          <TouchableOpacity onPress={() => createRelationship(player.user.id)} style={styles.playerFollowButton}>
+                            <Text style={styles.playerFollowButtonText}>
+                              Follow
                             </Text>
                           </TouchableOpacity>
                         </View>
@@ -95,7 +90,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          Centre Midfielder for stricktly Ballers
+                          {player.playing_position} for stricktly Ballers
                         </Text>
                       </View>
                     </View>
@@ -107,13 +102,13 @@ class ProfileView extends React.Component {
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                305
+                                0
                               </Text>
                             </View>
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorScoreBlue} name="arrow-left" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                11,035
+                                0
                               </Text>
                             </View>
                           </TouchableOpacity>
@@ -123,7 +118,7 @@ class ProfileView extends React.Component {
                             <View style={styles.scoreContent}>
                               <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                15009
+                                0
                               </Text>
                             </View>
                           </TouchableOpacity>
@@ -137,7 +132,7 @@ class ProfileView extends React.Component {
                                 resizeMode="contain"
                               />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                12,041
+                                {players.length}
                               </Text>
                             </View>
                           </View>
@@ -189,7 +184,7 @@ class ProfileView extends React.Component {
                         Ratings
                       </Text>
                       <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                        12 Attributes - 105 Ratings
+                        0 Attributes - 0 Ratings
                       </Text>
                     </View>
                   </View>
@@ -203,7 +198,7 @@ class ProfileView extends React.Component {
                       </TouchableOpacity>
                       <TouchableOpacity style={[styles.skillPillScore]}>
                         <Text style={styles.skillPillText}>
-                          19
+                          0
                         </Text>
                       </TouchableOpacity>
                       <Right>
@@ -227,12 +222,16 @@ ProfileView.propTypes = {
   getPlayer: PropTypes.func.isRequired,
   player: PropTypes.shape({}).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  getPlayersByNation: PropTypes.func.isRequired,
+  createRelationship: PropTypes.func.isRequired,
+  players: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default connect(
   selectors,
   {
     ...actions.player,
+    ...actions.players,
     ...actions.relationship,
   },
 )(ProfileView);
