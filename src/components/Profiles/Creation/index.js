@@ -1,15 +1,16 @@
+import DatePicker from 'react-native-datepicker';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { omit } from 'lodash';
-import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { Container, Icon, Content } from 'native-base';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { omit, merge } from 'lodash';
 
 import selectors from './selectors';
 
 import styles from '../common/styles';
 
-import { UppercasedText, Form, Input, Select } from '../../common/components';
+import { UppercasedText, Form, Input, Select, Autocomplete } from '../../common/components';
 
 import actions from '../../../actions';
 import { paths, forms } from '../../../common/constants';
@@ -20,8 +21,9 @@ class Creation extends Form {
   }
 
   componentDidMount() {
-    const { getLeagues, getNations } = this.props;
+    const { getLeagues, getNations, getPostcodes } = this.props;
 
+    getPostcodes();
     getLeagues();
     getNations();
   }
@@ -42,10 +44,11 @@ class Creation extends Form {
       .then((canSubmit) => {
         if (canSubmit) {
           const { updatePlayer, values, navigation, getPlayerByUsername, authUser } = this.props;
+          const { date } = this.state;
 
           getPlayerByUsername(authUser.username)
             .then(({ result }) => {
-              updatePlayer(values, result.data[0].id)
+              updatePlayer(merge(values, { dob: date }), result.data[0].id)
                 .then(() => navigation.navigate(paths.client.WhatsNext));
             });
         }
@@ -55,10 +58,7 @@ class Creation extends Form {
   }
 
   render() {
-    const { navigation, values, gendersOptions, nationsOptions, playingPositionsOptions } = this.props;
-    const { region, postcode } = values;
-
-    const isComplete = region && postcode;
+    const { navigation, values, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions } = this.props;
 
     return (
       <Container>
@@ -123,20 +123,8 @@ class Creation extends Form {
             />
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Input
-              {...this.getFieldProps('postcode')}
-              itemStyle={styles.findTeamItem}
-              labelStyle={styles.itemLabel}
-              label="Postcode (1st half of postcode)"
-              addon={<Icon type="FontAwesome" name="caret-down" />}
-            />
-          </View>
-          <View style={styles.displayFlexCenterRowCreation}>
-            <Input
-              {...this.getFieldProps('region')}
-              itemStyle={styles.findTeamItem}
-              labelStyle={styles.itemLabel}
-              label="Region"
+            <Autocomplete
+              data={postcodesOptions}
             />
           </View>
           <View style={[styles.py10, styles.wx50, styles.alignSelfCenter]}>
@@ -144,32 +132,43 @@ class Creation extends Form {
               D.O.B
             </Text>
             <View style={styles.displayFlexCenterRowCreation}>
-              <Input
-                {...this.getFieldProps('day')}
-                itemStyle={styles.findTeamDob}
-                labelStyle={styles.itemLabel}
-                label="Day"
-                addon={<Icon type="FontAwesome" name="caret-down" />}
-              />
-              <Input
-                {...this.getFieldProps('month')}
-                itemStyle={styles.findTeamDob}
-                labelStyle={styles.itemLabel}
-                label="Month"
-                addon={<Icon type="FontAwesome" name="caret-down" />}
-              />
-              <Input
-                {...this.getFieldProps('year')}
-                itemStyle={styles.findTeamDob}
-                labelStyle={styles.itemLabel}
-                label="Year"
-                addon={<Icon type="FontAwesome" name="caret-down" />}
+              <DatePicker
+                style={{ alignSelf: 'center', width: '100%', borderTopColor: 'transparent', borderLeftColor: 'transparent' }}
+                date={this.state.date}
+                mode="date"
+                placeholder="Select date of birth"
+                format="YYYY-MM-DD"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                customStyles={{
+                  dateInput: {
+                    marginTop: 10,
+                    marginBottom: 10,
+                    borderTopColor: 'transparent',
+                    borderLeftColor: 'transparent',
+                    borderLeftWidth: 0,
+                    borderRightWidth: 0,
+                    alignItems: 'flex-start',
+                  },
+                  dateText: {
+                    fontFamily: 'calibri-italic',
+                    fontSize: 16,
+                    color: 'rgba(0,0,0,.8)',
+                  },
+                  placeholderText: {
+                    fontFamily: 'calibri-italic',
+                    fontSize: 16,
+                    color: 'rgba(0,0,0,.8)',
+                  },
+                }}
+                onDateChange={(date) => { this.setState({ date }); }}
               />
             </View>
           </View>
         </Content>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={this.handleCreate} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
+          <TouchableOpacity onPress={this.handleCreate} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonText}>
               Done
             </UppercasedText>
@@ -181,6 +180,7 @@ class Creation extends Form {
 }
 
 Creation.propTypes = {
+  getPostcodes: PropTypes.func.isRequired,
   navigation: PropTypes.shape({}).isRequired,
 };
 
@@ -191,5 +191,6 @@ export default connect(
     ...actions.nations,
     ...actions.leagues,
     ...actions.player,
+    ...actions.postcodes,
   },
 )(Creation);

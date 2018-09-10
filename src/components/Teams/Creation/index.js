@@ -34,6 +34,7 @@ class Creation extends Form {
     this.state = {
       validating: {},
       errors: {},
+      avatarSource: undefined,
     };
 
     this.validations = validations;
@@ -42,7 +43,7 @@ class Creation extends Form {
 
   handleSetImage = () => {
     ImagePicker.showImagePicker((response) => {
-      const source = { uri: `data:image/jpeg;base64,${response.data}` };
+      const source = { uri: `data:image/png;base64,${response.data}` };
 
       this.setState({
         avatarSource: source,
@@ -64,8 +65,8 @@ class Creation extends Form {
                 location: values.location ? values.location : nationsOptions[0].value,
                 format: values.format ? values.format : formatsOptions[0].value,
                 league: values.league ? values.league : leaguesOptions[0].value,
-                captain: 1,
-                vice_captain: 1,
+                captain: result.data.pk,
+                vice_captain: result.data.pk,
                 team_badge: avatarSource,
                 date_create: moment(new Date()).format('YYYY-MM-DD'),
               };

@@ -4,6 +4,7 @@ import leagues from './leagues';
 import nations from './nations';
 import player from './player';
 import players from './players';
+import postcodes from './postcodes';
 import relationship from './relationship';
 import request from './request';
 import team from './team';
@@ -18,6 +19,7 @@ export default {
   nations,
   player,
   players,
+  postcodes,
   relationship,
   request,
   team,

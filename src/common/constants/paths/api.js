@@ -15,4 +15,5 @@ export default {
   RELATIONSHIPS: `${serverUrl}/api/relationships/`,
   PLAYERS_SINGLE: `${serverUrl}/api/players`,
   REQUESTS: `${serverUrl}/api/requests/`,
+  POSTCODES: `${serverUrl}/api/postcodes`,
 };

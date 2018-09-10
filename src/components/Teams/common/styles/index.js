@@ -138,7 +138,7 @@ export default {
     flexDirection: 'column',
   },
   inviteBallersButton: {
-    backgroundColor: '#000',
+    backgroundColor: 'red',
     borderRadius: 41,
     padding: 20,
     paddingLeft: 35,
