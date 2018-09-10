@@ -399,6 +399,7 @@ export default {
   joinTeamCardImage: {
     height: 90,
     width: 90,
+    borderRadius: 100,
   },
   teamCardImage: {
     height: 125,
@@ -429,7 +430,7 @@ export default {
     shadowOffset: { width: 5, height: 5 },
   },
   TeamsJoinCardImage: {
-    borderRadius: 5,
+    borderRadius: 100,
     borderWidth: 4,
     borderColor: '#fff',
   },

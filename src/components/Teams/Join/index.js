@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Container, Content } from 'native-base';
+import { Container, Content, Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
 
 import selectors from './selectors';
@@ -32,22 +32,19 @@ class Join extends React.Component {
 
     this.state = {
       team: props.navigation.getParam('team'),
+      players: [],
     };
   }
 
   componentDidMount() {
-    const { getPlayer, navigation } = this.props;
+    const { getPlayer, navigation, getTeamPlayers } = this.props;
 
-    const { players } = navigation.getParam('team');
-
-    if (players.length > 1) {
-      const playersPromise = players.map(player => getPlayer(player));
-
-      return Promise.all(playersPromise);
-    }
-
-    return getPlayer(players)
-      .then(({ result }) => this.setState({ players: [result.data] }));
+    getTeamPlayers(navigation.getParam('team').id)
+      .then(({ result }) => {
+        this.setState({
+          players: result.data,
+        });
+      });
   }
 
   handleJoin = () => {
@@ -90,20 +87,25 @@ class Join extends React.Component {
               <TouchableOpacity key={player.id} style={{ paddingTop: 15, paddingBottom: 15, flex: 1, borderRightWidth: 0.6, borderRightColor: 'rgba(0,0,0,.3)' }} onPress={() => navigation.navigate(paths.client.ProfilesView, { id: player.id })}>
                 <View style={styles.displayFlexCenterColumn}>
                   <View style={styles.TeamsJoinCardImage}>
-                    <Image
-                      style={styles.joinTeamCardImage}
-                      source={player.user.profile_pic ? { uri: player.user.profile_pic } : images.user}
-                      resizeMode="contain"
-                    />
+                    <Thumbnail style={styles.joinTeamCardImage} source={player.user.profile_pic ? { uri: player.user.profile_pic } : images.user} />
                   </View>
                   <Text style={[styles.playerNameText, styles.py10]}>
                     {player.user.first_name}
                     {' '}
                     {player.user.last_name}
+                    {navigation.getParam('team').captain === player.id ? '©' : null}
                   </Text>
                   <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
                     {player.playing_position}
                   </Text>
+                  {navigation.getParam('team').admin[0] === player.id
+                    ? (
+                      <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
+                      Team Admin
+                      </Text>
+                    )
+                    : null
+                  }
                   <TouchableOpacity onPress={() => createRelationship(player.id)} style={styles.playerFollowButton}>
                     <Text style={styles.playerFollowButtonText}>
                       Follow
@@ -142,5 +144,6 @@ export default connect(
     ...actions.player,
     ...actions.relationship,
     ...actions.request,
+    ...actions.team,
   },
 )(Join);

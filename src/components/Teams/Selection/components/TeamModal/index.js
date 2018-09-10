@@ -18,16 +18,16 @@ import { paths } from '../../../../../common/constants';
 
 class TeamModal extends React.Component {
   componentWillReceiveProps(newProps) {
-    const { selectedTeam, getUser, getLeague } = this.props;
+    const { selectedTeam, getUser, getLeague, getPlayer } = this.props;
 
     if (!isEqual(newProps.selectedTeam, selectedTeam) && newProps.selectedTeam && !isEmpty(newProps.selectedTeam)) {
-      getUser(newProps.selectedTeam.captain);
+      getPlayer(newProps.selectedTeam.captain);
       getLeague(newProps.selectedTeam.league);
     }
   }
 
   render() {
-    const { visible, toggleModal, selectedTeam = {}, navigation, user, league } = this.props;
+    const { visible, toggleModal, selectedTeam = {}, navigation, player, league } = this.props;
 
     return (
       <Modal
@@ -63,18 +63,18 @@ class TeamModal extends React.Component {
                   </View>
                   <View style={styles.displayFlexCenterColumn}>
                     {selectedTeam.league && (
-                    <View style={styles.teamModalLeagueContainer}>
-                      <Thumbnail style={styles.thumbnailProp} small source={league.league_logo ? { uri: league.league_logo } : images.league} />
-                      <Text style={styles.teamModalLeague}>
-                        {league.league_name}
-                      </Text>
-                    </View>
+                      <View style={styles.teamModalLeagueContainer}>
+                        <Thumbnail style={styles.thumbnailProp} small source={league.league_logo ? { uri: league.league_logo } : images.league} />
+                        <Text style={styles.teamModalLeague}>
+                          {league.league_name}
+                        </Text>
+                      </View>
                     )}
                     <View style={styles.teamModalProps}>
-                      <Thumbnail style={styles.thumbnailProp} small source={user.profile_image ? { uri: user.profile_image } : images.user} />
+                      <Thumbnail style={styles.thumbnailProp} small source={player.user && player.user.profile_image ? { uri: player.user.profile_image } : images.user} />
                       <Text style={styles.teamModalLeague}>
-                        {`${user.first_name} ${user.last_name}`}
-                        (Captain)
+                        {`${player.user && player.user.first_name} ${player.user && player.user.last_name}`}
+                          (Captain)
                       </Text>
                     </View>
                   </View>
@@ -83,7 +83,7 @@ class TeamModal extends React.Component {
               <View style={styles.footerModal}>
                 <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsJoin, { team: selectedTeam, players: selectedTeam.players })} style={styles.footerButtonModal}>
                   <UppercasedText style={styles.bottomMainButtonTextModal}>
-                I play for this team
+                    I play for this team
                   </UppercasedText>
                 </TouchableOpacity>
               </View>
@@ -112,6 +112,7 @@ export default connect(
   selectors,
   {
     ...actions.user,
+    ...actions.player,
     ...actions.league,
   },
 )(TeamModal);

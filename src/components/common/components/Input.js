@@ -20,7 +20,7 @@ class Input extends React.Component {
   }
 
   render() {
-    const { itemStyle, labelStyle, addon, style, disabled, error, id, isLoading, isSubmitting, isValidating, label, type, value, onChange } = this.props;
+    const { onBlur, itemStyle, labelStyle, addon, style, disabled, error, id, isLoading, isSubmitting, isValidating, label, type, value, onChange } = this.props;
     const { showPassword } = this.state;
 
     let inputAddon;
@@ -46,6 +46,7 @@ class Input extends React.Component {
           id={id}
           value={value}
           onChangeText={text => onChange(text, id)}
+          onBlur={() => onBlur(value, id)}
           selectionColor="#fff"
           secureTextEntry={!showPassword && type === 'password'}
         />
