@@ -87,7 +87,7 @@ class Squad extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: (
       <Text style={styles.navigationText}>
-        {navigation.getParam('team').team_name}
+        {navigation.getParam('team').team_name.toUppercase()}
       </Text>
     ),
     headerStyle: {

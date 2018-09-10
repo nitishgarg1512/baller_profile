@@ -71,7 +71,7 @@ class TeamsView extends React.Component {
                   <View style={styles.borderRadiusCircle}>
                     <Thumbnail
                       style={[styles.profileImage]}
-                      source={team && team.team_badge ? team.team_badge : images.team}
+                      source={team && team.team_badge ? { uri: team.team_badge } : images.team}
                     />
                   </View>
                   <View style={styles.profileContentMainCard}>

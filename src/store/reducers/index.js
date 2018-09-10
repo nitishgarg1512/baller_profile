@@ -1,27 +1,29 @@
 import { combineReducers } from 'redux';
 
 import authentication from './authentication';
-import teams from './teams';
 import forms from './forms';
-import team from './team';
-import user from './user';
-import player from './player';
+import league from './league';
 import leagues from './leagues';
 import nations from './nations';
-import toasts from './toasts';
+import player from './player';
 import players from './players';
 import postcodes from './postcodes';
+import team from './team';
+import teams from './teams';
+import toasts from './toasts';
+import user from './user';
 
 export default combineReducers({
   authentication,
-  nations,
-  teams,
   forms,
+  league,
   leagues,
-  team,
-  user,
+  nations,
   player,
   players,
-  toasts,
   postcodes,
+  team,
+  teams,
+  toasts,
+  user,
 });

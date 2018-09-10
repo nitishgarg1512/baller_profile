@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 
 const UppercasedText = ({ style, children }) => (
   <Text style={style}>
-    {children.toUpperCase()}
+    {children ? children.toUpperCase() : children}
   </Text>
 );
 

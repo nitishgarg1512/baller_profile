@@ -30,6 +30,18 @@ class Selection extends React.Component {
     };
   }
 
+  componentWillMount() {
+    const { getPlayerByUsername, authUser, navigation } = this.props;
+
+    getPlayerByUsername(authUser.username)
+      .then((player) => {
+        if (player.result.data[0].nationality) {
+          navigation.navigate(paths.client.WhatsNext);
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
   componentDidMount() {
     const { getTeams } = this.props;
 
@@ -120,5 +132,6 @@ export default connect(
   {
     ...actions.teams,
     ...actions.team,
+    ...actions.player,
   },
 )(Selection);

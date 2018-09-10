@@ -57,12 +57,24 @@ class Login extends Form {
   handleLogin = () => {
     this.handleSubmit()
       .then((canSubmit) => {
-        const { values, login, navigation } = this.props;
+        const { values, login, navigation, getPlayerByUsername, getAuthUser } = this.props;
         if (canSubmit) {
           login(values)
             .then(({ result }) => {
               AsyncStorage.setItem('token', result.data.key)
-                .then(() => navigation.navigate(paths.client.TeamsSelection));
+                .then(() => {
+                  getAuthUser()
+                    .then((authUser) => {
+                      getPlayerByUsername(authUser.result.data.username)
+                        .then((player) => {
+                          if (player.result.data[0].nationality) {
+                            navigation.navigate(paths.client.WhatsNext);
+                          } else {
+                            navigation.navigate(paths.client.TeamsSelection);
+                          }
+                        });
+                    });
+                });
             });
         }
         return canSubmit;
@@ -149,5 +161,7 @@ export default connect(
   {
     ...actions.forms,
     ...actions.authentication,
+    ...actions.player,
+    ...actions.user,
   },
 )(Login);

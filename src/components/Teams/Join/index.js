@@ -92,7 +92,7 @@ class Join extends React.Component {
                   <View style={styles.TeamsJoinCardImage}>
                     <Image
                       style={styles.joinTeamCardImage}
-                      source={player.user.profile_pic ? player.user.profile_pic : images.user}
+                      source={player.user.profile_pic ? { uri: player.user.profile_pic } : images.user}
                       resizeMode="contain"
                     />
                   </View>

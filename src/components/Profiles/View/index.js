@@ -64,7 +64,7 @@ class ProfileView extends React.Component {
                   <View style={styles.borderRadiusCircle}>
                     <Thumbnail
                       style={[styles.profileImage]}
-                      source={player.user.profile_pic ? player.user.profile_pic : images.user}
+                      source={player.user.profile_pic ? { uri: player.user.profile_pic } : images.user}
                     />
                   </View>
                   <View style={styles.profileContentMainCard}>

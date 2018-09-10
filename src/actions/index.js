@@ -11,6 +11,7 @@ import team from './team';
 import teams from './teams';
 import toasts from './toasts';
 import user from './user';
+import league from './league';
 
 export default {
   authentication,
@@ -26,4 +27,5 @@ export default {
   teams,
   toasts,
   user,
+  league,
 };

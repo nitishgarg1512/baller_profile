@@ -16,4 +16,5 @@ export default {
   PLAYERS_SINGLE: `${serverUrl}/api/players`,
   REQUESTS: `${serverUrl}/api/requests/`,
   POSTCODES: `${serverUrl}/api/postcodes`,
+  LEAGUES_ID: `${serverUrl}/api/leagues/:id`,
 };

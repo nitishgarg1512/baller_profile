@@ -18,15 +18,16 @@ import { paths } from '../../../../../common/constants';
 
 class TeamModal extends React.Component {
   componentWillReceiveProps(newProps) {
-    const { selectedTeam, getUser } = this.props;
+    const { selectedTeam, getUser, getLeague } = this.props;
 
     if (!isEqual(newProps.selectedTeam, selectedTeam) && newProps.selectedTeam && !isEmpty(newProps.selectedTeam)) {
       getUser(newProps.selectedTeam.captain);
+      getLeague(newProps.selectedTeam.league);
     }
   }
 
   render() {
-    const { visible, toggleModal, selectedTeam = {}, navigation, user } = this.props;
+    const { visible, toggleModal, selectedTeam = {}, navigation, user, league } = this.props;
 
     return (
       <Modal
@@ -51,29 +52,26 @@ class TeamModal extends React.Component {
                   <View style={styles.TeamsSelectionModalCardImage}>
                     <Image
                       style={styles.teamCardImage}
-                      source={selectedTeam.team_badge ? selectedTeam.team_badge : images.team}
+                      source={selectedTeam.team_badge ? { uri: selectedTeam.team_badge } : images.team}
                       resizeMode="cover"
                     />
                   </View>
                   <View style={styles.displayFlexCenterColumn}>
                     <Text style={styles.TeamsSelectionModalDetailsText}>
-                      {selectedTeam.players}
-                    </Text>
-                    <Text style={styles.TeamsSelectionModalDetailsText}>
-                      {`Baller${selectedTeam.players > 1 ? 's' : ''}`}
+                      {`${selectedTeam.players} Baller${selectedTeam.players > 1 ? 's' : ''}`}
                     </Text>
                   </View>
                   <View style={styles.displayFlexCenterColumn}>
                     {selectedTeam.league && (
                     <View style={styles.teamModalLeagueContainer}>
-                      <Thumbnail style={styles.thumbnailProp} small source={images.league} />
+                      <Thumbnail style={styles.thumbnailProp} small source={league.league_logo ? { uri: league.league_logo } : images.league} />
                       <Text style={styles.teamModalLeague}>
-                        {selectedTeam.league}
+                        {league.league_name}
                       </Text>
                     </View>
                     )}
                     <View style={styles.teamModalProps}>
-                      <Thumbnail style={styles.thumbnailProp} small source={user.profile_image ? user.profile_image : images.user} />
+                      <Thumbnail style={styles.thumbnailProp} small source={user.profile_image ? { uri: user.profile_image } : images.user} />
                       <Text style={styles.teamModalLeague}>
                         {`${user.first_name} ${user.last_name}`}
                         (Captain)
@@ -114,5 +112,6 @@ export default connect(
   selectors,
   {
     ...actions.user,
+    ...actions.league,
   },
 )(TeamModal);
