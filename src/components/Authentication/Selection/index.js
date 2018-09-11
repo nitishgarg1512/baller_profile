@@ -2,16 +2,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { AsyncStorage, View, StatusBar } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import actions from '../../../actions';
 import { paths } from '../../../common/constants';
 
 class Selection extends React.Component {
+  componentWillMount() {
+    StatusBar.setHidden(true);
+  }
+
   componentDidMount() {
     const { navigation, getAuthUser } = this.props;
 
     AsyncStorage.getItem('token')
       .then((token) => {
+        SplashScreen.hide();
         if (token) {
           getAuthUser()
             .then(() => {
@@ -32,10 +38,6 @@ class Selection extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <StatusBar
-          backgroundColor="#fff"
-          barStyle="light-content"
-        />
         <View />
       </React.Fragment>
     );
