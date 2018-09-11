@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { AsyncStorage, View } from 'react-native';
+import { AsyncStorage, View, StatusBar } from 'react-native';
 
 import actions from '../../../actions';
 import { paths } from '../../../common/constants';
@@ -31,7 +31,13 @@ class Selection extends React.Component {
 
   render() {
     return (
-      <View />
+      <React.Fragment>
+        <StatusBar
+          backgroundColor="#fff"
+          barStyle="light-content"
+        />
+        <View />
+      </React.Fragment>
     );
   }
 }
