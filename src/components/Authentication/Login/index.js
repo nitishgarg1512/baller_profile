@@ -70,7 +70,7 @@ class Login extends Form {
                           if (player.result.data[0].nationality) {
                             navigation.navigate(paths.client.WhatsNext);
                           } else {
-                            navigation.navigate(paths.client.TeamsSelection);
+                            navigation.navigate(paths.client.WhatsNext);
                           }
                         });
                     });

@@ -10,7 +10,7 @@ import selectors from './selectors';
 
 import styles from '../common/styles';
 
-import { UppercasedText, Form, Input, Select, Autocomplete } from '../../common/components';
+import { UppercasedText, Form, Input, Select, Autocomplete, Erdacomplete } from '../../common/components';
 
 import actions from '../../../actions';
 import { paths, forms } from '../../../common/constants';
@@ -57,6 +57,12 @@ class Creation extends Form {
       });
   }
 
+  handleSelectPostcode = (item) => {
+    const { updateField } = this.props;
+
+    updateField('region', item.region, this.formId);
+  }
+
   render() {
     const { navigation, values, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions } = this.props;
 
@@ -97,7 +103,7 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <Select
-              {...this.getFieldProps('nationality_main')}
+              {...this.getFieldProps('nationality')}
               itemStyle={styles.findTeamItem}
               labelStyle={styles.itemLabel}
               label="Nationality (main)"
@@ -106,7 +112,7 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <Select
-              {...this.getFieldProps('nationality_secondary')}
+              {...this.getFieldProps('second_nationality')}
               itemStyle={styles.findTeamItem}
               labelStyle={styles.itemLabel}
               label="Nationality (secondary)"
@@ -124,7 +130,20 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <Autocomplete
+              itemStyle={styles.findTeamItem}
+              labelStyle={styles.itemLabel}
+              label="Postcode"
               data={postcodesOptions}
+              handleSelect={this.handleSelectPostcode}
+            />
+          </View>
+          <View style={styles.displayFlexCenterRowCreation}>
+            <Input
+              {...this.getFieldProps('region')}
+              labelStyle={styles.itemLabelRegion}
+              label="Region"
+              disabled
+              itemStyle={styles.findTeamItemRegion}
             />
           </View>
           <View style={[styles.py10, styles.wx50, styles.alignSelfCenter]}>

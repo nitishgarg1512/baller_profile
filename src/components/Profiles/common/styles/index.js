@@ -356,6 +356,11 @@ export default {
     fontSize: 28,
     textAlign: 'center',
   },
+  itemLabelRegion: {
+    fontFamily: 'calibri-italic',
+    fontSize: 16,
+    color: 'rgba(0,0,0,.5)',
+  },
   itemLabel: {
     fontFamily: 'calibri-italic',
     fontSize: 16,
@@ -381,11 +386,18 @@ export default {
     flex: 1,
     marginBottom: 25,
   },
+  findTeamItemRegion: {
+    borderBottomColor: 'rgba(0,0,0,.5)',
+    borderBottomWidth: 1,
+    width: width - 50,
+    marginBottom: 25,
+  },
   findTeamItem: {
     borderBottomColor: '#000',
     borderBottomWidth: 1,
     width: width - 50,
     marginBottom: 25,
+    color: 'rgba(0,0,0,0.5)',
   },
   TeamsSelectionModalCardImage: {
     borderRadius: 5,

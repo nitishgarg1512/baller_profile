@@ -37,7 +37,7 @@ class ProfileView extends React.Component {
       </View>
     );
 
-    if (!isEmpty(player) && !isLoading) {
+    if (!isEmpty(player) && !isLoading && player.user) {
       content = (
         <React.Fragment>
           <ImageBackground

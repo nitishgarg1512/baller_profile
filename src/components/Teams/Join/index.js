@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { Container, Content, Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -19,7 +19,7 @@ class Join extends React.Component {
     headerTitle: (
       <View style={styles.displayFlexCenterRowCreation}>
         <Text style={styles.headerMain}>
-          {navigation.getParam('team').abbreviated_name}
+          {`${navigation.getParam('team').team_name.toUpperCase()}`}
           {' '}
           SQUAD
         </Text>
@@ -58,6 +58,13 @@ class Join extends React.Component {
     };
 
     createRequest(requestData);
+  }
+
+  logout = () => {
+    const { navigation } = this.props;
+
+    AsyncStorage.clear()
+      .then(() => navigation.navigate(paths.client.Login));
   }
 
   render() {
@@ -109,6 +116,11 @@ class Join extends React.Component {
                   <TouchableOpacity onPress={() => createRelationship(player.id)} style={styles.playerFollowButton}>
                     <Text style={styles.playerFollowButtonText}>
                       Follow
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.logout} style={styles.playerFollowButton}>
+                    <Text style={styles.playerFollowButtonText}>
+                      Logout
                     </Text>
                   </TouchableOpacity>
                 </View>

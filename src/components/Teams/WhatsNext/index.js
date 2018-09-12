@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Image, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 import { Icon } from 'native-base';
 
+import selectors from './selectors';
 import styles from './styles';
 
 import { UppercasedText } from '../../common/components';
 
+import actions from '../../../actions';
 import images from '../../../static/images';
 
 import { paths } from '../../../common/constants';
@@ -14,6 +17,20 @@ import { paths } from '../../../common/constants';
 class WhatsNext extends React.Component {
   static navigationOptions = {
     header: null,
+  }
+
+  handleVisitProfile = () => {
+    const { getPlayerByUsername, authUser, navigation } = this.props;
+
+    getPlayerByUsername(authUser.username)
+      .then((player) => {
+        if (player.result.data[0].nationality) {
+          navigation.navigate(paths.client.ProfilesView, { id: player.id });
+        } else {
+          navigation.navigate(paths.client.ProfilesCreation);
+        }
+      })
+      .catch(() => navigation.navigate(paths.client.ProfilesCreation));
   }
 
   render() {
@@ -45,7 +62,7 @@ class WhatsNext extends React.Component {
                   Why use BallerProfile?
                 </UppercasedText>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesView)} style={[styles.submitButton, styles.my20, styles.backgroundRed]}>
+              <TouchableOpacity onPress={() => this.handleVisitProfile()} style={[styles.submitButton, styles.my20, styles.backgroundRed]}>
                 <UppercasedText style={styles.submitButtonText}>
                   Visit my profile page
                 </UppercasedText>
@@ -72,4 +89,9 @@ WhatsNext.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
 };
 
-export default WhatsNext;
+export default connect(
+  selectors,
+  {
+    ...actions.player,
+  },
+)(WhatsNext);

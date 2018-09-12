@@ -14,8 +14,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 25,
     width: '100%',
-    borderWidth: 0,
-    borderColor: 'transparent',
   },
   autocompleteContainer: {
     left: 25,
@@ -26,27 +24,22 @@ const styles = StyleSheet.create({
     height: 'auto',
     width: '87%',
     justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: 'transparent',
   },
   itemText: {
     fontSize: 15,
     margin: 2,
     color: 'black',
-    borderColor: 'transparent',
   },
   descriptionContainer: {
     backgroundColor: '#fff',
     marginTop: 25,
-    borderWidth: 0,
-    borderColor: 'transparent',
   },
   infoText: {
     textAlign: 'center',
-    borderColor: 'transparent',
   },
   titleText: {
     fontSize: 18,
+    padding: 20,
     fontWeight: '500',
     marginBottom: 10,
     marginTop: 10,
@@ -60,13 +53,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 10,
     textAlign: 'center',
-    borderWidth: 0,
-    borderColor: 'transparent',
   },
   openingText: {
     textAlign: 'center',
-    borderWidth: 0,
-    borderColor: 'transparent',
   },
 });
 
@@ -87,6 +76,13 @@ class AutocompleteExample extends Component {
         films: newProps.data,
       });
     }
+  }
+
+  handleSelect = (item) => {
+    const { handleSelect } = this.props;
+
+    this.setState({ query: item.label });
+    handleSelect(item);
   }
 
   findFilm(query) {
@@ -110,10 +106,10 @@ class AutocompleteExample extends Component {
   render() {
     const { query } = this.state;
     const films = this.findFilm(query);
-    const comp = (a, b) => a.label.toLowerCase().trim() === b.label.toLowerCase().trim();
+    const comp = (a, b) => a && a.label && a.label.toLowerCase().trim() === b && b.label && b.label.toLowerCase().trim();
 
     return (
-      <View style={[styles.container, { height: films.length > 0 ? films.length * 15 : 60 }]}>
+      <View style={[styles.container, { height: films.length > 0 ? films.length * (films.length === 1 ? 100 : 15) : 60 }]}>
         <Autocomplete
           autoCapitalize="none"
           autoCorrect={false}
@@ -125,7 +121,7 @@ class AutocompleteExample extends Component {
           placeholder="Postcode"
           placeholderTextColor="black"
           renderItem={item => (
-            <TouchableOpacity onPress={() => this.setState({ query: item.label })}>
+            <TouchableOpacity onPress={() => this.handleSelect(item)}>
               <Text style={styles.itemText}>
                 {item.label}
               </Text>

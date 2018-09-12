@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, ScrollView, Image, Text, TouchableOpacity, StatusBar, ActivityIndicator } from 'react-native';
 import { Container, Input, Item, Label } from 'native-base';
+import { isEqual } from 'lodash';
 
 import selectors from './selectors';
 import { TeamModal, TeamCard } from './components';
@@ -21,25 +22,15 @@ class Selection extends React.Component {
     header: null,
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       showModal: false,
       selectedTeam: undefined,
+      search: undefined,
+      teams: props.teams,
     };
-  }
-
-  componentWillMount() {
-    const { getPlayerByUsername, authUser, navigation } = this.props;
-
-    getPlayerByUsername(authUser.username)
-      .then((player) => {
-        if (player.result.data[0].nationality) {
-          navigation.navigate(paths.client.WhatsNext);
-        }
-      })
-      .catch(err => console.log(err));
   }
 
   componentDidMount() {
@@ -48,6 +39,16 @@ class Selection extends React.Component {
     StatusBar.setHidden(false);
 
     getTeams();
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { teams } = this.props;
+
+    if (!isEqual(newProps.teams, teams)) {
+      this.setState({
+        teams: newProps.teams,
+      });
+    }
   }
 
   toggleModal = (team) => {
@@ -59,9 +60,17 @@ class Selection extends React.Component {
     });
   }
 
+  handleSearch = (text) => {
+    const { teams } = this.props;
+
+    this.setState({
+      teams: teams.filter(team => team && team.team_name && team.team_name.toLowerCase().indexOf(text.toLowerCase()) !== -1),
+    });
+  }
+
   render() {
-    const { navigation, teams, isLoading, getTeamPlayers } = this.props;
-    const { showModal, selectedTeam } = this.state;
+    const { navigation, isLoading, getTeamPlayers } = this.props;
+    const { showModal, selectedTeam, teams } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -85,7 +94,7 @@ class Selection extends React.Component {
                   <Label style={styles.itemLabel}>
                     Type your team&#39;s name here...
                   </Label>
-                  <Input />
+                  <Input onChangeText={text => this.handleSearch(text)} />
                 </Item>
               </View>
               <View style={styles.scrollerContainer}>
