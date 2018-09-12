@@ -13,15 +13,18 @@ class Selection extends React.Component {
   }
 
   componentDidMount() {
-    const { navigation, getAuthUser } = this.props;
+    const { navigation, getAuthUser, getAuthPlayer } = this.props;
 
     AsyncStorage.getItem('token')
       .then((token) => {
         SplashScreen.hide();
         if (token) {
           getAuthUser()
-            .then(() => {
-              navigation.navigate('Auth');
+            .then(({ result }) => {
+              getAuthPlayer(result.data.username)
+                .then(() => {
+                  navigation.navigate('Auth');
+                });
             })
             .catch(() => {
               AsyncStorage.clear()
@@ -53,5 +56,6 @@ export default connect(
   null,
   {
     ...actions.user,
+    ...actions.player,
   },
 )(Selection);

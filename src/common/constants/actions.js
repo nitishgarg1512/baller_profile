@@ -3,6 +3,9 @@ import keyMirror from 'keymirror';
 export default keyMirror({
   API_CALL: null,
 
+  AUTH_PLAYER_GET_REQUEST: null,
+  AUTH_PLAYER_GET_SUCCESS: null,
+  AUTH_PLAYER_GET_FAILURE: null,
   AUTHENTICATION_LOGIN_FAILURE: null,
   AUTHENTICATION_LOGIN_REQUEST: null,
   AUTHENTICATION_LOGIN_SUCCESS: null,

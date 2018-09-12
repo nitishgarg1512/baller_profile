@@ -68,7 +68,7 @@ class Join extends React.Component {
   }
 
   render() {
-    const { navigation, createRelationship } = this.props;
+    const { navigation, createRelationship, authUser, authPlayer } = this.props;
     const { players, team } = this.state;
 
     return (
@@ -108,14 +108,14 @@ class Join extends React.Component {
                   {navigation.getParam('team').admin[0] === player.id
                     ? (
                       <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
-                      Team Admin
+                        Team Admin
                       </Text>
                     )
                     : null
                   }
-                  <TouchableOpacity onPress={() => createRelationship(player.id)} style={styles.playerFollowButton}>
-                    <Text style={styles.playerFollowButtonText}>
-                      Follow
+                  <TouchableOpacity onPress={() => createRelationship(player.id, authPlayer.id)} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
+                    <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                      {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={this.logout} style={styles.playerFollowButton}>

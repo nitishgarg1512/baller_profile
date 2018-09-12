@@ -33,4 +33,15 @@ export default {
       promise: client => client.post(paths.build(paths.api.PLAYERS_ID, id), values),
     },
   }),
+
+  getAuthPlayer: username => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.AUTH_PLAYER_GET_REQUEST,
+        actions.AUTH_PLAYER_GET_SUCCESS,
+        actions.AUTH_PLAYER_GET_FAILURE,
+      ],
+      promise: client => client.get(`${paths.api.PLAYERS_SINGLE}?username=${username}`),
+    },
+  }),
 };
