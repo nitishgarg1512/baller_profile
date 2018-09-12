@@ -67,6 +67,20 @@ class Join extends React.Component {
       .then(() => navigation.navigate(paths.client.Login));
   }
 
+  handleCreateRelationship = (id) => {
+    const { getTeamPlayers, navigation, createRelationship } = this.props;
+
+    createRelationship(id)
+      .then(() => {
+        getTeamPlayers(navigation.getParam('team').id)
+          .then(({ result }) => {
+            this.setState({
+              players: result.data,
+            });
+          });
+      });
+  }
+
   render() {
     const { navigation, createRelationship, authUser, authPlayer } = this.props;
     const { players, team } = this.state;
@@ -74,7 +88,7 @@ class Join extends React.Component {
     return (
       <Container>
         <Content>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.handleCreateRelationship(players && players[0] && players[0].id)}>
             <View style={[{ backgroundColor: '#0071c0' }, styles.displayFlexCenterRowCreation, styles.py20]}>
               <UppercasedText style={styles.followAllText}>
                 Click to follow all players
@@ -113,7 +127,7 @@ class Join extends React.Component {
                     )
                     : null
                   }
-                  <TouchableOpacity onPress={() => createRelationship(player.id, authPlayer.id)} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
+                  <TouchableOpacity onPress={() => this.handleCreateRelationship(player.id)} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
                     <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
                       {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
                     </Text>
