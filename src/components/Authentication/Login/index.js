@@ -63,15 +63,18 @@ class Login extends Form {
             .then(({ result }) => {
               AsyncStorage.setItem('token', result.data.key)
                 .then(() => {
-                  getAuthUser()
-                    .then((authUser) => {
-                      getPlayerByUsername(authUser.result.data.username)
-                        .then((player) => {
-                          if (player.result.data[0].nationality) {
-                            navigation.navigate(paths.client.WhatsNext);
-                          } else {
-                            navigation.navigate(paths.client.WhatsNext);
-                          }
+                  AsyncStorage.getItem('token')
+                    .then((token) => {
+                      getAuthUser()
+                        .then((authUser) => {
+                          getPlayerByUsername(authUser.result.data.username)
+                            .then((player) => {
+                              if (player.result.data[0].nationality) {
+                                navigation.navigate(paths.client.WhatsNext);
+                              } else {
+                                navigation.navigate(paths.client.WhatsNext);
+                              }
+                            });
                         });
                     });
                 });

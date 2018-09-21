@@ -30,7 +30,7 @@ export default {
         actions.PLAYER_UPDATE_SUCCESS,
         actions.PLAYER_UPDATE_FAILURE,
       ],
-      promise: client => client.post(paths.build(paths.api.PLAYERS_ID, id), values),
+      promise: client => client.patch(paths.build(paths.apiHandler.PLAYERS_ID, id), values),
     },
   }),
 

@@ -18,9 +18,11 @@ class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    const { navigation, getPlayer, getPlayersByNation } = this.props;
+    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer } = this.props;
 
     const id = navigation.getParam('id');
+
+    getAuthPlayer();
 
     getPlayer(id)
       .then(({ result }) => {
@@ -28,8 +30,19 @@ class ProfileView extends React.Component {
       });
   }
 
+  handleCreateRelationship = () => {
+    const { getPlayer, navigation, createRelationship, navigation } = this.props;
+
+    const id = navigation.getParam('id');
+
+    createRelationship(id)
+      .then(() => {
+        getPlayer(id);
+      });
+  }
+
   render() {
-    const { navigation, player, isLoading, createRelationship, players } = this.props;
+    const { navigation, player, isLoading, createRelationship, players, authPlayer } = this.props;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -78,9 +91,9 @@ class ProfileView extends React.Component {
                         </View>
                         <View style={styles.detailsContainer}>
                           <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                          <TouchableOpacity onPress={() => createRelationship(player.user.id)} style={styles.playerFollowButton}>
-                            <Text style={styles.playerFollowButtonText}>
-                              Follow
+                          <TouchableOpacity onPress={() => createRelationship(player.id)} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
+                            <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                              {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
                             </Text>
                           </TouchableOpacity>
                         </View>

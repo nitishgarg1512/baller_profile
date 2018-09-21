@@ -10,7 +10,7 @@ import selectors from './selectors';
 
 import styles from '../common/styles';
 
-import { UppercasedText, Form, Input, Select, Autocomplete, Erdacomplete } from '../../common/components';
+import { UppercasedText, Form, Input, Select, Autocomplete } from '../../common/components';
 
 import actions from '../../../actions';
 import { paths, forms } from '../../../common/constants';
@@ -48,7 +48,7 @@ class Creation extends Form {
 
           getPlayerByUsername(authUser.username)
             .then(({ result }) => {
-              updatePlayer(merge(values, { dob: date }), result.data[0].id)
+              updatePlayer(omit(merge(values, { dob: date }), ['gender']), result.data[0].id)
                 .then(() => navigation.navigate(paths.client.WhatsNext));
             });
         }
@@ -64,7 +64,7 @@ class Creation extends Form {
   }
 
   render() {
-    const { navigation, values, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions } = this.props;
+    const { navigation, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions, authUser } = this.props;
 
     return (
       <Container>
@@ -81,7 +81,7 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRow}>
             <UppercasedText style={[styles.profileCreationSubtitle, styles.py10]}>
-              {navigation.getParam('username') || 'Marko'}
+              {authUser.first_name}
             </UppercasedText>
           </View>
           <View style={styles.profilePicContainer}>
