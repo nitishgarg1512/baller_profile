@@ -11,4 +11,5 @@ export default state => ({
   gendersOptions: map(genders, gender => ({ label: gender.label, value: gender.value })),
   playingPositionsOptions: map(playingPositions, position => ({ label: position.label, value: position.value })),
   authUser: state.user.authData,
+  authPlayer: state.player.authData,
 });

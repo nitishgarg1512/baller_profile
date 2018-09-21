@@ -25,7 +25,7 @@ class WhatsNext extends React.Component {
     getPlayerByUsername(authUser.username)
       .then((player) => {
         if (player.result.data[0].nationality) {
-          navigation.navigate(paths.client.ProfilesView, { id: player.id });
+          navigation.navigate(paths.client.ProfilesView, { id: player.result.data[0].id });
         } else {
           navigation.navigate(paths.client.ProfilesCreation);
         }

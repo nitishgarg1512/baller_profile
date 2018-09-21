@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { isEmpty } from 'lodash';
+import { isEmpty, find } from 'lodash';
 import { View, Text, ImageBackground, TouchableOpacity, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { Icon, Thumbnail, Right } from 'native-base';
 
@@ -17,8 +17,16 @@ class ProfileView extends React.Component {
     header: null,
   }
 
+  constructor() {
+    super();
+
+    this.state = {
+      nation: '',
+    };
+  }
+
   componentDidMount() {
-    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer } = this.props;
+    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations } = this.props;
 
     const id = navigation.getParam('id');
 
@@ -26,12 +34,18 @@ class ProfileView extends React.Component {
 
     getPlayer(id)
       .then(({ result }) => {
-        getPlayersByNation(result.data.nationality);
+        getNations()
+          .then(({ result: nationsResult }) => {
+            this.setState({
+              nation: find(nationsResult.data, { id: result.data.nationality }),
+            });
+            getPlayersByNation(result.data.nationality);
+          });
       });
   }
 
   handleCreateRelationship = () => {
-    const { getPlayer, navigation, createRelationship, navigation } = this.props;
+    const { getPlayer, navigation, createRelationship } = this.props;
 
     const id = navigation.getParam('id');
 
@@ -42,7 +56,8 @@ class ProfileView extends React.Component {
   }
 
   render() {
-    const { navigation, player, isLoading, createRelationship, players, authPlayer } = this.props;
+    const { navigation, player, isLoading, players, authPlayer, nations } = this.props;
+    const { nation } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -86,12 +101,12 @@ class ProfileView extends React.Component {
                         <View style={styles.flexRowItemsCenter}>
                           <Icon name="location" type="EvilIcons" style={styles.fontSize15} />
                           <Text style={[styles.fontSize10, styles.fontItalic, styles.colorGray]}>
-                            London, UK
+                            {(nation && nation.country) || 'Unknown'}
                           </Text>
                         </View>
                         <View style={styles.detailsContainer}>
                           <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                          <TouchableOpacity onPress={() => createRelationship(player.id)} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
+                          <TouchableOpacity onPress={() => this.handleCreateRelationship()} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
                             <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
                               {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
                             </Text>
@@ -233,12 +248,14 @@ class ProfileView extends React.Component {
 }
 
 ProfileView.propTypes = {
-  navigation: PropTypes.shape({}).isRequired,
-  getPlayer: PropTypes.func.isRequired,
-  player: PropTypes.shape({}).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  getPlayersByNation: PropTypes.func.isRequired,
+  authPlayer: PropTypes.shape({}).isRequired,
   createRelationship: PropTypes.func.isRequired,
+  getAuthPlayer: PropTypes.func.isRequired,
+  getPlayer: PropTypes.func.isRequired,
+  getPlayersByNation: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  navigation: PropTypes.shape({}).isRequired,
+  player: PropTypes.shape({}).isRequired,
   players: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
@@ -248,5 +265,6 @@ export default connect(
     ...actions.player,
     ...actions.players,
     ...actions.relationship,
+    ...actions.nations,
   },
 )(ProfileView);

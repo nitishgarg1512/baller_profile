@@ -43,13 +43,13 @@ class Creation extends Form {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
-          const { updatePlayer, values, navigation, getPlayerByUsername, authUser } = this.props;
+          const { updatePlayer, values, navigation, getPlayerByUsername, authUser, authPlayer } = this.props;
           const { date } = this.state;
 
           getPlayerByUsername(authUser.username)
             .then(({ result }) => {
               updatePlayer(omit(merge(values, { dob: date }), ['gender']), result.data[0].id)
-                .then(() => navigation.navigate(paths.client.WhatsNext));
+                .then(() => navigation.navigate(paths.client.ProfilesView, { id: authPlayer.id }));
             });
         }
 
@@ -81,7 +81,7 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRow}>
             <UppercasedText style={[styles.profileCreationSubtitle, styles.py10]}>
-              {authUser.first_name}
+              {authUser.first_name || ''}
             </UppercasedText>
           </View>
           <View style={styles.profilePicContainer}>
