@@ -7,6 +7,7 @@ import leagues from './leagues';
 import nations from './nations';
 import player from './player';
 import players from './players';
+import playingPositions from './playingPositions';
 import postcodes from './postcodes';
 import team from './team';
 import teams from './teams';
@@ -21,6 +22,7 @@ export default combineReducers({
   nations,
   player,
   players,
+  playingPositions,
   postcodes,
   team,
   teams,

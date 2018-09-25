@@ -21,11 +21,12 @@ class Creation extends Form {
   }
 
   componentDidMount() {
-    const { getLeagues, getNations, getPostcodes } = this.props;
+    const { getLeagues, getNations, getPostcodes, getPlayingPositions } = this.props;
 
     getPostcodes();
     getLeagues();
     getNations();
+    getPlayingPositions();
   }
 
   constructor() {
@@ -75,7 +76,7 @@ class Creation extends Form {
             </Text>
             <Text style={[styles.profileCreationSubtitle, styles.py10]}>
               Add your details to join the
-              {navigation.getParam('team_name')}
+              {navigation.getParam('team_name') || ' '}
               squad
             </Text>
           </View>
@@ -93,31 +94,40 @@ class Creation extends Form {
             </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Select
-              {...this.getFieldProps('playing_position')}
-              itemStyle={styles.findTeamItem}
-              labelStyle={styles.itemLabel}
-              label="Playing position"
-              options={playingPositionsOptions}
-            />
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
+              <Text>Playing position</Text>
+              <Select
+                {...this.getFieldProps('playing_position')}
+                itemStyle={styles.findTeamItem}
+                labelStyle={styles.itemLabel}
+                label="Playing position"
+                options={playingPositionsOptions}
+              />
+            </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Select
-              {...this.getFieldProps('nationality')}
-              itemStyle={styles.findTeamItem}
-              labelStyle={styles.itemLabel}
-              label="Nationality (main)"
-              options={nationsOptions}
-            />
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
+              <Text>Nationality (main)</Text>
+              <Select
+                {...this.getFieldProps('nationality')}
+                itemStyle={styles.findTeamItem}
+                labelStyle={styles.itemLabel}
+                label="Nationality (main)"
+                options={nationsOptions}
+              />
+            </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
-            <Select
-              {...this.getFieldProps('second_nationality')}
-              itemStyle={styles.findTeamItem}
-              labelStyle={styles.itemLabel}
-              label="Nationality (secondary)"
-              options={nationsOptions}
-            />
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
+              <Text>Nationality (secondary)</Text>
+              <Select
+                {...this.getFieldProps('second_nationality')}
+                itemStyle={styles.findTeamItem}
+                labelStyle={styles.itemLabel}
+                label="Nationality (secondary)"
+                options={nationsOptions}
+              />
+            </View>
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <Select
@@ -211,5 +221,6 @@ export default connect(
     ...actions.leagues,
     ...actions.player,
     ...actions.postcodes,
+    ...actions.playingPositions,
   },
 )(Creation);

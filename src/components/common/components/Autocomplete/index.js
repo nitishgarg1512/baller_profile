@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 15,
-    margin: 2,
+    margin: 10,
     color: 'black',
   },
   descriptionContainer: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 18,
-    padding: 20,
+    padding: 30,
     fontWeight: '500',
     marginBottom: 10,
     marginTop: 10,
@@ -64,6 +64,7 @@ class AutocompleteExample extends Component {
     super(props);
     this.state = {
       films: props.data,
+      hideItems: false,
       query: '',
     };
   }
@@ -81,7 +82,7 @@ class AutocompleteExample extends Component {
   handleSelect = (item) => {
     const { handleSelect } = this.props;
 
-    this.setState({ query: item.label });
+    this.setState({ query: item.label, hideItems: true });
     handleSelect(item);
   }
 
@@ -104,12 +105,12 @@ class AutocompleteExample extends Component {
   }
 
   render() {
-    const { query } = this.state;
+    const { query, hideItems } = this.state;
     const films = this.findFilm(query);
     const comp = (a, b) => a && a.label && a.label.toLowerCase().trim() === b && b.label && b.label.toLowerCase().trim();
 
     return (
-      <View style={[styles.container, { height: films.length > 0 ? films.length * (films.length === 1 ? 100 : 15) : 60 }]}>
+      <View style={[styles.container, { height: films.length && !hideItems > 0 ? films.length * (films.length === 1 ? 110 : 25) : 70 }]}>
         <Autocomplete
           autoCapitalize="none"
           autoCorrect={false}
@@ -117,16 +118,18 @@ class AutocompleteExample extends Component {
           containerStyle={styles.autocompleteContainer}
           data={films.length === 1 && comp(query, films[0]) ? [] : films}
           defaultValue={query}
-          onChangeText={text => this.setState({ query: text })}
+          onChangeText={text => this.setState({ query: text, hideItems: false })}
           placeholder="Postcode"
           placeholderTextColor="black"
-          renderItem={item => (
-            <TouchableOpacity onPress={() => this.handleSelect(item)}>
-              <Text style={styles.itemText}>
-                {item.label}
-              </Text>
-            </TouchableOpacity>
-          )}
+          renderItem={item => (hideItems
+            ? null
+            : (
+              <TouchableOpacity onPress={() => this.handleSelect(item)}>
+                <Text style={styles.itemText}>
+                  {item.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
         />
         <View style={styles.descriptionContainer}>
           {films.length > 0 ? (
