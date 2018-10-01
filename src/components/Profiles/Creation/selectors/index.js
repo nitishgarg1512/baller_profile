@@ -12,4 +12,5 @@ export default state => ({
   gendersOptions: map(genders, gender => ({ label: gender.label, value: gender.value })),
   authUser: state.user.authData,
   authPlayer: state.player.authData,
+  isSubmitting: state.player.isSubmitting,
 });

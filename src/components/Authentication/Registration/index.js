@@ -48,7 +48,7 @@ class Registration extends Form {
   handleRegistration = () => {
     this.handleSubmit()
       .then((canSubmit) => {
-        const { values, register, navigation, login } = this.props;
+        const { values, register, navigation, login, getAuthUser } = this.props;
         if (canSubmit) {
           const newValues = merge(omit(values, ['confirm_password']), { type: 'P' });
 
@@ -56,6 +56,7 @@ class Registration extends Form {
             .then(() => login(newValues))
             .then(({ result }) => {
               AsyncStorage.setItem('token', result.data.key)
+                .then(() => getAuthUser())
                 .then(() => navigation.navigate(paths.client.WhatsNext));
             });
         }
@@ -183,5 +184,6 @@ export default connect(
   {
     ...actions.forms,
     ...actions.authentication,
+    ...actions.user,
   },
 )(Registration);

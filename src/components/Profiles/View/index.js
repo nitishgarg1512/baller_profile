@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { isEmpty, find } from 'lodash';
-import { View, Text, ImageBackground, TouchableOpacity, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { isEmpty, find, isEqual } from 'lodash';
+import { View, Text, ImageBackground, TouchableOpacity, Image, ScrollView, ActivityIndicator, AsyncStorage } from 'react-native';
 import { Icon, Thumbnail, Right } from 'native-base';
 
 import selectors from './selectors';
@@ -22,11 +22,12 @@ class ProfileView extends React.Component {
 
     this.state = {
       nation: '',
+      playingPosition: {},
     };
   }
 
   componentDidMount() {
-    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations } = this.props;
+    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions } = this.props;
 
     const id = navigation.getParam('id');
 
@@ -39,9 +40,40 @@ class ProfileView extends React.Component {
             this.setState({
               nation: find(nationsResult.data, { id: result.data.nationality }),
             });
-            getPlayersByNation(result.data.nationality);
+            getPlayingPositions()
+              .then(({ result: playingPositionsResult }) => {
+                this.setState({
+                  playingPosition: find(playingPositionsResult.data, { id: result.data.playing_position }),
+                });
+              });
           });
       });
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions, player } = this.props;
+
+    // if (!newProps.player.nationality || !player.nationality) {
+    //   const id = newProps.navigation.getParam('id');
+
+    //   getAuthPlayer();
+
+    //   getPlayer(id)
+    //     .then(({ result }) => {
+    //       getNations()
+    //         .then(({ result: nationsResult }) => {
+    //           this.setState({
+    //             nation: find(nationsResult.data, { id: result.data.nationality }),
+    //           });
+    //           getPlayingPositions()
+    //             .then(({ result: playingPositionsResult }) => {
+    //               this.setState({
+    //                 playingPosition: find(playingPositionsResult.data, { id: result.data.playing_position }),
+    //               });
+    //             });
+    //         });
+    //     });
+    // }
   }
 
   handleCreateRelationship = () => {
@@ -55,9 +87,16 @@ class ProfileView extends React.Component {
       });
   }
 
+  logout = () => {
+    const { navigation } = this.props;
+
+    AsyncStorage.clear()
+      .then(() => navigation.navigate(paths.client.Login));
+  }
+
   render() {
-    const { navigation, player, isLoading, players, authPlayer, nations } = this.props;
-    const { nation } = this.state;
+    const { navigation, player, isLoading, players, authPlayer, nations, playingPositions } = this.props;
+    const { nation, playingPosition } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -105,7 +144,9 @@ class ProfileView extends React.Component {
                           </Text>
                         </View>
                         <View style={styles.detailsContainer}>
-                          <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
+                          <TouchableOpacity onPress={this.handleLogout}>
+                            <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
+                          </TouchableOpacity>
                           <TouchableOpacity onPress={() => this.handleCreateRelationship()} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
                             <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
                               {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
@@ -118,7 +159,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          {player.playing_position} for stricktly Ballers
+                          {playingPosition.playing_position} for stricktly Ballers
                         </Text>
                       </View>
                     </View>
@@ -266,5 +307,6 @@ export default connect(
     ...actions.players,
     ...actions.relationship,
     ...actions.nations,
+    ...actions.playingPositions,
   },
 )(ProfileView);

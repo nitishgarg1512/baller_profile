@@ -27,10 +27,10 @@ class Selection extends React.Component {
                 });
             })
             .catch(() => {
-              // AsyncStorage.clear()
-              // .then(() => {
-              navigation.navigate('App');
-              // });
+              AsyncStorage.clear()
+                .then(() => {
+                  navigation.navigate('App');
+                });
             });
         } else {
           navigation.navigate('App');

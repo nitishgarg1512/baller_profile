@@ -2,7 +2,7 @@ import DatePicker from 'react-native-datepicker';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, Icon, Content } from 'native-base';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { omit, merge } from 'lodash';
 
@@ -44,12 +44,21 @@ class Creation extends Form {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
-          const { updatePlayer, values, navigation, getPlayerByUsername, authUser, authPlayer } = this.props;
+          const { updatePlayer, values, navigation, getPlayerByUsername, authUser, authPlayer, nationsOptions, playingPositionsOptions } = this.props;
           const { date } = this.state;
+
+          const newValues = {
+            ...values,
+            second_nationality: values.second_nationality ? values.second_nationality : nationsOptions[0].value,
+            playing_position: values.playing_position ? values.playing_position : playingPositionsOptions[0].value,
+            nationality: values.nationality ? values.nationality : nationsOptions[0].value,
+          };
 
           getPlayerByUsername(authUser.username)
             .then(({ result }) => {
-              updatePlayer(omit(merge(values, { dob: date }), ['gender']), result.data[0].id)
+              updatePlayer(omit(merge(newValues, {
+                dob: date,
+              }), ['gender']), result.data[0].id)
                 .then(() => navigation.navigate(paths.client.ProfilesView, { id: authPlayer.id }));
             });
         }
@@ -65,7 +74,7 @@ class Creation extends Form {
   }
 
   render() {
-    const { navigation, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions, authUser } = this.props;
+    const { isSubmitting, navigation, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions, authUser } = this.props;
 
     return (
       <Container>
@@ -198,9 +207,14 @@ class Creation extends Form {
         </Content>
         <View style={styles.footer}>
           <TouchableOpacity onPress={this.handleCreate} style={styles.footerButton}>
-            <UppercasedText style={styles.bottomMainButtonText}>
-              Done
-            </UppercasedText>
+            {isSubmitting
+              ? <ActivityIndicator size="small" color="white" />
+              : (
+                <UppercasedText style={styles.bottomMainButtonText}>
+                  Done
+                </UppercasedText>
+              )
+            }
           </TouchableOpacity>
         </View>
       </Container>
