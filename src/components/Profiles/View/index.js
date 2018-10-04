@@ -23,6 +23,7 @@ class ProfileView extends React.Component {
     this.state = {
       nation: '',
       playingPosition: {},
+      nationalityPlayers: 0,
     };
   }
 
@@ -39,13 +40,22 @@ class ProfileView extends React.Component {
           .then(({ result: nationsResult }) => {
             this.setState({
               nation: find(nationsResult.data, { id: result.data.nationality }),
-            });
-            getPlayingPositions()
-              .then(({ result: playingPositionsResult }) => {
-                this.setState({
-                  playingPosition: find(playingPositionsResult.data, { id: result.data.playing_position }),
+              second_nationality: find(nationsResult.data, { id: result.data.second_nationality }),
+            }, () => {
+              getPlayersByNation(this.state.nation.nationality)
+                .then(({ result: playersNations }) => {
+                  this.setState({
+                    nationalityPlayers: playersNations.data,
+                  }, () => {
+                    getPlayingPositions()
+                      .then(({ result: playingPositionsResult }) => {
+                        this.setState({
+                          playingPosition: find(playingPositionsResult.data, { id: result.data.playing_position }),
+                        });
+                      });
+                  });
                 });
-              });
+            });
           });
       });
   }
@@ -96,7 +106,7 @@ class ProfileView extends React.Component {
 
   render() {
     const { navigation, player, isLoading, players, authPlayer, nations, playingPositions } = this.props;
-    const { nation, playingPosition } = this.state;
+    const { nation, playingPosition, second_nationality, nationalityPlayers } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -144,14 +154,19 @@ class ProfileView extends React.Component {
                           </Text>
                         </View>
                         <View style={styles.detailsContainer}>
-                          <TouchableOpacity onPress={this.handleLogout}>
+                          <TouchableOpacity onPress={() => this.logout()}>
                             <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
                           </TouchableOpacity>
-                          <TouchableOpacity onPress={() => this.handleCreateRelationship()} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
-                            <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-                              {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
-                            </Text>
-                          </TouchableOpacity>
+                          {authPlayer.user.username === player.user.username
+                            ? null
+                            : (
+                              <TouchableOpacity onPress={() => this.handleCreateRelationship()} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
+                                <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                                  {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
+                                </Text>
+                              </TouchableOpacity>
+                            )
+                          }
                         </View>
                       </View>
                       <View style={styles.pt20}>
@@ -159,7 +174,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          {playingPosition.playing_position} for stricktly Ballers
+                          {playingPosition && playingPosition.playing_position} for stricktly Ballers
                         </Text>
                       </View>
                     </View>
@@ -167,7 +182,7 @@ class ProfileView extends React.Component {
                     <View style={styles.profileContentMainPadding}>
                       <View style={styles.displayFlexRowBasic}>
                         <View style={styles.scoreAltContent}>
-                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections)}>
+                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player })}>
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -183,7 +198,7 @@ class ProfileView extends React.Component {
                           </TouchableOpacity>
                         </View>
                         <View style={styles.scoreContainer}>
-                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections)}>
+                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player })}>
                             <View style={styles.scoreContent}>
                               <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -192,7 +207,7 @@ class ProfileView extends React.Component {
                             </View>
                           </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesNationality)}>
+                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesNationality, { nationality: nation && nation.country, nationality2: nation && nation.nationality, second_nationality2: second_nationality && second_nationality.nationality, second_nationality: second_nationality && second_nationality.country })}>
                           <View style={styles.conutryContainer}>
                             <View style={styles.flexStartRow}>
                               <Image
@@ -201,7 +216,7 @@ class ProfileView extends React.Component {
                                 resizeMode="contain"
                               />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                {players.length}
+                                {nationalityPlayers && nationalityPlayers.length}
                               </Text>
                             </View>
                           </View>

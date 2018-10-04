@@ -44,4 +44,15 @@ export default {
       promise: client => client.get(`${paths.api.PLAYERS_SINGLE}?username=${username}`),
     },
   }),
+
+  getPlayerConnection: id => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.PLAYER_CONNECTION_GET_REQUEST,
+        actions.PLAYER_CONNECTION_GET_SUCCESS,
+        actions.PLAYER_CONNECTION_GET_FAILURE,
+      ],
+      promise: client => client.get(paths.build(paths.api.PLAYERS_ID, id)),
+    },
+  }),
 };

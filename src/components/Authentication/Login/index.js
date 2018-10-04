@@ -57,7 +57,7 @@ class Login extends Form {
   handleLogin = () => {
     this.handleSubmit()
       .then((canSubmit) => {
-        const { values, login, navigation, getPlayerByUsername, getAuthUser } = this.props;
+        const { values, login, navigation, getPlayerByUsername, getAuthUser, getAuthPlayer } = this.props;
         if (canSubmit) {
           login(values)
             .then(({ result }) => {
@@ -67,7 +67,7 @@ class Login extends Form {
                     .then((token) => {
                       getAuthUser()
                         .then((authUser) => {
-                          getPlayerByUsername(authUser.result.data.username)
+                          getAuthPlayer(authUser.result.data.username)
                             .then((player) => {
                               if (player.result.data[0].nationality) {
                                 navigation.navigate(paths.client.WhatsNext);

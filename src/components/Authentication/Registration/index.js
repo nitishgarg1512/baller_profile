@@ -57,7 +57,7 @@ class Registration extends Form {
             .then(({ result }) => {
               AsyncStorage.setItem('token', result.data.key)
                 .then(() => getAuthUser())
-                .then(() => navigation.navigate(paths.client.WhatsNext));
+                .then(() => navigation.navigate(paths.client.TeamsSelection));
             });
         }
         return canSubmit;

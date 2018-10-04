@@ -1,98 +1,22 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Thumbnail } from 'native-base';
+import { connect } from 'react-redux';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+
+import actions from '../../../actions';
 
 import styles from './styles';
 
 import images from '../../../static/images';
 
-const FirstRoute = (toggleFollow, state) => (
+import { ConnectionView } from '../ConnectionsView/components';
+
+const FirstRoute = (toggleFollow, state, nationalityPlayers) => (
   <View style={styles.playerCardContainer}>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.lm}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Dimitri Gbo&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @Dimzinho
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            CDM for Strictly Ballers
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(1)} style={[state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[1] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.lm}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Mena Ntueba&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @Menchizedek
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            CM for Strictly Ballers
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(2)} style={[state[2] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[2] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[2] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.lm}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Roysten Drenthe&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @RoysDrent
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            ST for Madridista
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(3)} style={[state[3] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[3] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[3] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    {nationalityPlayers.map(player => (
+      <ConnectionView id={player.id} />
+    ))}
   </View>
 );
 
@@ -109,19 +33,31 @@ class NationalityView extends React.Component {
     headerTintColor: 'white',
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       index: 0,
+      nationalityPlayers: [],
+      secondNationalityPlayers: [],
       routes: [
-        { key: 'first', title: 'Spain' },
-        { key: 'second', title: 'England' },
+        { key: 'first', title: props.navigation.getParam('nationality') },
+        { key: 'second', title: props.navigation.getParam('second_nationality') },
       ],
       1: true,
       2: false,
       3: false,
     };
+  }
+
+  componentDidMount() {
+    const { getPlayersConnectionsByNation, navigation } = this.props;
+
+    getPlayersConnectionsByNation(navigation.getParam('nationality2'))
+      .then(({ result }) => this.setState({ nationalityPlayers: result.data }), () => {
+        getPlayersConnectionsByNation(navigation.getParam('second_nationality2'))
+          .then(({ result }) => this.setState({ secondNationalityPlayers: result.data }));
+      });
   }
 
   toggleFollow = (id) => {
@@ -131,16 +67,15 @@ class NationalityView extends React.Component {
   }
 
   render() {
-    const { index, routes } = this.state;
+    const { index, routes, secondNationalityPlayers, nationalityPlayers } = this.state;
 
     return (
       <TabView
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: () => FirstRoute(this.toggleFollow, this.state),
-          second: () => FirstRoute(this.toggleFollow, this.state),
-          third: () => FirstRoute(this.toggleFollow, this.state),
+          first: () => FirstRoute(this.toggleFollow, this.state, nationalityPlayers),
+          second: () => FirstRoute(this.toggleFollow, this.state, secondNationalityPlayers),
         })}
         renderTabBar={props => (
           <TabBar
@@ -165,7 +100,7 @@ class NationalityView extends React.Component {
                   <Image
                     style={styles.h25w25}
                     resizeMode="contain"
-                    source={images[flag]}
+                    source=""
                   />
                 </View>
               );
@@ -182,4 +117,9 @@ class NationalityView extends React.Component {
   }
 }
 
-export default NationalityView;
+export default connect(
+  null,
+  {
+    ...actions.players,
+  },
+)(NationalityView);

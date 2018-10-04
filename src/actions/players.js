@@ -11,4 +11,15 @@ export default {
       promise: client => client.get(`${paths.api.PLAYERS_SINGLE}?nationality=${nation}`),
     },
   }),
+
+  getPlayersConnectionsByNation: nation => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.PLAYERS_CONNECTIONS_GET_REQUEST,
+        actions.PLAYERS_CONNECTIONS_GET_SUCCESS,
+        actions.PLAYERS_CONNECTIONS_GET_FAILURE,
+      ],
+      promise: client => client.get(`${paths.api.PLAYERS_SINGLE}?nationality=${nation}`),
+    },
+  }),
 };

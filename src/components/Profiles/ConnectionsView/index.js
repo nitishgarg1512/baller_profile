@@ -4,96 +4,28 @@ import { Thumbnail } from 'native-base';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import styles from './styles';
+import { ConnectionView } from './components';
 
 import images from '../../../static/images';
 
-const FirstRoute = (toggleFollow, state) => (
+const FirstRoute = (toggleFollow, state, player) => (
   <View style={styles.playerCardContainer}>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.lm}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Dimitri Gbo&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @Dimzinho
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            CDM for Strictly Ballers
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(1)} style={[state[1] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[1] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[1] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.lm}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Mena Ntueba&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @Menchizedek
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            CM for Strictly Ballers
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(2)} style={[state[2] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[2] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[2] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.playerCard}>
-      <View style={styles.flexCenterRow}>
-        <View style={styles.borderRadiusCircle}>
-          <Thumbnail
-            style={[styles.profileImage]}
-            source={images.lm}
-          />
-        </View>
-        <View style={styles.playerCardName}>
-          <View style={styles.flexCenterRow}>
-            <Text style={styles.nameText}>
-              Roysten Drenthe&nbsp;
-            </Text>
-            <Text style={styles.tagText}>
-              @RoysDrent
-            </Text>
-          </View>
-          <Text style={styles.descText}>
-            ST for Madridista
-          </Text>
-        </View>
-      </View>
-      <TouchableOpacity onPress={() => toggleFollow(3)} style={[state[3] ? styles.playerFollowingButton : styles.playerFollowButton]}>
-        <Text style={state[3] ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-          {state[3] ? 'Following' : 'Follow'}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    {player && player.followers && player.followers.map(id => (
+      <ConnectionView id={id} />
+    ))}
   </View>
+);
+
+const SecondRoute = (toggleFollow, state, player) => (
+  <View style={styles.playerCardContainer}>
+    {player && player.following && player.following.map(id => (
+      <ConnectionView id={id} />
+    ))}
+  </View>
+);
+
+const ThirdRoute = (toggleFollow, state, player) => (
+  <View style={styles.playerCardContainer} />
 );
 
 class ConnectionsView extends React.Component {
@@ -109,11 +41,12 @@ class ConnectionsView extends React.Component {
     headerTintColor: 'white',
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       index: 0,
+      player: props.navigation.getParam('player'),
       routes: [
         { key: 'first', title: 'Followers' },
         { key: 'second', title: 'Following' },
@@ -132,16 +65,16 @@ class ConnectionsView extends React.Component {
   }
 
   render() {
-    const { index, routes } = this.state;
+    const { index, routes, player } = this.state;
 
     return (
       <TabView
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: () => FirstRoute(this.toggleFollow, this.state),
-          second: () => FirstRoute(this.toggleFollow, this.state),
-          third: () => FirstRoute(this.toggleFollow, this.state),
+          first: () => FirstRoute(this.toggleFollow, this.state, player),
+          second: () => SecondRoute(this.toggleFollow, this.state, player),
+          third: () => ThirdRoute(this.toggleFollow, this.state),
         })}
         renderTabBar={props => (
           <TabBar
@@ -152,13 +85,13 @@ class ConnectionsView extends React.Component {
               let statisticsContent = '';
 
               if (key === 'first') {
-                statisticsContent = '2330';
+                statisticsContent = player && player.followers && player.followers.length;
               }
               if (key === 'second') {
-                statisticsContent = '211';
+                statisticsContent = player && player.following && player.following.length;
               }
               if (key === 'third') {
-                statisticsContent = '1001';
+                statisticsContent = '0';
               }
 
               return (

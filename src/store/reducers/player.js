@@ -14,7 +14,7 @@ const actionMap = {
   [actions.PLAYER_GET_FAILURE]: state => ({ ...state, isLoading: false }),
 
   [actions.PLAYER_UPDATE_REQUEST]: state => ({ ...state, isSubmitting: true }),
-  [actions.PLAYER_UPDATE_SUCCESS]: state => ({ ...state, data: state.data, isSubmitting: false, x: console.error('jebo te krist vise') }),
+  [actions.PLAYER_UPDATE_SUCCESS]: state => ({ ...state, data: state.data, isSubmitting: false }),
   [actions.PLAYER_UPDATE_FAILURE]: state => ({ ...state, isSubmitting: false }),
 
   [actions.AUTH_PLAYER_GET_REQUEST]: state => ({ ...state, isLoading: true }),
