@@ -236,29 +236,30 @@ export default {
     fontFamily: 'calibri-italic',
   },
   colorBlack: {
-    color: '#000',
+    color: '#000000',
   },
   profileContentMainCardOverflow: {
     overflow: 'visible',
-    width: width - 50,
+    width: width - 30,
     paddingTop: 100,
     backgroundColor: 'transparent',
   },
   profileContentMainPadding: {
     padding: 18,
     paddingTop: 0,
+    paddingBottom: 8,
   },
   profileContentSecondaryCard: {
     overflow: 'visible',
-    width: width - 50,
+    width: width - 30,
     backgroundColor: '#fff',
-    paddingTop: 8,
+    paddingTop: 5,
   },
   profileContentMainCard: {
     overflow: 'visible',
     width: '100%',
     backgroundColor: '#fff',
-    paddingTop: 8,
+    paddingTop: 5,
   },
   profileContentCard: {
     width: width - 50,

@@ -24,6 +24,7 @@ class ProfileView extends React.Component {
       nation: '',
       playingPosition: {},
       nationalityPlayers: 0,
+      backgroundProfile: images.profilebg
     };
   }
 
@@ -36,14 +37,24 @@ class ProfileView extends React.Component {
 
     getPlayer(id)
       .then(({ result }) => {
+        if (result.data.background_pic) {
+          this.setState({
+            backgroundProfile: result.data.background_pic
+          });
+        }
+
         getNations()
           .then(({ result: nationsResult }) => {
             this.setState({
               nation: find(nationsResult.data, { id: result.data.nationality }),
               second_nationality: find(nationsResult.data, { id: result.data.second_nationality }),
             }, () => {
+              console.log('this.state.nation.nationality: ' + this.state.nation.nationality)
+
               getPlayersByNation(this.state.nation.nationality)
                 .then(({ result: playersNations }) => {
+                  console.log("getPlayersByNation")
+                  console.log(playersNations)
                   this.setState({
                     nationalityPlayers: playersNations.data,
                   }, () => {
@@ -106,13 +117,15 @@ class ProfileView extends React.Component {
 
   render() {
     const { navigation, player, isLoading, players, authPlayer, nations, playingPositions } = this.props;
-    const { nation, playingPosition, second_nationality, nationalityPlayers } = this.state;
+    const { backgroundProfile, nation, playingPosition, second_nationality, nationalityPlayers } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="rgba(0,0,0,.6)" />
       </View>
     );
+    console.log('player');
+    console.log(player);
 
     if (!isEmpty(player) && !isLoading && player.user) {
       content = (
@@ -120,7 +133,7 @@ class ProfileView extends React.Component {
           <ImageBackground
             style={styles.imageBackground}
             imageStyle={styles.bgImage}
-            source={images.profilebg}
+            source={backgroundProfile}
           >
             <View style={[styles.headerContainer, styles.py30]}>
               <View style={[styles.flexStartRow]}>
