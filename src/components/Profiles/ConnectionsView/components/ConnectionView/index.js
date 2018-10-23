@@ -21,10 +21,11 @@ class ConnectionView extends React.Component {
   }
 
   componentDidMount() {
-    const { id, getPlayerConnection } = this.props;
+    const { player, navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions } = this.props;
 
-    getPlayerConnection(id)
-      .then(({ result }) => this.setState({ player: result.data }));
+    getAuthPlayer();
+
+    this.setState({ player: player });
   }
 
   handleCreateRelationship = () => {
@@ -68,7 +69,7 @@ class ConnectionView extends React.Component {
               </Text>
             </View>
             <Text style={styles.descText}>
-              No playing position
+              {player.playing_position && player.playing_position.abbreviated} for {player.main_team && player.main_team.team_name}
             </Text>
           </View>
         </View>

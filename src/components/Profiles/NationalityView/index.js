@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
@@ -13,11 +13,13 @@ import images from '../../../static/images';
 import { ConnectionView } from '../ConnectionsView/components';
 
 const FirstRoute = (toggleFollow, state, nationalityPlayers) => (
-  <View style={styles.playerCardContainer}>
-    {nationalityPlayers.map(player => (
-      <ConnectionView id={player.id} />
-    ))}
-  </View>
+  <ScrollView>
+    <View style={styles.playerCardContainer}>
+      {nationalityPlayers.map(player => (
+        <ConnectionView id={player.id} player={player} key={player.id} />
+      ))}
+    </View>
+  </ScrollView>
 );
 
 class NationalityView extends React.Component {
@@ -41,23 +43,39 @@ class NationalityView extends React.Component {
       nationalityPlayers: [],
       secondNationalityPlayers: [],
       routes: [
-        { key: 'first', title: props.navigation.getParam('nationality') },
-        { key: 'second', title: props.navigation.getParam('second_nationality') },
+        { key: 'first', title: props.navigation.getParam('country'), flag: props.navigation.getParam('flag') },
+        { key: 'second', title: props.navigation.getParam('second_country'), flag: props.navigation.getParam('second_flag') },
       ],
       1: true,
       2: false,
       3: false,
     };
+
+    this.getPlayers = this.getPlayers.bind(this);
   }
 
   componentDidMount() {
     const { getPlayersConnectionsByNation, navigation } = this.props;
 
-    getPlayersConnectionsByNation(navigation.getParam('nationality2'))
-      .then(({ result }) => this.setState({ nationalityPlayers: result.data }), () => {
-        getPlayersConnectionsByNation(navigation.getParam('second_nationality2'))
-          .then(({ result }) => this.setState({ secondNationalityPlayers: result.data }));
-      });
+    const { index } = this.state;
+
+    this.getPlayers(index);
+  }
+
+  getPlayers(index) {
+    const { getPlayersConnectionsByNation, navigation } = this.props;
+
+    if (!index) {
+      getPlayersConnectionsByNation(navigation.getParam('nationality'))
+        .then(({ result }) => {
+          this.setState({ nationalityPlayers: result.data });
+        });
+    } else {
+      getPlayersConnectionsByNation(navigation.getParam('second_nationality'))
+        .then(({ result }) => {
+          this.setState({ secondNationalityPlayers: result.data });
+        });
+    }
   }
 
   toggleFollow = (id) => {
@@ -81,16 +99,7 @@ class NationalityView extends React.Component {
           <TabBar
             {...props}
             renderLabel={(labelProps) => {
-              const { route: { key, title } } = labelProps;
-
-              let flag = '';
-
-              if (key === 'first') {
-                flag = 'spain';
-              }
-              if (key === 'second') {
-                flag = 'england';
-              }
+              const { route: { key, title, flag } } = labelProps;
 
               return (
                 <View style={styles.flexCenterColumn}>
@@ -100,7 +109,7 @@ class NationalityView extends React.Component {
                   <Image
                     style={styles.h25w25}
                     resizeMode="contain"
-                    source=""
+                    source={flag}
                   />
                 </View>
               );
@@ -110,7 +119,7 @@ class NationalityView extends React.Component {
             style={styles.bgWhite}
           />
         )}
-        onIndexChange={changedIndex => this.setState({ index: changedIndex })}
+        onIndexChange={changedIndex => this.setState({ index: changedIndex }, this.getPlayers(changedIndex))}
         initialLayout={styles.h100w100}
       />
     );

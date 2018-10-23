@@ -23,6 +23,7 @@ class ProfileView extends React.Component {
     this.state = {
       nation: '',
       playingPosition: {},
+      mainTeam: null,
       nationalityPlayers: 0,
       backgroundProfile: images.profilebg
     };
@@ -37,64 +38,21 @@ class ProfileView extends React.Component {
 
     getPlayer(id)
       .then(({ result }) => {
-        if (result.data.background_pic) {
-          this.setState({
-            backgroundProfile: result.data.background_pic
-          });
-        }
-
-        getNations()
-          .then(({ result: nationsResult }) => {
-            this.setState({
-              nation: find(nationsResult.data, { id: result.data.nationality }),
-              second_nationality: find(nationsResult.data, { id: result.data.second_nationality }),
-            }, () => {
-              console.log('this.state.nation.nationality: ' + this.state.nation.nationality)
-
-              getPlayersByNation(this.state.nation.nationality)
-                .then(({ result: playersNations }) => {
-                  console.log("getPlayersByNation")
-                  console.log(playersNations)
-                  this.setState({
-                    nationalityPlayers: playersNations.data,
-                  }, () => {
-                    getPlayingPositions()
-                      .then(({ result: playingPositionsResult }) => {
-                        this.setState({
-                          playingPosition: find(playingPositionsResult.data, { id: result.data.playing_position }),
-                        });
-                      });
-                  });
-                });
+        this.setState({
+          backgroundProfile: result.data.background_pic ? result.data.background_pic : images.profilebg,
+          playingPosition: result.data.playing_position,
+          mainTeam: result.data.main_team,
+          nation: result.data.nationality,
+          second_nationality: result.data.second_nationality,
+        }, () => {
+          getPlayersByNation(result.data.nationality.nationality)
+            .then(({ result: playersNations }) => {
+              this.setState({
+                nationalityPlayers: playersNations.data,
+              });
             });
-          });
+        });
       });
-  }
-
-  componentWillReceiveProps(newProps) {
-    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions, player } = this.props;
-
-    // if (!newProps.player.nationality || !player.nationality) {
-    //   const id = newProps.navigation.getParam('id');
-
-    //   getAuthPlayer();
-
-    //   getPlayer(id)
-    //     .then(({ result }) => {
-    //       getNations()
-    //         .then(({ result: nationsResult }) => {
-    //           this.setState({
-    //             nation: find(nationsResult.data, { id: result.data.nationality }),
-    //           });
-    //           getPlayingPositions()
-    //             .then(({ result: playingPositionsResult }) => {
-    //               this.setState({
-    //                 playingPosition: find(playingPositionsResult.data, { id: result.data.playing_position }),
-    //               });
-    //             });
-    //         });
-    //     });
-    // }
   }
 
   handleCreateRelationship = () => {
@@ -117,15 +75,13 @@ class ProfileView extends React.Component {
 
   render() {
     const { navigation, player, isLoading, players, authPlayer, nations, playingPositions } = this.props;
-    const { backgroundProfile, nation, playingPosition, second_nationality, nationalityPlayers } = this.state;
+    const { backgroundProfile, nation, playingPosition, second_nationality, nationalityPlayers, mainTeam } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="rgba(0,0,0,.6)" />
       </View>
     );
-    console.log('player');
-    console.log(player);
 
     if (!isEmpty(player) && !isLoading && player.user) {
       content = (
@@ -142,7 +98,7 @@ class ProfileView extends React.Component {
                 </TouchableOpacity>
                 <View style={styles.searchPlayer}>
                   <Text style={[styles.fontBasic, styles.fontSize20, styles.colorBlack]}>
-                    {`@${player.user.username}`}
+                    {`asd@${player.user.username}`}
                   </Text>
                 </View>
               </View>
@@ -187,7 +143,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          {playingPosition && playingPosition.playing_position} for stricktly Ballers
+                          {playingPosition && playingPosition.abbreviated} for {mainTeam && mainTeam.team_name}
                         </Text>
                       </View>
                     </View>
@@ -195,7 +151,7 @@ class ProfileView extends React.Component {
                     <View style={styles.profileContentMainPadding}>
                       <View style={styles.displayFlexRowBasic}>
                         <View style={styles.scoreAltContent}>
-                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player })}>
+                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player, authPlayer })}>
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -220,7 +176,15 @@ class ProfileView extends React.Component {
                             </View>
                           </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesNationality, { nationality: nation && nation.country, nationality2: nation && nation.nationality, second_nationality2: second_nationality && second_nationality.nationality, second_nationality: second_nationality && second_nationality.country })}>
+                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesNationality, {
+                          country: nation && nation.country,
+                          nationality: nation && nation.nationality,
+                          flag: nation && nation.flag,
+                          second_nationality: second_nationality && second_nationality.nationality,
+                          second_country: second_nationality && second_nationality.country,
+                          second_flag: second_nationality && second_nationality.flag,
+                        })
+                        }>
                           <View style={styles.conutryContainer}>
                             <View style={styles.flexStartRow}>
                               <Image
@@ -325,7 +289,7 @@ ProfileView.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   navigation: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
-  players: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  //players: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default connect(
