@@ -23,8 +23,6 @@ class ConnectionView extends React.Component {
   componentDidMount() {
     const { player, navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions } = this.props;
 
-    getAuthPlayer();
-
     this.setState({ player: player });
   }
 

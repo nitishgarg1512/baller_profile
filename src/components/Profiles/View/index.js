@@ -34,8 +34,6 @@ class ProfileView extends React.Component {
 
     const id = navigation.getParam('id');
 
-    getAuthPlayer();
-
     getPlayer(id)
       .then(({ result }) => {
         this.setState({
@@ -44,14 +42,14 @@ class ProfileView extends React.Component {
           mainTeam: result.data.main_team,
           nation: result.data.nationality,
           second_nationality: result.data.second_nationality,
-        }, () => {
-          getPlayersByNation(result.data.nationality.nationality)
-            .then(({ result: playersNations }) => {
-              this.setState({
-                nationalityPlayers: playersNations.data,
-              });
-            });
         });
+
+        getPlayersByNation(result.data.nationality.nationality)
+          .then(({ result: playersNations }) => {
+            this.setState({
+              nationalityPlayers: playersNations.data,
+            });
+          });
       });
   }
 

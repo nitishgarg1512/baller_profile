@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
 import { Container, Icon, Content } from 'native-base';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import selectors from './selectors';
@@ -24,7 +24,7 @@ class Creation extends Form {
   componentDidMount() {
     const { getLeagues, getNations } = this.props;
 
-    getLeagues();
+    // getLeagues();
     getNations();
   }
 
@@ -64,7 +64,8 @@ class Creation extends Form {
                 ...values,
                 location: values.location ? values.location : nationsOptions[0].value,
                 format: values.format ? values.format : formatsOptions[0].value,
-                league: values.league ? values.league : leaguesOptions[0].value,
+                // league: values.league ? values.league : leaguesOptions[0].value,
+                league: values.league ? values.league : null,
                 captain: result.data.pk,
                 vice_captain: result.data.pk,
                 team_badge: avatarSource,
@@ -92,11 +93,13 @@ class Creation extends Form {
     return (
       <Container>
         <Content>
+        
           <View style={styles.headerContainer}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
             </TouchableOpacity>
           </View>
+          
           <View style={styles.displayFlexCenterRow}>
             <UppercasedText style={styles.TeamsSelectionTitle}>
               CREATE YOUR TEAM!
@@ -177,6 +180,7 @@ class Creation extends Form {
             />
           </View>
         </Content>
+       
         <View style={styles.footer}>
           <TouchableOpacity onPress={() => this.handleCreate()} style={isComplete ? styles.footerButton : styles.footerButtonDisabled}>
             <UppercasedText style={styles.bottomMainButtonText}>

@@ -55,8 +55,6 @@ class NationalityView extends React.Component {
   }
 
   componentDidMount() {
-    const { getPlayersConnectionsByNation, navigation } = this.props;
-
     const { index } = this.state;
 
     this.getPlayers(index);

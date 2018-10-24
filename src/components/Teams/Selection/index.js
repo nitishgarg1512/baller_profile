@@ -112,12 +112,14 @@ class Selection extends React.Component {
             <View style={styles.bottomActions}>
               <TouchableOpacity onPress={() => navigation.navigate(paths.client.TeamsCreation)} style={styles.bottomMainButton}>
                 <UppercasedText style={styles.bottomMainButtonText}>
-                I can&#39;t find my team!
+                  I can&#39;t find my team!
                 </UppercasedText>
               </TouchableOpacity>
-              <Text style={styles.bottomSecondaryText}>
-              I don&#39;t play anymore!
-              </Text>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Text style={styles.bottomSecondaryText}>
+                  I don&#39;t play anymore!
+                </Text>
+              </TouchableOpacity>
             </View>
           </Container>
         </React.Fragment>
