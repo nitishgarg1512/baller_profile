@@ -24,7 +24,7 @@ class Creation extends Form {
     const { getLeagues, getNations, getPostcodes, getPlayingPositions } = this.props;
 
     getPostcodes();
-    getLeagues();
+    // getLeagues();
     getNations();
     getPlayingPositions();
   }

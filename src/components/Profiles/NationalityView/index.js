@@ -107,7 +107,7 @@ class NationalityView extends React.Component {
                   <Image
                     style={styles.h25w25}
                     resizeMode="contain"
-                    source={flag}
+                    source={flag ? { uri: flag } : ''}
                   />
                 </View>
               );

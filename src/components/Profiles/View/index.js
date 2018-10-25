@@ -141,7 +141,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          {playingPosition && playingPosition.abbreviated} for {mainTeam && mainTeam.team_name}
+                          {playingPosition && playingPosition.playing_position} for {mainTeam && mainTeam.team_name}
                         </Text>
                       </View>
                     </View>
@@ -181,13 +181,12 @@ class ProfileView extends React.Component {
                           second_nationality: second_nationality && second_nationality.nationality,
                           second_country: second_nationality && second_nationality.country,
                           second_flag: second_nationality && second_nationality.flag,
-                        })
-                        }>
+                        })}>
                           <View style={styles.conutryContainer}>
                             <View style={styles.flexStartRow}>
                               <Image
                                 style={styles.h5w5}
-                                source={images.england}
+                                source={nation && nation.flag ? { uri: nation.flag } : images.england}
                                 resizeMode="contain"
                               />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>

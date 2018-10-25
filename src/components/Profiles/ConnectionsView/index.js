@@ -1,25 +1,22 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { Thumbnail } from 'native-base';
+import { Text, View } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import styles from './styles';
 import { ConnectionView } from './components';
 
-import images from '../../../static/images';
-
 const FirstRoute = (toggleFollow, state, player) => (
   <View style={styles.playerCardContainer}>
-    {player && player.followers && player.followers.map(id => (
-      <ConnectionView id={id} />
+    {player && player.followers && player.followers.map(follower => (
+      <ConnectionView key={follower.id} player={follower} />
     ))}
   </View>
 );
 
 const SecondRoute = (toggleFollow, state, player) => (
   <View style={styles.playerCardContainer}>
-    {player && player.following && player.following.map(id => (
-      <ConnectionView id={id} />
+    {player && player.following && player.following.map(following => (
+      <ConnectionView key={following.id} player={following} />
     ))}
   </View>
 );

@@ -78,7 +78,8 @@ class Join extends React.Component {
               players: result.data,
             });
           });
-      });
+      })
+      .catch(error => alert(error));
   }
 
   render() {
@@ -117,7 +118,7 @@ class Join extends React.Component {
                     {navigation.getParam('team').captain === player.id ? '©' : null}
                   </Text>
                   <Text style={[styles.playerNameSecondaryText, styles.pb5]}>
-                    {player.playing_position}
+                    {player.playing_position && player.playing_position.playing_position}
                   </Text>
                   {navigation.getParam('team').admin[0] === player.id
                     ? (
@@ -127,9 +128,9 @@ class Join extends React.Component {
                     )
                     : null
                   }
-                  <TouchableOpacity onPress={() => this.handleCreateRelationship(player.id)} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
-                    <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-                      {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
+                  <TouchableOpacity onPress={() => this.handleCreateRelationship(player.id)} style={player.followers && player.followers.indexOf(authPlayer.user.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
+                    <Text style={player.followers && player.followers.indexOf(authPlayer.user.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                      {player.followers && player.followers.indexOf(authPlayer.user.id) !== -1 ? 'Following' : 'Follow'}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={this.logout} style={styles.playerFollowButton}>

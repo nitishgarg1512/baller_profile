@@ -18,11 +18,13 @@ import { paths } from '../../../../../common/constants';
 
 class TeamModal extends React.Component {
   componentWillReceiveProps(newProps) {
-    const { selectedTeam, getUser, getLeague, getPlayer } = this.props;
+    const { selectedTeam, getLeague, getPlayer } = this.props;
 
     if (!isEqual(newProps.selectedTeam, selectedTeam) && newProps.selectedTeam && !isEmpty(newProps.selectedTeam)) {
       getPlayer(newProps.selectedTeam.captain);
-      getLeague(newProps.selectedTeam.league);
+      if (newProps.selectedTeam.league) {
+        getLeague(newProps.selectedTeam.league);
+      }
     }
   }
 
@@ -74,7 +76,7 @@ class TeamModal extends React.Component {
                       <Thumbnail style={styles.thumbnailProp} small source={player.user && player.user.profile_image ? { uri: player.user.profile_image } : images.user} />
                       <Text style={styles.teamModalLeague}>
                         {`${player.user && player.user.first_name} ${player.user && player.user.last_name}`}
-                          (Captain)
+                        (Captain)
                       </Text>
                     </View>
                   </View>
@@ -90,7 +92,7 @@ class TeamModal extends React.Component {
             </React.Fragment>
           )
             : null
-    }
+          }
         </View>
       </Modal>
     );

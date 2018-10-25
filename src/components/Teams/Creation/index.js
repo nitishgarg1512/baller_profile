@@ -24,7 +24,7 @@ class Creation extends Form {
   componentDidMount() {
     const { getLeagues, getNations } = this.props;
 
-    // getLeagues();
+    getLeagues();
     getNations();
   }
 
@@ -64,8 +64,7 @@ class Creation extends Form {
                 ...values,
                 location: values.location ? values.location : nationsOptions[0].value,
                 format: values.format ? values.format : formatsOptions[0].value,
-                // league: values.league ? values.league : leaguesOptions[0].value,
-                league: values.league ? values.league : null,
+                league: values.league ? values.league : leaguesOptions[0].value,
                 captain: result.data.pk,
                 vice_captain: result.data.pk,
                 team_badge: avatarSource,
