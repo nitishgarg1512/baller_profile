@@ -8,7 +8,7 @@ export default {
         actions.REQUEST_CREATE_SUCCESS,
         actions.REQUEST_CREATE_FAILURE,
       ],
-      promise: client => client.post(paths.api.REQUESTS, data),
+      promise: client => {console.log(data); client.post(paths.api.REQUESTS, data)},
     },
   }),
 };

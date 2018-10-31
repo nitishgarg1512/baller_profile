@@ -17,10 +17,9 @@ class TeamCard extends React.Component {
   }
 
   componentDidMount() {
-    const { team, getTeamPlayers } = this.props;
+    const { team } = this.props;
 
-    getTeamPlayers(team.id)
-      .then(({ result }) => this.setState({ players: result.data.length }));
+    this.setState({ players: team.number_of_players });
   }
 
   render() {
@@ -39,7 +38,7 @@ class TeamCard extends React.Component {
           </View>
           <View style={styles.displayFlexCenterColumn}>
             <Text style={styles.TeamsSelectionCardDetailsText}>
-              {`${players} baller${players.length > 1 ? 's' : ''}`}
+              {`${players} baller${players > 1 ? 's' : ''}`}
             </Text>
             <Text style={styles.TeamsSelectionCardDetailsText}>
               {team.team_name}
@@ -53,7 +52,6 @@ class TeamCard extends React.Component {
 
 TeamCard.propTypes = {
   team: PropTypes.shape({}).isRequired,
-  getTeamPlayers: PropTypes.func.isRequired,
 };
 
 export default TeamCard;
