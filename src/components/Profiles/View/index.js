@@ -25,7 +25,7 @@ class ProfileView extends React.Component {
       playingPosition: {},
       mainTeam: null,
       nationalityPlayers: 0,
-      backgroundProfile: images.profilebg
+      backgroundProfile: images.profilebg,
     };
   }
 
@@ -49,7 +49,13 @@ class ProfileView extends React.Component {
             this.setState({
               nationalityPlayers: playersNations.data,
             });
+          }).catch((error) => {
+            console.log(`[Error] CallAPI: getPlayersByNation(${result.data.nationality.nationality})`);
+            alert(error);
           });
+      }).catch((error) => {
+        console.log('[Error] CallAPI: getPlayer');
+        alert(error);
       });
   }
 
@@ -181,7 +187,8 @@ class ProfileView extends React.Component {
                           second_nationality: second_nationality && second_nationality.nationality,
                           second_country: second_nationality && second_nationality.country,
                           second_flag: second_nationality && second_nationality.flag,
-                        })}>
+                        })}
+                        >
                           <View style={styles.conutryContainer}>
                             <View style={styles.flexStartRow}>
                               <Image
@@ -286,7 +293,7 @@ ProfileView.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   navigation: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
-  //players: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  // players: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default connect(

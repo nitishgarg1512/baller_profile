@@ -67,12 +67,12 @@ class NationalityView extends React.Component {
       getPlayersConnectionsByNation(navigation.getParam('nationality'))
         .then(({ result }) => {
           this.setState({ nationalityPlayers: result.data });
-        });
+        }).catch(error => console.log(error));
     } else {
       getPlayersConnectionsByNation(navigation.getParam('second_nationality'))
         .then(({ result }) => {
           this.setState({ secondNationalityPlayers: result.data });
-        });
+        }).catch(error => console.log(error));
     }
   }
 

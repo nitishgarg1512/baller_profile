@@ -48,16 +48,24 @@ class Registration extends Form {
   handleRegistration = () => {
     this.handleSubmit()
       .then((canSubmit) => {
-        const { values, register, navigation, login, getAuthUser } = this.props;
+        const { values, register, navigation, login, getAuthUser, getAuthPlayer } = this.props;
         if (canSubmit) {
           const newValues = merge(omit(values, ['confirm_password']), { type: 'P' });
-
           register(newValues)
-            .then(() => login(newValues))
-            .then(({ result }) => {
-              AsyncStorage.setItem('token', result.data.key)
-                .then(() => getAuthUser())
-                .then(() => navigation.navigate(paths.client.TeamsSelection));
+            .then(() => {
+              login(values)
+                .then(({ result }) => {
+                  AsyncStorage.setItem('token', result.data.key)
+                    .then(() => {
+                      getAuthUser()
+                        .then((authUser) => {
+                          getAuthPlayer(authUser.result.data.username)
+                            .then((player) => {
+                              navigation.navigate(paths.client.TeamsSelection);
+                            });
+                        });
+                    });
+                });
             });
         }
         return canSubmit;
@@ -177,6 +185,8 @@ class Registration extends Form {
 
 Registration.propTypes = {
   navigation: PropTypes.shape({}).isRequired,
+  getAuthUser: PropTypes.func.isRequired,
+  getAuthPlayer: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -184,6 +194,7 @@ export default connect(
   {
     ...actions.forms,
     ...actions.authentication,
+    ...actions.player,
     ...actions.user,
   },
 )(Registration);

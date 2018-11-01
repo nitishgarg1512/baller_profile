@@ -140,12 +140,14 @@ class Login extends Form {
                     Log in
                   </Text>
                 </TouchableOpacity>
-                <Text style={styles.subeading2Login}>
-                  Don&#39;t have a BallerProfile?&nbsp;
-                  <Text onPress={() => navigation.navigate(paths.client.Registration)} style={styles.loginLink}>
-                    Sign me up
-                  </Text>
-                </Text>
+                <View style={styles.viewSubeading2Login}>
+                  <Text style={styles.subeading2Login}>Don&#39;t have a BallerProfile?&nbsp;</Text>
+                  <TouchableOpacity style={styles.touchLoginLink} onPress={() => navigation.navigate(paths.client.Registration)}>
+                    <Text style={styles.loginLink}>
+                      Sign me up
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </KeyboardAvoidingView>
           </View>

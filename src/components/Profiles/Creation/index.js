@@ -53,7 +53,6 @@ class Creation extends Form {
             playing_position: values.playing_position ? values.playing_position : playingPositionsOptions[0].value,
             nationality: values.nationality ? values.nationality : nationsOptions[0].value,
           };
-
           getPlayerByUsername(authUser.username)
             .then(({ result }) => {
               updatePlayer(omit(merge(newValues, {

@@ -16,7 +16,7 @@ export default () => ({ dispatch, getState }) => next => (action) => {
 
   const { promise, types, ...restParams } = callAPIAction;
   const [REQUEST, SUCCESS, FAILURE] = types;
-console.log(promise);
+  console.log(promise);
   next({ ...restParams, type: REQUEST });
 
   return AsyncStorage.getItem('token')
@@ -28,5 +28,5 @@ console.log(promise);
         dispatch({ type: actions.TOAST_SHOW });
         return Promise.reject(error);
       },
-    );
+  );
 };

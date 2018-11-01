@@ -230,12 +230,17 @@ export default {
     fontSize: 15,
     paddingTop: 30,
   },
+  viewSubeading2Login: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  touchLoginLink: {
+    paddingTop: 30,
+  },
   loginLink: {
     fontFamily: 'calibri',
     color: '#0172c1',
     fontSize: 15,
-    paddingTop: 30,
-    paddingBottom: 50,
   },
   forgotPasswordContainer: {
     display: 'flex',

@@ -33,7 +33,7 @@ export default {
       promise: client => {
         console.log(paths.build(paths.api.PLAYERS_ID, id));
         console.log(values);
-        client.patch(paths.build(paths.api.PLAYERS_ID, id), values)
+        client.patch(paths.build(paths.api.PLAYERS_ID + "/", id), values)
       }
     },
   }),
