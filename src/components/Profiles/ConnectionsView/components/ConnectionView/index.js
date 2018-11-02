@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
@@ -6,6 +7,8 @@ import { connect } from 'react-redux';
 import selectors from './selectors';
 
 import styles from '../../styles';
+
+import { paths } from '../../../../../common/constants';
 
 import actions from '../../../../../actions';
 
@@ -21,9 +24,18 @@ class ConnectionView extends React.Component {
   }
 
   componentDidMount() {
-    const { player, navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions } = this.props;
+    const { player } = this.props;
 
     this.setState({ player });
+  }
+
+  handleVisitProfile = () => {
+    const { navigation } = this.props;
+    const { player } = this.state;
+
+    if (player.nationality) {
+      navigation.navigate(paths.client.ProfilesView, { id: player.id });
+    }
   }
 
   handleCreateRelationship = () => {
@@ -48,14 +60,21 @@ class ConnectionView extends React.Component {
     const { authPlayer } = this.props;
     const { player } = this.state;
 
+    const position = player.playing_position ? player.playing_position.playing_position : 'No position';
+    const team = player.main_team ? `for ${player.main_team.team_name}` : '';
+
+    const position_team = `${position} ${team}`;
+
     return (
       <View style={styles.playerCard}>
         <View style={styles.flexCenterRow}>
           <View style={styles.borderRadiusCircle}>
-            <Thumbnail
-              style={[styles.profileImage]}
-              source={(player && player.user && player.user.profile_image) || images.user}
-            />
+            <TouchableOpacity onPress={() => this.handleVisitProfile()}>
+              <Thumbnail
+                style={[styles.profileImage]}
+                source={(player && player.user && player.user.profile_image) || images.user}
+              />
+            </TouchableOpacity>
           </View>
           <View style={styles.playerCardName}>
             <View style={styles.flexCenterRow}>
@@ -67,7 +86,7 @@ class ConnectionView extends React.Component {
               </Text>
             </View>
             <Text style={styles.descText}>
-              {player.playing_position && player.playing_position.abbreviated} for {player.main_team && player.main_team.team_name}
+              {position_team}
             </Text>
           </View>
         </View>
@@ -80,6 +99,10 @@ class ConnectionView extends React.Component {
     );
   }
 }
+
+ConnectionView.propTypes = {
+  //navigation: PropTypes.shape({}).isRequired,
+};
 
 export default connect(
   selectors,

@@ -1,27 +1,31 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import styles from './styles';
 import { ConnectionView } from './components';
 
-const FirstRoute = (toggleFollow, state, player) => (
-  <View style={styles.playerCardContainer}>
-    {player && player.followers && player.followers.map(follower => (
-      <ConnectionView key={follower.id} player={follower} />
-    ))}
-  </View>
+const FirstRoute = (toggleFollow, state, player, navigation) => (
+  <ScrollView>
+    <View style={styles.playerCardContainer}>
+      {player && player.followers && player.followers.map(follower => (
+        <ConnectionView key={follower.id} player={follower} navigation={navigation} />
+      ))}
+    </View>
+  </ScrollView>
 );
 
-const SecondRoute = (toggleFollow, state, player) => (
-  <View style={styles.playerCardContainer}>
-    {player && player.following && player.following.map(following => (
-      <ConnectionView key={following.id} player={following} />
-    ))}
-  </View>
+const SecondRoute = (toggleFollow, state, player, navigation) => (
+  <ScrollView>
+    <View style={styles.playerCardContainer}>
+      {player && player.following && player.following.map(following => (
+        <ConnectionView key={following.id} player={following} navigation={navigation} />
+      ))}
+    </View>
+  </ScrollView>
 );
 
-const ThirdRoute = (toggleFollow, state, player) => (
+const ThirdRoute = (toggleFollow, state, player, navigation) => (
   <View style={styles.playerCardContainer} />
 );
 
@@ -63,15 +67,15 @@ class ConnectionsView extends React.Component {
 
   render() {
     const { index, routes, player } = this.state;
-
+    const { navigation } = this.props;
     return (
       <TabView
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: () => FirstRoute(this.toggleFollow, this.state, player),
-          second: () => SecondRoute(this.toggleFollow, this.state, player),
-          third: () => ThirdRoute(this.toggleFollow, this.state),
+          first: () => FirstRoute(this.toggleFollow, this.state, player, navigation),
+          second: () => SecondRoute(this.toggleFollow, this.state, player, navigation),
+          third: () => ThirdRoute(this.toggleFollow, this.state, navigation),
         })}
         renderTabBar={props => (
           <TabBar

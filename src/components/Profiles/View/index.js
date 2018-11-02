@@ -102,7 +102,7 @@ class ProfileView extends React.Component {
                 </TouchableOpacity>
                 <View style={styles.searchPlayer}>
                   <Text style={[styles.fontBasic, styles.fontSize20, styles.colorBlack]}>
-                    {`asd@${player.user.username}`}
+                    {`@${player.user.username}`}
                   </Text>
                 </View>
               </View>
@@ -147,7 +147,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          {playingPosition && playingPosition.playing_position} for {mainTeam && mainTeam.team_name}
+                          {playingPosition && playingPosition.playing_position} {mainTeam && `for ${mainTeam.team_name}`}
                         </Text>
                       </View>
                     </View>
@@ -155,17 +155,17 @@ class ProfileView extends React.Component {
                     <View style={styles.profileContentMainPadding}>
                       <View style={styles.displayFlexRowBasic}>
                         <View style={styles.scoreAltContent}>
-                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player, authPlayer })}>
+                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player, authPlayer, navigation })}>
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                0
+                                {player.followers && player.followers.length}
                               </Text>
                             </View>
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorScoreBlue} name="arrow-left" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
-                                0
+                                {player.following && player.following.length}
                               </Text>
                             </View>
                           </TouchableOpacity>
