@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import actions from '../../../actions';
+import selectors from './selectors';
 
 import styles from './styles';
 
@@ -12,12 +13,14 @@ import images from '../../../static/images';
 
 import { ConnectionView } from '../ConnectionsView/components';
 
-const FirstRoute = (toggleFollow, state, nationalityPlayers) => (
+const FirstRoute = (toggleFollow, state, nationalityPlayers, authUser) => (
   <ScrollView>
     <View style={styles.playerCardContainer}>
-      {nationalityPlayers.map(player => (
-        <ConnectionView id={player.id} player={player} key={player.id} />
-      ))}
+      {nationalityPlayers
+        .filter(player => player.user.id !== authUser.pk)
+        .map(player => (
+          <ConnectionView id={player.id} player={player} key={player.id} />
+        ))}
     </View>
   </ScrollView>
 );
@@ -61,7 +64,7 @@ class NationalityView extends React.Component {
   }
 
   getPlayers(index) {
-    const { getPlayersConnectionsByNation, navigation } = this.props;
+    const { getPlayersConnectionsByNation, navigation, authUser } = this.props;
 
     if (!index) {
       getPlayersConnectionsByNation(navigation.getParam('nationality'))
@@ -84,14 +87,15 @@ class NationalityView extends React.Component {
 
   render() {
     const { index, routes, secondNationalityPlayers, nationalityPlayers } = this.state;
+    const { authUser } = this.props;
 
     return (
       <TabView
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: () => FirstRoute(this.toggleFollow, this.state, nationalityPlayers),
-          second: () => FirstRoute(this.toggleFollow, this.state, secondNationalityPlayers),
+          first: () => FirstRoute(this.toggleFollow, this.state, nationalityPlayers, authUser),
+          second: () => FirstRoute(this.toggleFollow, this.state, secondNationalityPlayers, authUser),
         })}
         renderTabBar={props => (
           <TabBar
@@ -125,8 +129,9 @@ class NationalityView extends React.Component {
 }
 
 export default connect(
-  null,
+  selectors,
   {
     ...actions.players,
+    ...actions.user,
   },
 )(NationalityView);

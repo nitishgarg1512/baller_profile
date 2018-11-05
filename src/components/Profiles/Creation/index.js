@@ -44,7 +44,7 @@ class Creation extends Form {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
-          const { updatePlayer, values, navigation, getPlayerByUsername, authUser, authPlayer, nationsOptions, playingPositionsOptions } = this.props;
+          const { updateUser, updatePlayer, values, navigation, getPlayerByUsername, authUser, authPlayer, nationsOptions, playingPositionsOptions } = this.props;
           const { date } = this.state;
 
           const newValues = {
@@ -55,6 +55,9 @@ class Creation extends Form {
           };
           getPlayerByUsername(authUser.username)
             .then(({ result }) => {
+              updateUser(omit(merge(newValues, {
+                dob: date,
+              }), ['gender']), result.data[0].user.id);
               updatePlayer(omit(merge(newValues, {
                 dob: date,
               }), ['gender']), result.data[0].id)
@@ -235,5 +238,6 @@ export default connect(
     ...actions.player,
     ...actions.postcodes,
     ...actions.playingPositions,
+    ...actions.user,
   },
 )(Creation);

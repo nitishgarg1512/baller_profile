@@ -47,7 +47,7 @@ class TeamModal extends React.Component {
               <View style={styles.modalContainer}>
                 <View style={styles.displayFlexCenterRow}>
                   <UppercasedText style={styles.teamModalTitle}>
-                    {selectedTeam.team_name}
+                    {selectedTeam.team_name ? selectedTeam.team_name : 'No Team Name'}
                   </UppercasedText>
                 </View>
                 <View style={styles.TeamsSelectionModalCard}>

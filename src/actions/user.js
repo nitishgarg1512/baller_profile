@@ -22,4 +22,19 @@ export default {
       promise: client => client.get(paths.build(paths.api.USERS_ID, id)),
     },
   }),
+
+  updateUser: (values, id) => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.USER_UPDATE_REQUEST,
+        actions.USER_UPDATE_SUCCESS,
+        actions.USER_UPDATE_FAILURE,
+      ],
+      promise: client => {
+        console.log(paths.build(paths.api.USERS_ID, id));
+        console.log(values);
+        client.patch(paths.build(paths.api.USERS_ID + "/", id), values)
+      }
+    },
+  }),
 };

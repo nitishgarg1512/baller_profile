@@ -76,4 +76,7 @@ export default keyMirror({
   USER_GET_FAILURE: null,
   USER_GET_REQUEST: null,
   USER_GET_SUCCESS: null,
+  USER_UPDATE_REQUEST: null,
+  USER_UPDATE_SUCCESS: null,
+  USER_UPDATE_FAILURE: null,
 });

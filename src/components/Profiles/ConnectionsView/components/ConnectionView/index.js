@@ -34,7 +34,7 @@ class ConnectionView extends React.Component {
     const { player } = this.state;
 
     if (player.nationality) {
-      navigation.navigate(paths.client.ProfilesView, { id: player.id });
+      navigation.push(paths.client.ProfilesView, { id: player.id });
     }
   }
 
@@ -65,6 +65,8 @@ class ConnectionView extends React.Component {
 
     const position_team = `${position} ${team}`;
 
+    const following = player && player.followers && player.followers.find(p => p.user.id === authPlayer.user.id);
+
     return (
       <View style={styles.playerCard}>
         <View style={styles.flexCenterRow}>
@@ -90,9 +92,9 @@ class ConnectionView extends React.Component {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={this.handleCreateRelationship} style={[player && player.followers && player.followers.indexOf(authPlayer.user.id) === -1 ? styles.playerFollowButton : styles.playerFollowingButton]}>
-          <Text style={player && player.followers && player.followers.indexOf(authPlayer.user.id) === -1 ? styles.playerFollowButtonText : styles.playerFollowingButtonText}>
-            {player && player.followers && player.followers.indexOf(authPlayer.user.id) === -1 ? 'Follow' : 'Following'}
+        <TouchableOpacity onPress={this.handleCreateRelationship} style={[!following ? styles.playerFollowButton : styles.playerFollowingButton]}>
+          <Text style={!following ? styles.playerFollowButtonText : styles.playerFollowingButtonText}>
+            {!following ? 'Follow' : 'Following'}
           </Text>
         </TouchableOpacity>
       </View>

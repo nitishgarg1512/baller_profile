@@ -155,7 +155,7 @@ class ProfileView extends React.Component {
                     <View style={styles.profileContentMainPadding}>
                       <View style={styles.displayFlexRowBasic}>
                         <View style={styles.scoreAltContent}>
-                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player, authPlayer, navigation })}>
+                          <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesConnections, { player, authPlayer, navigation })}>
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -171,7 +171,7 @@ class ProfileView extends React.Component {
                           </TouchableOpacity>
                         </View>
                         <View style={styles.scoreContainer}>
-                          <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesConnections, { player })}>
+                          <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesConnections, { player })}>
                             <View style={styles.scoreContent}>
                               <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -180,7 +180,7 @@ class ProfileView extends React.Component {
                             </View>
                           </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesNationality, {
+                        <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesNationality, {
                           country: nation && nation.country,
                           nationality: nation && nation.nationality,
                           flag: nation && nation.flag,
