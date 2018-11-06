@@ -123,7 +123,7 @@ class ProfileView extends React.Component {
                         <View style={styles.flexRowItemsCenter}>
                           <Icon name="location" type="EvilIcons" style={styles.fontSize15} />
                           <Text style={[styles.fontSize10, styles.fontItalic, styles.colorGray]}>
-                            {(nation && nation.country) || 'Unknown'}
+                            {(player.user.postcode && player.user.postcode.city) || 'Unknown'}
                           </Text>
                         </View>
                         <View style={styles.detailsContainer}>
