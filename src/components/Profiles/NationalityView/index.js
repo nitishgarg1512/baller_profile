@@ -62,6 +62,12 @@ class NationalityView extends React.Component {
     this.getPlayers(index);
   }
 
+  componentWillUnmount() {
+    const { navigation } = this.props;
+    const refreshProfile = navigation.getParam('refreshProfile');
+    refreshProfile();
+  }
+
   getPlayers(index) {
     const { getPlayersConnectionsByNation, navigation, authUser } = this.props;
 

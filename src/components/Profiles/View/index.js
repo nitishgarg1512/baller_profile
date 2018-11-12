@@ -21,6 +21,7 @@ class ProfileView extends React.Component {
     super();
 
     this.state = {
+      id: 0,
       nation: '',
       playingPosition: {},
       mainTeam: null,
@@ -30,9 +31,17 @@ class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    const { navigation, getPlayer, getPlayersByNation, getAuthPlayer, nations, getNations, getPlayingPositions } = this.props;
+    const { navigation } = this.props;
 
     const id = navigation.getParam('id');
+
+    this.setState({ id }, this.handleGetPlayer);
+  }
+
+  handleGetPlayer = () => {
+    const { getPlayer, getPlayersByNation } = this.props;
+
+    const { id } = this.state;
 
     getPlayer(id)
       .then(({ result }) => {
@@ -133,9 +142,9 @@ class ProfileView extends React.Component {
                           {authPlayer.user.username === player.user.username
                             ? null
                             : (
-                              <TouchableOpacity onPress={() => this.handleCreateRelationship()} style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButton : styles.playerFollowButton}>
-                                <Text style={player.followers.indexOf(authPlayer.id) !== -1 ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
-                                  {player.followers.indexOf(authPlayer.id) !== -1 ? 'Following' : 'Follow'}
+                              <TouchableOpacity onPress={() => this.handleCreateRelationship()} style={player.followers.find(p => p.user.id === authPlayer.user.id) ? styles.playerFollowingButton : styles.playerFollowButton}>
+                                <Text style={player.followers.find(p => p.user.id === authPlayer.user.id) ? styles.playerFollowingButtonText : styles.playerFollowButtonText}>
+                                  {player.followers.find(p => p.user.id === authPlayer.user.id) ? 'Following' : 'Follow'}
                                 </Text>
                               </TouchableOpacity>
                             )
@@ -155,7 +164,13 @@ class ProfileView extends React.Component {
                     <View style={styles.profileContentMainPadding}>
                       <View style={styles.displayFlexRowBasic}>
                         <View style={styles.scoreAltContent}>
-                          <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesConnections, { player, authPlayer, navigation })}>
+                          <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesConnections, {
+                            player,
+                            authPlayer,
+                            navigation,
+                            refreshProfile: this.handleGetPlayer.bind(this),
+                          })}
+                          >
                             <View style={styles.flexStartRow}>
                               <Icon style={styles.colorRed} name="arrow-right" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -171,7 +186,11 @@ class ProfileView extends React.Component {
                           </TouchableOpacity>
                         </View>
                         <View style={styles.scoreContainer}>
-                          <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesConnections, { player })}>
+                          <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesConnections, {
+                            player,
+                            refreshProfile: this.handleGetPlayer.bind(this),
+                          })}
+                          >
                             <View style={styles.scoreContent}>
                               <Icon style={styles.colorGreen} name="arrow-up" type="Entypo" />
                               <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15, styles.pl5]}>
@@ -188,6 +207,7 @@ class ProfileView extends React.Component {
                           second_country: second_nationality && second_nationality.country,
                           second_flag: second_nationality && second_nationality.flag,
                           navigation,
+                          refreshProfile: this.handleGetPlayer.bind(this),
                         })}
                         >
                           <View style={styles.conutryContainer}>

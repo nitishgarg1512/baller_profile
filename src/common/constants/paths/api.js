@@ -13,7 +13,7 @@ export default {
   RELATIONSHIPS: `${serverUrl}/api/relationships/`,
   REQUESTS: `${serverUrl}/api/requests/`,
   TEAMS: `${serverUrl}/api/teams`,
-  TEAMS_CREATE: `${serverUrl}/api/teams`,
+  TEAMS_CREATE: `${serverUrl}/api/teams/`,
   TEAMS_ID: `${serverUrl}/api/teams/:id`,
   TEAMS_ID_PLAYERS: `${serverUrl}/api/teams/:id/players/`,
   USERS_ID: `${serverUrl}/api/users/:id`,

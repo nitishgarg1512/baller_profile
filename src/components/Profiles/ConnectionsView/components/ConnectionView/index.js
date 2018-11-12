@@ -20,13 +20,14 @@ class ConnectionView extends React.Component {
 
     this.state = {
       player: {},
+      following: null,
     };
   }
 
   componentDidMount() {
-    const { player } = this.props;
-
-    this.setState({ player });
+    const { player, authPlayer } = this.props;
+    const following = player && player.user && authPlayer.following && authPlayer.following.find(p => p.user.id === player.user.id);
+    this.setState({ player, following });
   }
 
   handleVisitProfile = () => {
@@ -39,33 +40,31 @@ class ConnectionView extends React.Component {
   }
 
   handleCreateRelationship = () => {
-    const { getPlayerConnection, createRelationship, deleteRelationship, id, authPlayer, player } = this.props;
+    const { getPlayerConnection, createRelationship, deleteRelationship, id, authPlayer, player, getAuthPlayer } = this.props;
 
-    if (player && player.followers && player.followers.indexOf(authPlayer.user.id) === -1) {
-      createRelationship(id)
-        .then(() => {
-          getPlayerConnection(id)
-            .then(({ result }) => this.setState({ player: result.data }));
-        });
-    } else {
+    if (player && player.user && authPlayer.following && authPlayer.following.find(p => p.user.id === player.user.id)) {
       deleteRelationship(id)
         .then(() => {
-          getPlayerConnection(id)
-            .then(({ result }) => this.setState({ player: result.data }));
+          this.setState({ following: false });
+        });
+    } else {
+      createRelationship(id)
+        .then(() => {
+          this.setState({ following: true });
         });
     }
+
+    getAuthPlayer(authPlayer.user.username);
   }
 
   render() {
     const { authPlayer } = this.props;
-    const { player } = this.state;
+    const { player, following } = this.state;
 
     const position = player.playing_position ? player.playing_position.playing_position : 'No position';
     const team = player.main_team ? `for ${player.main_team.team_name}` : '';
 
     const position_team = `${position} ${team}`;
-
-    const following = player && player.followers && player.followers.find(p => p.user.id === authPlayer.user.id);
 
     const btnFollow = player && player.user && player.user.id === authPlayer.user.id ? null : (
       <TouchableOpacity onPress={this.handleCreateRelationship} style={[!following ? styles.playerFollowButton : styles.playerFollowingButton]}>

@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const actionMap = {
-  [actions.PLAYER_GET_REQUEST]: state => ({ ...state, isLoading: true }),
+  [actions.PLAYER_GET_REQUEST]: state => ({ ...state, isLoading: false }),
   [actions.PLAYER_GET_SUCCESS]: (state, { result }) => ({ ...state, data: result.data[0] || result.data, isLoading: false }),
   [actions.PLAYER_GET_FAILURE]: state => ({ ...state, isLoading: false }),
 
