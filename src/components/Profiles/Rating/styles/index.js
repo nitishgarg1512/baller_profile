@@ -26,7 +26,7 @@ export default {
   },
   skillButtonText: {
     fontSize: 12,
-    fontFamily: 'center',
+    fontFamily: 'calibri',
     textAlign: 'center',
   },
   skillButton: {

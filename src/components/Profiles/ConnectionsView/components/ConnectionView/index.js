@@ -67,6 +67,14 @@ class ConnectionView extends React.Component {
 
     const following = player && player.followers && player.followers.find(p => p.user.id === authPlayer.user.id);
 
+    const btnFollow = player && player.user && player.user.id === authPlayer.user.id ? null : (
+      <TouchableOpacity onPress={this.handleCreateRelationship} style={[!following ? styles.playerFollowButton : styles.playerFollowingButton]}>
+        <Text style={!following ? styles.playerFollowButtonText : styles.playerFollowingButtonText}>
+          {!following ? 'Follow' : 'Following'}
+        </Text>
+      </TouchableOpacity>
+    );
+
     return (
       <View style={styles.playerCard}>
         <View style={styles.flexCenterRow}>
@@ -92,18 +100,14 @@ class ConnectionView extends React.Component {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={this.handleCreateRelationship} style={[!following ? styles.playerFollowButton : styles.playerFollowingButton]}>
-          <Text style={!following ? styles.playerFollowButtonText : styles.playerFollowingButtonText}>
-            {!following ? 'Follow' : 'Following'}
-          </Text>
-        </TouchableOpacity>
+        {btnFollow}
       </View>
     );
   }
 }
 
 ConnectionView.propTypes = {
-  //navigation: PropTypes.shape({}).isRequired,
+  navigation: PropTypes.shape({}).isRequired,
 };
 
 export default connect(

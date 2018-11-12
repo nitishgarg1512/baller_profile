@@ -187,6 +187,7 @@ class ProfileView extends React.Component {
                           second_nationality: second_nationality && second_nationality.nationality,
                           second_country: second_nationality && second_nationality.country,
                           second_flag: second_nationality && second_nationality.flag,
+                          navigation,
                         })}
                         >
                           <View style={styles.conutryContainer}>

@@ -13,13 +13,12 @@ import images from '../../../static/images';
 
 import { ConnectionView } from '../ConnectionsView/components';
 
-const FirstRoute = (toggleFollow, state, nationalityPlayers, authUser) => (
+const FirstRoute = (toggleFollow, state, nationalityPlayers, authUser, navigation) => (
   <ScrollView>
     <View style={styles.playerCardContainer}>
       {nationalityPlayers
-        .filter(player => player.user.id !== authUser.pk)
         .map(player => (
-          <ConnectionView id={player.id} player={player} key={player.id} />
+          <ConnectionView id={player.id} player={player} key={player.id} navigation={navigation} />
         ))}
     </View>
   </ScrollView>
@@ -87,15 +86,15 @@ class NationalityView extends React.Component {
 
   render() {
     const { index, routes, secondNationalityPlayers, nationalityPlayers } = this.state;
-    const { authUser } = this.props;
+    const { authUser, navigation } = this.props;
 
     return (
       <TabView
         navigationState={this.state}
         tabStyle={styles.bgWhite}
         renderScene={SceneMap({
-          first: () => FirstRoute(this.toggleFollow, this.state, nationalityPlayers, authUser),
-          second: () => FirstRoute(this.toggleFollow, this.state, secondNationalityPlayers, authUser),
+          first: () => FirstRoute(this.toggleFollow, this.state, nationalityPlayers, authUser, navigation),
+          second: () => FirstRoute(this.toggleFollow, this.state, secondNationalityPlayers, authUser, navigation),
         })}
         renderTabBar={props => (
           <TabBar

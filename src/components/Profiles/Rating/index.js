@@ -67,16 +67,16 @@ class Rating extends React.Component {
                         </Text>
                       </View>
                       <Text style={styles.descText}>
-                        {player.playing_position}
+                        {player.playing_position.playing_position}
                       </Text>
                     </View>
                   </View>
                   <View style={styles.flexItemsEndColumn}>
                     <Text style={styles.attributeText}>
-                    0 Attributes
+                      0 Attributes
                     </Text>
                     <Text style={styles.attributeText}>
-                    0 Ratings
+                      0 Ratings
                     </Text>
                   </View>
                 </View>
@@ -85,12 +85,12 @@ class Rating extends React.Component {
                   <View style={styles.skillPillContainer}>
                     <TouchableOpacity style={[styles.skillPill]}>
                       <Text style={styles.skillPillText}>
-                      Dribbling
+                        Dribbling
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.skillPillScore]}>
                       <Text style={styles.skillPillText}>
-                      0
+                        0
                       </Text>
                     </TouchableOpacity>
                     <Right>
@@ -100,12 +100,12 @@ class Rating extends React.Component {
                   <View style={styles.skillPillContainer}>
                     <TouchableOpacity style={[styles.skillPill]}>
                       <Text style={styles.skillPillText}>
-                      Shot Accuracy
+                        Shot Accuracy
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.skillPillScore]}>
                       <Text style={styles.skillPillText}>
-                      0
+                        0
                       </Text>
                     </TouchableOpacity>
                     <Right>
@@ -115,12 +115,12 @@ class Rating extends React.Component {
                   <View style={styles.skillPillContainer}>
                     <TouchableOpacity style={[styles.skillPill]}>
                       <Text style={styles.skillPillText}>
-                      Tackling
+                        Tackling
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.skillPillScore]}>
                       <Text style={styles.skillPillText}>
-                      0
+                        0
                       </Text>
                     </TouchableOpacity>
                     <Right>
@@ -130,12 +130,12 @@ class Rating extends React.Component {
                   <View style={styles.skillPillContainer}>
                     <TouchableOpacity style={[styles.skillPill]}>
                       <Text style={styles.skillPillText}>
-                      Mentar Strength
+                        Mentar Strength
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.skillPillScore]}>
                       <Text style={styles.skillPillText}>
-                      0
+                        0
                       </Text>
                     </TouchableOpacity>
                     <Right>
@@ -146,7 +146,7 @@ class Rating extends React.Component {
                 <View style={styles.hrLineSecondary} />
                 <View style={styles.attackingContainer}>
                   <Text style={styles.attackingText}>
-                  Attacking
+                    Attacking
                   </Text>
                 </View>
                 <View style={styles.hrLineSecondary} />
@@ -154,46 +154,46 @@ class Rating extends React.Component {
                   <View style={styles.secondarySkillsContent}>
                     <TouchableOpacity style={styles.skillButton}>
                       <Text style={styles.skillButtonText}>
-                      Finishing
+                        Finishing
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.skillButton}>
                       <Text style={styles.skillButtonText}>
-                      Long Range Shots
+                        Long Range Shots
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.skillButton}>
                       <Text style={styles.skillButtonText}>
-                      Dribbling
+                        Dribbling
                       </Text>
                     </TouchableOpacity>
                   </View>
                   <View style={styles.skillsButtonContentAlternate}>
                     <TouchableOpacity style={styles.skillButtonAlternate}>
                       <Text style={styles.skillButtonText}>
-                      Counterattacking
+                        Counterattacking
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.skillButton}>
                       <Text style={styles.skillButtonText}>
-                      Assists
+                        Assists
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.skillButton}>
                       <Text style={styles.skillButtonText}>
-                      Through Balls
+                        Through Balls
                       </Text>
                     </TouchableOpacity>
                   </View>
                   <View style={styles.skillsButtonContentAlternate}>
                     <TouchableOpacity style={styles.skillButtonAlternate}>
                       <Text style={styles.skillButtonText}>
-                      Heading on Goal
+                        Heading on Goal
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.skillButtonAlternate}>
                       <Text style={styles.skillButtonText}>
-                      Off Ball Runs
+                        Off Ball Runs
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -204,7 +204,7 @@ class Rating extends React.Component {
           <View style={styles.footer}>
             <TouchableOpacity style={styles.footerButton}>
               <UppercasedText style={styles.bottomMainButtonText}>
-              Done
+                Done
               </UppercasedText>
             </TouchableOpacity>
           </View>
