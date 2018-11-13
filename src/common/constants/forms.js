@@ -5,4 +5,5 @@ export default keyMirror({
   LOGIN: null,
   TEAMS_CREATION: null,
   PROFILES_CREATION: null,
+  PROFILES_EDIT: null,
 });
