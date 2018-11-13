@@ -20,7 +20,7 @@ class Form extends React.Component {
         this.handleOnBlur(value, fieldId);
       },
       onChange: this.handleOnChange,
-      value: get(values, id, get(initialValues, id)),
+      value: get(values, id, get(initialValues, id)) === undefined ? options.defaultValue : get(values, id, get(initialValues, id)),
     };
   }
 
@@ -56,6 +56,10 @@ class Form extends React.Component {
 
   handleOnChange = (value, id) => {
     const { updateField } = this.props;
+
+    console.log(id);
+    console.log(value);
+    console.log(this.formId);
 
     updateField(id, value, this.formId);
   }

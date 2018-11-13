@@ -38,6 +38,12 @@ class ProfileView extends React.Component {
     this.setState({ id }, this.handleGetPlayer);
   }
 
+  setting = (id) => {
+    const { navigation } = this.props;
+
+    navigation.navigate(paths.client.ProfilesSetting, { id });
+  }
+
   handleGetPlayer = () => {
     const { getPlayer, getPlayersByNation } = this.props;
 
@@ -136,7 +142,7 @@ class ProfileView extends React.Component {
                           </Text>
                         </View>
                         <View style={styles.detailsContainer}>
-                          <TouchableOpacity onPress={() => this.logout()}>
+                          <TouchableOpacity onPress={() => this.setting(authPlayer.id)}>
                             <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
                           </TouchableOpacity>
                           {authPlayer.user.username === player.user.username

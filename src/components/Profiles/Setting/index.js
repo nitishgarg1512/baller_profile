@@ -10,33 +10,67 @@ import selectors from './selectors';
 
 import styles from '../common/styles';
 
+import styles2 from './styles';
+
 import { UppercasedText, Form, Input, Select, Autocomplete } from '../../common/components';
 
 import actions from '../../../actions';
 import { paths, forms } from '../../../common/constants';
 
-class Creation extends Form {
+class Setting extends Form {
   static navigationOptions = {
-    header: null,
+    headerTitle: (
+      <Text style={styles2.navigationText}>
+        Settings
+      </Text>
+    ),
+    headerStyle: {
+      backgroundColor: '#0071c0',
+    },
+    headerTintColor: 'white',
   }
 
   componentDidMount() {
-    const { getNations, getPostcodes, getPlayingPositions } = this.props;
+    const { getNations, getPostcodes, getPlayingPositions, navigation } = this.props;
 
     getPostcodes();
     getNations();
     getPlayingPositions();
+
+    const id = navigation.getParam('id');
+
+    this.setState({ id }, this.handleGetPlayer);
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       errors: {},
       validating: {},
+      id: 0,
+      player: {},
+      date: null,
     };
 
     this.formId = forms.PROFILES_EDIT;
+  }
+
+  handleGetPlayer = () => {
+    const { getPlayer } = this.props;
+
+    const { id } = this.state;
+
+    getPlayer(id)
+      .then(({ result }) => {
+        this.setState({
+          player: result.data,
+          date: result.data.user && result.data.user.dob,
+        });
+      }).catch((error) => {
+        console.log('[Error] CallAPI: getPlayer');
+        alert(error);
+      });
   }
 
   handleCreate = () => {
@@ -77,12 +111,14 @@ class Creation extends Form {
   render() {
     const { isSubmitting, navigation, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions, authUser } = this.props;
 
+    const { player } = this.state;
+
     return (
       <Container>
         <Content>
           <View style={styles.displayFlexCenterColumn}>
             <Text style={styles.TeamsSelectionTitle}>
-              Create your player profile
+              Edit Profile
             </Text>
             <Text style={[styles.profileCreationSubtitle, styles.py10]}>
               Add your details to join the
@@ -107,7 +143,9 @@ class Creation extends Form {
             <View style={{ display: 'flex', flexDirection: 'column' }}>
               <Text>Playing position</Text>
               <Select
-                {...this.getFieldProps('playing_position')}
+                {...this.getFieldProps('playing_position', {
+                  defaultValue: player && player.playing_position && player.playing_position.id,
+                })}
                 itemStyle={styles.findTeamItem}
                 labelStyle={styles.itemLabel}
                 label="Playing position"
@@ -119,7 +157,9 @@ class Creation extends Form {
             <View style={{ display: 'flex', flexDirection: 'column' }}>
               <Text>Nationality (main)</Text>
               <Select
-                {...this.getFieldProps('nationality')}
+                {...this.getFieldProps('nationality', {
+                  defaultValue: player && player.nationality && player.nationality.id,
+                })}
                 itemStyle={styles.findTeamItem}
                 labelStyle={styles.itemLabel}
                 label="Nationality (main)"
@@ -131,7 +171,9 @@ class Creation extends Form {
             <View style={{ display: 'flex', flexDirection: 'column' }}>
               <Text>Nationality (secondary)</Text>
               <Select
-                {...this.getFieldProps('second_nationality')}
+                {...this.getFieldProps('second_nationality', {
+                  defaultValue: player && player.second_nationality && player.second_nationality.id,
+                })}
                 itemStyle={styles.findTeamItem}
                 labelStyle={styles.itemLabel}
                 label="Nationality (secondary)"
@@ -159,7 +201,9 @@ class Creation extends Form {
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <Input
-              {...this.getFieldProps('region')}
+              {...this.getFieldProps('region', {
+                defaultValue: player && player.user && player.user.postcode && player.user.postcode.id,
+              })}
               labelStyle={styles.itemLabelRegion}
               label="Region"
               disabled
@@ -223,7 +267,7 @@ class Creation extends Form {
   }
 }
 
-Creation.propTypes = {
+Setting.propTypes = {
   getPostcodes: PropTypes.func.isRequired,
   navigation: PropTypes.shape({}).isRequired,
 };
@@ -239,4 +283,4 @@ export default connect(
     ...actions.playingPositions,
     ...actions.user,
   },
-)(Creation);
+)(Setting);
