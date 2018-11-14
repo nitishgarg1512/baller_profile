@@ -139,7 +139,7 @@ class Join extends React.Component {
                     <TouchableOpacity onPress={this.logout} style={styles.playerFollowButton}>
                       <Text style={styles.playerFollowButtonText}>
                         Logout
-                    </Text>
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 </TouchableOpacity>
@@ -150,7 +150,7 @@ class Join extends React.Component {
         <View style={[styles.footer]}>
           <TouchableOpacity onPress={() => this.handleJoin()} style={styles.footerButton}>
             <UppercasedText style={styles.bottomMainButtonText}>
-              {`Join ${team ? team.abbreviated_name : ''}`}
+              {`Join ${team ? team.team_name : ''}`}
             </UppercasedText>
           </TouchableOpacity>
         </View>
