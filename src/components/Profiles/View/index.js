@@ -143,9 +143,14 @@ class ProfileView extends React.Component {
                           </Text>
                         </View>
                         <View style={styles.detailsContainer}>
-                          <TouchableOpacity onPress={() => this.setting(authPlayer.id)}>
-                            <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                          </TouchableOpacity>
+                          {authPlayer.user.username !== player.user.username
+                            ? null
+                            : (
+                              <TouchableOpacity onPress={() => this.setting(authPlayer.id)}>
+                                <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
+                              </TouchableOpacity>
+                            )
+                          }
                           {authPlayer.user.username === player.user.username
                             ? null
                             : (
