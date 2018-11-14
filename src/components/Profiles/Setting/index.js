@@ -51,6 +51,7 @@ class Setting extends Form {
       id: 0,
       player: {},
       date: null,
+      mainTeamId: 0
     };
 
     this.formId = forms.PROFILES_EDIT;
@@ -77,9 +78,14 @@ class Setting extends Form {
     this.handleSubmit()
       .then((canSubmit) => {
         if (canSubmit) {
-          const { updateUser, updatePlayer, values, navigation, getPlayerByUsername, authUser, authPlayer, nationsOptions, playingPositionsOptions } = this.props;
+          const {
+            updateUser, updatePlayer, values, navigation, getPlayerByUsername,
+            authUser, authPlayer, nationsOptions, playingPositionsOptions, updateMainTeam } = this.props;
           const { date } = this.state;
 
+
+          console.log(values);
+          return false;
           const newValues = {
             ...values,
             second_nationality: values.second_nationality ? values.second_nationality : nationsOptions[0].value,
@@ -91,6 +97,9 @@ class Setting extends Form {
               updateUser(omit(merge(newValues, {
                 dob: date,
               }), ['gender']), result.data[0].user.id);
+              // updateMainTeam(result.data[0].id, {
+              //     'team_id': 
+              // });
               updatePlayer(omit(merge(newValues, {
                 dob: date,
               }), ['gender']), result.data[0].id)
@@ -150,6 +159,20 @@ class Setting extends Form {
                 labelStyle={styles.itemLabel}
                 label="Playing position"
                 options={playingPositionsOptions}
+              />
+            </View>
+          </View>
+          <View style={styles.displayFlexCenterRowCreation}>
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
+              <Text>Main team</Text>
+              <Select
+                {...this.getFieldProps('main_team', {
+                  defaultValue: player && player.main_team && player.main_team.id,
+                })}
+                itemStyle={styles.findTeamItem}
+                labelStyle={styles.itemLabel}
+                label="Main Team"
+                options={player && player.teams && player.teams.map(team => ({ label: team.team_name, value: team.id }))}
               />
             </View>
           </View>

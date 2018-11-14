@@ -16,6 +16,7 @@ export default {
   TEAMS_CREATE: `${serverUrl}/api/teams/`,
   TEAMS_ID: `${serverUrl}/api/teams/:id`,
   TEAMS_ID_PLAYERS: `${serverUrl}/api/teams/:id/players/`,
+  TEAMS_SELECT_MAINTEAM: `${serverUrl}/api/team-main/:id/`,
   USERS_ID: `${serverUrl}/api/users/:id`,
   USER_AUTH: `${serverUrl}/api/auth/user/`,
 };

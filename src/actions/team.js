@@ -33,4 +33,15 @@ export default {
       promise: client => client.get(paths.build(paths.api.TEAMS_ID_PLAYERS, id)),
     },
   }),
+
+  updateMainTeam: (id, data) => ({
+    [actions.API_CALL]: {
+      types: [
+        actions.TEAM_UPDATE_MAINTEAM_FAILURE,
+        actions.TEAM_UPDATE_MAINTEAM_REQUEST,
+        actions.TEAM_UPDATE_MAINTEAM_SUCCESS,
+      ],
+      promise: client => client.patch(paths.build(paths.api.TEAMS_SELECT_MAINTEAM, id), data),
+    },
+  }),
 };

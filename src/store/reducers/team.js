@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   hasFailedToLoad: false,
   players: [],
+  teamAfterUpdate: {},
 };
 
 const actionMap = {
@@ -15,6 +16,10 @@ const actionMap = {
   [actions.TEAM_GET_PLAYERS_REQUEST]: state => ({ ...state, isLoading: true }),
   [actions.TEAM_GET_PLAYERS_SUCCESS]: (state, { result }) => ({ ...state, isLoading: false, players: result.data }),
   [actions.TEAM_GET_PLAYERS_FAILURE]: state => ({ ...state, isLoading: false }),
+
+  [actions.TEAM_UPDATE_MAINTEAM_FAILURE]: state => ({ ...state, isLoading: true }),
+  [actions.TEAM_UPDATE_MAINTEAM_SUCCESS]: (state, { result }) => ({ ...state, isLoading: false, teamAfterUpdate: result.data }),
+  [actions.TEAM_UPDATE_MAINTEAM_FAILURE]: state => ({ ...state, isLoading: false }),
 };
 
 export default (state = initialState, action) => {
