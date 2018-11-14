@@ -2,7 +2,7 @@ import DatePicker from 'react-native-datepicker';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, Icon, Content } from 'native-base';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { omit, merge } from 'lodash';
 
@@ -42,6 +42,12 @@ class Setting extends Form {
     this.setState({ id }, this.handleGetPlayer);
   }
 
+  componentWillUnmount() {
+    const { navigation } = this.props;
+    const refreshProfile = navigation.getParam('refreshProfile');
+    refreshProfile();
+  }
+
   constructor(props) {
     super(props);
 
@@ -51,7 +57,6 @@ class Setting extends Form {
       id: 0,
       player: {},
       date: null,
-      mainTeamId: 0
     };
 
     this.formId = forms.PROFILES_EDIT;
@@ -79,32 +84,35 @@ class Setting extends Form {
       .then((canSubmit) => {
         if (canSubmit) {
           const {
-            updateUser, updatePlayer, values, navigation, getPlayerByUsername,
-            authUser, authPlayer, nationsOptions, playingPositionsOptions, updateMainTeam } = this.props;
-          const { date } = this.state;
+            updateUser, updatePlayer, values, navigation,
+            authPlayer, nationsOptions, playingPositionsOptions, updateMainTeam } = this.props;
+          const { date, player } = this.state;
 
+          const nationality = player && player.nationality ? player.nationality.id : nationsOptions[0].value;
+          const second_nationality = player && player.second_nationality ? player.second_nationality.id : nationsOptions[0].value;
+          const playing_position = player && player.playing_position ? player.playing_position.id : playingPositionsOptions[0].value;
 
-          console.log(values);
-          return false;
           const newValues = {
             ...values,
-            second_nationality: values.second_nationality ? values.second_nationality : nationsOptions[0].value,
-            playing_position: values.playing_position ? values.playing_position : playingPositionsOptions[0].value,
-            nationality: values.nationality ? values.nationality : nationsOptions[0].value,
+            second_nationality: values.second_nationality ? values.second_nationality : second_nationality,
+            playing_position: values.playing_position ? values.playing_position : playing_position,
+            nationality: values.nationality ? values.nationality : nationality,
+            gender: values.gender ? values.gender : 'male',
           };
-          getPlayerByUsername(authUser.username)
-            .then(({ result }) => {
-              updateUser(omit(merge(newValues, {
-                dob: date,
-              }), ['gender']), result.data[0].user.id);
-              // updateMainTeam(result.data[0].id, {
-              //     'team_id': 
-              // });
-              updatePlayer(omit(merge(newValues, {
-                dob: date,
-              }), ['gender']), result.data[0].id)
-                .then(() => navigation.navigate(paths.client.ProfilesView, { id: authPlayer.id }));
+
+          if (newValues.main_team) {
+            updateMainTeam(authPlayer.id, {
+              team_id: newValues.main_team,
             });
+          }
+          updatePlayer(omit(merge(newValues, {
+            dob: date,
+          }), ['gender']), authPlayer.id);
+
+          updateUser(omit(merge(newValues, {
+            dob: date,
+          }), ['gender']), authPlayer.user.id)
+            .then(() => navigation.goBack());
         }
 
         return canSubmit;
@@ -115,6 +123,13 @@ class Setting extends Form {
     const { updateField } = this.props;
 
     updateField('region', item.region, this.formId);
+  }
+
+  logout = () => {
+    const { navigation } = this.props;
+
+    AsyncStorage.clear()
+      .then(() => navigation.navigate(paths.client.Login));
   }
 
   render() {
@@ -150,6 +165,13 @@ class Setting extends Form {
           </View>
           <View style={styles.displayFlexCenterRowCreation}>
             <View style={{ display: 'flex', flexDirection: 'column' }}>
+              <TouchableOpacity onPress={() => this.logout()}>
+                <Text>Logout</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.displayFlexCenterRowCreation}>
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
               <Text>Playing position</Text>
               <Select
                 {...this.getFieldProps('playing_position', {
@@ -172,7 +194,7 @@ class Setting extends Form {
                 itemStyle={styles.findTeamItem}
                 labelStyle={styles.itemLabel}
                 label="Main Team"
-                options={player && player.teams && player.teams.map(team => ({ label: team.team_name, value: team.id }))}
+                options={player && player.teams ? player.teams.map(team => ({ label: team.team_name, value: team.id })) : []}
               />
             </View>
           </View>
@@ -305,5 +327,6 @@ export default connect(
     ...actions.postcodes,
     ...actions.playingPositions,
     ...actions.user,
+    ...actions.team,
   },
 )(Setting);

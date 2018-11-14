@@ -41,7 +41,7 @@ class ProfileView extends React.Component {
   setting = (id) => {
     const { navigation } = this.props;
 
-    navigation.navigate(paths.client.ProfilesSetting, { id });
+    navigation.navigate(paths.client.ProfilesSetting, { id, refreshProfile: this.handleGetPlayer.bind(this) });
   }
 
   handleGetPlayer = () => {
@@ -51,6 +51,7 @@ class ProfileView extends React.Component {
 
     getPlayer(id)
       .then(({ result }) => {
+        console.log(result.data.playing_position);
         this.setState({
           backgroundProfile: result.data.background_pic ? result.data.background_pic : images.profilebg,
           playingPosition: result.data.playing_position,
