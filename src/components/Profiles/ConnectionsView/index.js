@@ -9,7 +9,7 @@ const FirstRoute = (toggleFollow, state, player, navigation) => (
   <ScrollView>
     <View style={styles.playerCardContainer}>
       {player && player.followers && player.followers.map(follower => (
-        <ConnectionView key={follower.id} player={follower} navigation={navigation} isFollower />
+        <ConnectionView key={follower.id} id={follower.id} player={follower} navigation={navigation} isFollower />
       ))}
     </View>
   </ScrollView>
@@ -19,7 +19,7 @@ const SecondRoute = (toggleFollow, state, player, navigation) => (
   <ScrollView>
     <View style={styles.playerCardContainer}>
       {player && player.following && player.following.map(following => (
-        <ConnectionView key={following.id} player={following} navigation={navigation} isFollowing />
+        <ConnectionView key={following.id} id={following.id} player={following} navigation={navigation} isFollowing />
       ))}
     </View>
   </ScrollView>

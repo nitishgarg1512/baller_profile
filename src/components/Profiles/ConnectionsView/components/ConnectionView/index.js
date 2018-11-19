@@ -25,7 +25,7 @@ class ConnectionView extends React.Component {
   }
 
   componentDidMount() {
-    const { player, authPlayer } = this.props;
+    const { authUser, getAuthPlayer, authPlayer, player } = this.props;
     const following = player && player.user && authPlayer.following && authPlayer.following.find(p => p.user.id === player.user.id);
     this.setState({ player, following });
   }
@@ -40,7 +40,7 @@ class ConnectionView extends React.Component {
   }
 
   handleCreateRelationship = () => {
-    const { getPlayerConnection, createRelationship, deleteRelationship, id, authPlayer, player, getAuthPlayer } = this.props;
+    const { createRelationship, deleteRelationship, id, authPlayer, player, getAuthPlayer } = this.props;
 
     if (player && player.user && authPlayer.following && authPlayer.following.find(p => p.user.id === player.user.id)) {
       deleteRelationship(id)
