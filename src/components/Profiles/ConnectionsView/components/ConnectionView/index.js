@@ -62,7 +62,11 @@ class ConnectionView extends React.Component {
     const { player, following } = this.state;
 
     const position = player.playing_position ? player.playing_position.playing_position : 'No position';
-    const team = player.main_team ? `for ${player.main_team.team_name}` : '';
+    let team = player.main_team ? `for ${player.main_team.team_name}` : '';
+
+    if (team === '') {
+      team = player.teams && player.teams[0] ? `for ${player.teams[0].team_name}` : '';
+    }
 
     const position_team = `${position} ${team}`;
 

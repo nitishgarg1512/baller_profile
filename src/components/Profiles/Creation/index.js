@@ -2,7 +2,7 @@ import DatePicker from 'react-native-datepicker';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, Icon, Content } from 'native-base';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Image, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { omit, merge } from 'lodash';
 
@@ -13,6 +13,7 @@ import styles from '../common/styles';
 import { UppercasedText, Form, Input, Select, Autocomplete } from '../../common/components';
 
 import actions from '../../../actions';
+import images from '../../../static/images';
 import { paths, forms } from '../../../common/constants';
 
 class Creation extends Form {
@@ -35,6 +36,7 @@ class Creation extends Form {
     this.state = {
       errors: {},
       validating: {},
+      showNotify: false,
     };
 
     this.formId = forms.PROFILES_CREATION;
@@ -61,12 +63,24 @@ class Creation extends Form {
               updatePlayer(omit(merge(newValues, {
                 dob: date,
               }), ['gender']), result.data[0].id)
-                .then(() => navigation.navigate(paths.client.ProfilesView, { id: authPlayer.id }));
+                .then(() => {
+                  if (navigation.getParam('redirect') && navigation.getParam('redirect') === 'join_team_message') {
+                    this.setState({ showNotify: true });
+                  } else {
+                    navigation.navigate(paths.client.ProfilesView, { id: authPlayer.id });
+                  }
+                });
             });
         }
 
         return canSubmit;
       });
+  }
+
+  onClose = () => {
+    const { navigation } = this.props;
+
+    navigation.push(paths.client.WhatsNext);
   }
 
   handleSelectPostcode = (item) => {
@@ -78,7 +92,7 @@ class Creation extends Form {
   render() {
     const { isSubmitting, navigation, gendersOptions, nationsOptions, playingPositionsOptions, postcodesOptions, authUser } = this.props;
 
-    return (
+    const createdView = (
       <Container>
         <Content>
           <View style={styles.displayFlexCenterColumn}>
@@ -220,6 +234,47 @@ class Creation extends Form {
           </TouchableOpacity>
         </View>
       </Container>
+    )
+
+    const selectedTeam = navigation.getParam('selecedTeam');
+    const notifyView = (
+      <Container>
+        <Content>
+          <View style={styles.modalContainer}>
+            <View style={styles.displayFlexCenterRow}>
+              <UppercasedText style={styles.TeamsSelectionTitle2}>
+                You're almost there!
+              </UppercasedText>
+            </View>
+            <View style={styles.TeamsSelectionModalCard}>
+              <View style={styles.TeamsSelectionModalCardImage}>
+                <Image
+                  style={styles.teamCardImage}
+                  source={selectedTeam && selectedTeam.team_badge ? { uri: selectedTeam.team_badge } : images.team}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.displayFlexCenterColumn}>
+                <Text style={styles.TeamsSelectionModalDetailsText2}>
+                  The {navigation.getParam('team_name') || ' '} team captain and team admins have been notified... They will add you to the squad as soon as posible
+                </Text>
+              </View>
+            </View>
+          </View>
+        </Content>
+        <View style={styles.footerModal}>
+          <TouchableOpacity onPress={this.onClose} style={styles.footerButtonModal}>
+            <UppercasedText style={styles.bottomMainButtonTextModal}>
+              Done
+            </UppercasedText>
+          </TouchableOpacity>
+        </View>
+      </Container>
+    )
+
+    const { showNotify } = this.state;
+    return (
+      !showNotify ? createdView : notifyView
     );
   }
 }

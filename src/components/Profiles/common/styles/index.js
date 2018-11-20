@@ -469,4 +469,19 @@ export default {
   pt20: {
     paddingTop: 20,
   },
+  TeamsSelectionTitle2: {
+    marginTop: 50,
+    fontFamily: 'calibri-bold',
+    fontWeight: 'bold',
+    color: '#000',
+    fontSize: 25,
+    textAlign: 'center',
+  },
+  TeamsSelectionModalDetailsText2: {
+    fontFamily: 'calibri-italic',
+    fontSize: 18,
+    textAlign: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
 };

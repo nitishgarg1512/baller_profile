@@ -48,7 +48,7 @@ class Join extends React.Component {
   }
 
   handleJoin = () => {
-    const { createRequest, authUser } = this.props;
+    const { createRequest, authUser, navigation } = this.props;
     const { team } = this.state;
 
     const requestData = {
@@ -57,7 +57,10 @@ class Join extends React.Component {
       status: 'Waiting',
     };
 
-    createRequest(requestData);
+    createRequest(requestData)
+      .then(() => {
+        navigation.push(paths.client.ProfilesCreation, { redirect: 'join_team_message', team_name: team.team_name, selectedTeam: team });
+      });
   }
 
   logout = () => {
