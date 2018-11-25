@@ -25,6 +25,7 @@ class ProfileView extends React.Component {
       nation: '',
       playingPosition: {},
       mainTeam: null,
+      teams: null,
       nationalityPlayers: 0,
       backgroundProfile: images.profilebg,
     };
@@ -56,6 +57,7 @@ class ProfileView extends React.Component {
           backgroundProfile: result.data.background_pic ? result.data.background_pic : images.profilebg,
           playingPosition: result.data.playing_position,
           mainTeam: result.data.main_team,
+          teams: result.data.teams,
           nation: result.data.nationality,
           second_nationality: result.data.second_nationality,
         });
@@ -95,13 +97,19 @@ class ProfileView extends React.Component {
 
   render() {
     const { navigation, player, isLoading, players, authPlayer, nations, playingPositions } = this.props;
-    const { backgroundProfile, nation, playingPosition, second_nationality, nationalityPlayers, mainTeam } = this.state;
+    const { backgroundProfile, nation, playingPosition, second_nationality, nationalityPlayers, mainTeam, teams } = this.state;
 
     let content = (
       <View style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="rgba(0,0,0,.6)" />
       </View>
     );
+
+    let team = mainTeam ? `for ${mainTeam.team_name}` : '';
+
+    if (team === '') {
+      team = teams && teams[0] ? `for ${teams[0].team_name}` : '';
+    }
 
     if (!isEmpty(player) && !isLoading && player.user) {
       content = (
@@ -168,7 +176,7 @@ class ProfileView extends React.Component {
                           {`${player.user.first_name} ${player.user.last_name}`}
                         </Text>
                         <Text style={[styles.fontSize15, styles.fontItalic, styles.colorGray]}>
-                          {playingPosition && playingPosition.playing_position} {mainTeam && `for ${mainTeam.team_name}`}
+                          {playingPosition && playingPosition.playing_position} {team}
                         </Text>
                       </View>
                     </View>
