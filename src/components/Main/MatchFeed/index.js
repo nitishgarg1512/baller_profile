@@ -6,12 +6,6 @@ import { View } from 'react-native';
 import actions from '../../../actions';
 
 class MatchFeed extends React.Component {
-    static navigationOptions = {
-        header: {
-            visible: false
-        }
-    };
-
     constructor(props) {
         super(props);
     }
