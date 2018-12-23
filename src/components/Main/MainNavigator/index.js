@@ -47,7 +47,7 @@ const MainNavigator = createBottomTabNavigator(
           </FooterTab>
         </Footer>
       );
-    }
+    },
   }
 );
 
