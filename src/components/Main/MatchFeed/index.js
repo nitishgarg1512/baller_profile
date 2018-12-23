@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
+
+import { Header, UpcomingMatch, Result, FastestGoals } from './components';
+
+import styles from './styles';
 
 import actions from '../../../actions';
 
@@ -11,7 +15,16 @@ class MatchFeed extends React.Component {
     }
 
     render() {
-        return <View style={{backgroundColor: 'green', flex: 1}} />
+        return (
+            <View style={styles.container}>
+                <Header />
+                <ScrollView>
+                    <UpcomingMatch />
+                    <Result />
+                    <FastestGoals />
+                </ScrollView>
+            </View>
+        )
     }
 }
 
