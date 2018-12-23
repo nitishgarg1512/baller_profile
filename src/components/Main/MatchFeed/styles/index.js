@@ -33,4 +33,36 @@ export default {
     height: 100,
     backgroundColor: 'green',
   },
+  h3: {
+    fontFamily: 'calibri',
+    fontSize: 20,
+    textTransform: 'capitalize',
+  },
+  group: {
+    borderColor: '#AAAAAA',
+    borderWidth: 0.8,
+  },
+  leagueName: {
+    fontFamily: 'calibri',
+    fontSize: 9,
+  },
+  matchGroup: {
+    margin: 10,
+  },
+  match: {
+
+  },
+  teamName: {
+    fontFamily: 'calibri',
+    fontSize: 9,
+  },
+  infoMatch: {
+
+  },
+  notificationsItem: {
+
+  },
+  likeItem: {
+
+  }
 };
