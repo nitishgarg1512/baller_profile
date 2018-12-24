@@ -1,33 +1,53 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import styles from '../../styles';
+
+const logoImg = require('../../../../../static/images/logo.png');
 const likeImg = require('../../../../../static/images/likes.png');
+const leagueImg = require('../../../../../static/images/league.png');
+const chelseaImg = require('../../../../../static/images/chelsea.png');
 
 const Item = () => {
     return (
-        <View>
+        <View style={styles.itemContainer}>
             <Text style={styles.h3}>SATURDAY, AUGUST 12</Text>
             <View style={styles.group}>
-                <View>
-                    <Text style={styles.leagueName}>Premier League</Text>
+                <View style={styles.leagueGroup}>
+                    <View style={styles.leagueCol1}>
+                        <Image style={styles.leagueImg} source={leagueImg} />
+                        <Text style={styles.leagueName}>Premier League</Text>
+                        <Text>></Text>
+                    </View>
+                    <View style={styles.leagueCol2}>
+                        <TouchableOpacity>
+                            <Ionicons name="ios-notifications-outline" size={30} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={styles.matchGroup}>
                     <View style={styles.match}>
-                        <Text style={styles.teamName}>Chelsea</Text>
-                        <Text style={styles.teamName}>Liverpool</Text>
+                        <View style={styles.teamView}>
+                            <Image style={styles.clubImage} source={chelseaImg} />
+                            <Text style={styles.teamName}>Chelsea</Text>
+                        </View>
+                        <View style={styles.teamView}>
+                            <Image style={styles.clubImage} source={chelseaImg} />
+                            <Text style={styles.teamName}>Chelsea</Text>
+                        </View>
                     </View>
+                    <View style={styles.seperateVertical} />
                     <View style={styles.infoMatch}>
-                        <View style={styles.notificationsItem}>
-                            <Ionicons name="ios-notifications-outline" size={30} color="#900" />
-                            <Text>34</Text>
-                        </View>
-                        <View style={styles.likeItem}>
+                        <TouchableOpacity style={styles.notificationsItem}>
+                            <Ionicons name="ios-notifications-outline" size={30} />
+                            <Text style={styles.pdLeft10}>34</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.likeItem}>
                             <Image source={likeImg} />
-                            <Text>7</Text>
-                        </View>
+                            <Text style={styles.pdLeft10}>7</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

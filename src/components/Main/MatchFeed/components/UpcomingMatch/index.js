@@ -9,11 +9,8 @@ const UpcomingMatch = () => {
 
     return (
         <View style={styles.upcomingContainer}>
-            {
-                items.forEach((key) => {
-                    <Item />
-                })
-            }
+            <Item />
+            <Item />
         </View>
     );
 }
