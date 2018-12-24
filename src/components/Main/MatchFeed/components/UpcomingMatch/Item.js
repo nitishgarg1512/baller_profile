@@ -5,7 +5,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import styles from '../../styles';
 
-const logoImg = require('../../../../../static/images/logo.png');
 const likeImg = require('../../../../../static/images/likes.png');
 const leagueImg = require('../../../../../static/images/league.png');
 const chelseaImg = require('../../../../../static/images/chelsea.png');

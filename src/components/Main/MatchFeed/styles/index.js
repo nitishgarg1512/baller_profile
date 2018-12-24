@@ -10,13 +10,27 @@ export default {
     paddingLeft: 10,
   },
   headerContainer: {
-    height: 60,
+    height: 50,
+  },
+  logoImg: {
+    width: 40,
+    height: 40,
+  },
+  soccerImg: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginTop: 5,
   },
   header: {
     borderRadius: 10,
     borderColor: '#AAAAAA',
     borderWidth: 0.8,
-    height: 60,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   upcomingContainer: {
     width: width - 20,
