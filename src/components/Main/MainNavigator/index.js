@@ -10,11 +10,11 @@ import Team from '../Team';
 
 import styles from './styles';
 
-const matchfeed = require('../../../../../static/images/matchfeed.png');
-const team = require('../../../../../static/images/teams.png');
-const notification = require('../../../../../static/images/notification.png');
-const reward = require('../../../../../static/images/reward.png');
-const menu = require('../../../../../static/images/menu.png');
+const matchfeed = require('../../../static/images/matchfeed.png');
+const team = require('../../../static/images/teams.png');
+const notification = require('../../../static/images/notification.png');
+const reward = require('../../../static/images/reward.png');
+const menu = require('../../../static/images/menu.png');
 
 const MainNavigator = createBottomTabNavigator(
   {

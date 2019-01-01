@@ -19,4 +19,5 @@ export default {
   TEAMS_SELECT_MAINTEAM: `${serverUrl}/api/team-main/:id/`,
   USERS_ID: `${serverUrl}/api/users/:id`,
   USER_AUTH: `${serverUrl}/api/auth/user/`,
+  UPCOMMING_MATCH: `${serverUrl}/api/matchfeed-system`,
 };

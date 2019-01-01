@@ -14,13 +14,12 @@ const andresImg = require('../../../../../static/images/andres.jpg');
 const Item = () => {
     return (
         <View style={styles.itemContainer}>
-            <Text style={styles.h3}>SATURDAY, AUGUST 12</Text>
             <View style={styles.group}>
                 <View style={styles.leagueGroup}>
                     <View style={styles.leagueCol1}>
                         <Image style={styles.leagueImg} source={leagueImg} />
                         <Text style={styles.leagueName}>Premier League</Text>
-                        <Text>></Text>
+                        <Text></Text>
                     </View>
                     <View style={styles.leagueCol2}>
                         <TouchableOpacity>
@@ -56,14 +55,14 @@ const Item = () => {
                     <View style={styles.viewReport}>
                         <View style={styles.viewReporHeader}>
                             <View />
-                            <Text style={styles.viewReporHeaderText}>Scout Report</Text>
+                            <Text style={styles.viewReporHeaderText}>Man of the Match</Text>
                             <Text>></Text>
                         </View>
                         <View style={styles.viewReportContent}>
                             <Image source={diegoImg} style={styles.soccerImg2} />
                             <View style={styles.viewReportGroupText}>
-                                <Text style={styles.viewReporText}>Roysten Drenthe</Text>
-                                <Text style={styles.viewReporInfoText}>14 goals this session</Text>
+                                <Text style={styles.viewReporText}>Dimitri Gbo</Text>
+                                <Text style={styles.viewReporInfoText}>Centre Midfielder</Text>
                             </View>
                         </View>
                     </View>
