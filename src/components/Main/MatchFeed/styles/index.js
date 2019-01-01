@@ -40,9 +40,8 @@ export default {
     marginTop: 10,
   },
   fastestGoalsContainer: {
-    width,
-    height: 100,
-    backgroundColor: 'green',
+    width: width - 20,
+    marginTop: 10,
   },
   itemContainer: {
     marginTop: 10,
@@ -245,6 +244,79 @@ export default {
     fontFamily: 'calibri',
     fontSize: 18,
     textAlign: 'left',
-    color: '#BBBBBB'
+    color: '#BBBBBB',
+  },
+  fastestGroup: {
+    borderColor: '#AAAAAA',
+    borderWidth: 0.8,
+    borderRadius: 10,
+  },
+  fastestItem: {
+    borderColor: '#AAAAAA',
+    flex: 1,
+    flexDirection: 'row',
+    padding: 20,
+  },
+  fastestItemUserInfo: {
+    flexDirection: 'row',
+  },
+  fastestItemUserText: {
+    fontFamily: 'calibri',
+    fontSize: 20,
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  fastestItemGroupText: {
+    alignItems: 'flex-start',
+    paddingTop: 5,
+    marginLeft: 10,
+  },
+  fastestItemInfoText: {
+    fontFamily: 'calibri',
+    fontSize: 14,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    color: '#CCC',
+  },
+  fastestItemTimer: {
+    flex: 1,
+    position: 'relative',
+  },
+  fastestItemTimerGroup: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  fastestItemTimeText: {
+    fontFamily: 'calibri',
+    fontSize: 20,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    paddingTop: 15,
+    marginRight: 5,
+  },
+  fastestItemSecsText: {
+    fontFamily: 'calibri',
+    fontSize: 15,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    paddingTop: 18,
+  },
+  matchFormatView: {
+    position: 'absolute',
+    right: -15,
+    top: -15,
+    fontFamily: 'calibri',
+    fontSize: 15,
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  matchBottomView: {
+    borderColor: '#AAAAAA',
+    borderTopWidth: 0.8,
+    borderLeftWidth: 0.8,
+    position: 'absolute',
+    right: -20,
+    bottom: -20,
+    padding: 5,
   },
 };
