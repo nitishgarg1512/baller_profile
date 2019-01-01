@@ -5,13 +5,21 @@ import { View } from 'react-native';
 
 import actions from '../../../actions';
 
+import styles from './styles';
+import { Header, TabsView } from './components';
+
 class Notification extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        return <View style={{backgroundColor: 'blue', flex: 1}} />
+        return (
+            <View style={styles.container}>
+                <Header />
+                <TabsView />
+            </View>
+        )
     }
 }
 
