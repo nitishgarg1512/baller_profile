@@ -14,13 +14,19 @@ class MatchFeed extends React.Component {
         super(props);
     }
 
+    viewMore() {
+        const { navigation } = this.props;
+        navigation.push(paths.client.MatchPost);
+    }
+
     render() {
+        const { navigation } = this.props;
         return (
             <View style={styles.container}>
                 <Header />
                 <ScrollView>
                     <UpcomingMatch />
-                    <Result />
+                    <Result navigation={navigation} />
                     <FastestGoals />
                 </ScrollView>
             </View>

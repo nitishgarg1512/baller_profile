@@ -18,4 +18,6 @@ export default keyMirror({
   TeamsView: null,
   TeamsSquad: null,
   MatchCreation: null,
+  MainScreen: null,
+  MatchPost: null,
 });

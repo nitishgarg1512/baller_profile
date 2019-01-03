@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
-const chelseaImg = require('../../../../../../static/images/chelsea.png');
 import styles from '../../../styles';
+
+const chelseaImg = require('../../../../../../static/images/chelsea.png');
 
 const Item6 = () => {
     const { itemView, avatar, infoView, username,

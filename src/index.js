@@ -13,8 +13,8 @@ const AppRouter = createStackNavigator({
   Login: Authentication.Login,
   Registration: Authentication.Registration,
 }, {
-  initialRouteName: 'Welcome',
-});
+    initialRouteName: 'Welcome',
+  });
 
 const AuthRouter = createStackNavigator({
   TeamsSelection: Teams.Selection,
@@ -37,18 +37,19 @@ const AuthRouter = createStackNavigator({
     navigationOptions: {
       header: null,
     },
-  }
+  },
+  MatchPost: Main.MatchPost,
 }, {
-  initialRouteName: 'MainScreen',
-});
+    initialRouteName: 'MainScreen',
+  });
 
 const InitialRouter = createSwitchNavigator({
   RouterSelection: Authentication.Selection,
   Auth: AuthRouter,
   App: AppRouter,
 }, {
-  initialRouteName: 'RouterSelection',
-});
+    initialRouteName: 'RouterSelection',
+  });
 
 const store = createStore(reducers, applyMiddleware(thunk, middleware()));
 
