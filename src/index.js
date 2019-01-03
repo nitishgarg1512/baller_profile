@@ -38,7 +38,12 @@ const AuthRouter = createStackNavigator({
       header: null,
     },
   },
-  MatchPost: Main.MatchPost,
+  MatchPost: {
+    screen: Main.MatchPost,
+    navigationOptions: {
+      header: null,
+    },
+  },
 }, {
     initialRouteName: 'MainScreen',
   });
