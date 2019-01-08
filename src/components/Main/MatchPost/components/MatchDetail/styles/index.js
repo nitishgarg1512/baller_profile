@@ -18,18 +18,60 @@ export default {
     flexWrap:'wrap'
   },
   leagueText: {
-  	paddingRight: 20
+  	paddingRight: 20,
+  	height: 50
   },
   teamView: {
-  	height: 100,
+  	height: 130,
   	width: '100%',
   	borderBottomWidth: 1,
   	borderBottomColor: '#CCC'
   },
+  teamBadgeLogoView: {
+  	flex: 1,
+  	flexDirection: 'row',
+    flexWrap:'wrap',
+    alignItems: 'center',
+  },
+  team1BadgeLogoView: {
+  	flex: 1,
+  	alignItems: 'center',
+  },
+  teamBadgeLogoScore: {
+  	flex: 1,
+  	textAlign: 'center',
+  	flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  teamBadgeLogoScoreText: {
+  	fontSize: 24,
+  },
+  team2BadgeLogoView: {
+  	flex: 1,
+  	alignItems: 'center'
+  },
+  teamLogo: {
+	height: 80,
+	alignItems: 'center',
+	resizeMode: 'contain',
+	margin: 10,
+  },
+  teamOfficiateView: {
+  	flex: 1,
+  	width: '100%',
+  	textAlign: 'center',
+  	alignItems: 'center',
+  	justifyContent: 'flex-end',
+	marginBottom: 10,
+  },
+  teamOfficiateText: {
+  	fontStyle: 'italic',
+  },
   scoreView: {
   	width: '100%',
   	flexDirection: 'row',
-    flexWrap:'wrap'
+    flexWrap:'wrap',
   },
   goalScoreLeftView: {
   	width: '40%'
@@ -55,11 +97,6 @@ export default {
   },
   goalScoreIconViewRight: {
   	flex: 1
-  },
-  goalScoreIconOfficiateView: {
-  	height: 100,
-  	flex: 1,
-  	textAlign: 'center'
   },
   goalScoreRightView: {
   	width: '40%'
