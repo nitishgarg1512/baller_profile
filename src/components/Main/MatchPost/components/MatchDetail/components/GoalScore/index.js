@@ -15,9 +15,6 @@ const GoalScore = () => {
 		            <GoalScoreRight/>
 	            </View>
 	        </View>
-	        <View style={styles.goalScoreIconOfficiateView}>
-		    	<Text>Officiated by: Referee name</Text>
-		    </View>
      	</View>
     );
 }
