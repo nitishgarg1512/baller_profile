@@ -6,8 +6,10 @@ import styles from '../../styles';
 const GoalScoreRight = () => {
     return (
          <View style={styles.goalScoreRightView}>
-        	<Text>C. Zazz</Text>
-        	<Text>10, 15</Text>
+         	<View style={styles.goalScoreTextInline}>
+	         	<Text style={styles.goalScoreText}>C. Zazz</Text>
+	        	<Text style={styles.goalScoreText}>10, 15</Text>
+         	</View>
         </View>
     );
 }

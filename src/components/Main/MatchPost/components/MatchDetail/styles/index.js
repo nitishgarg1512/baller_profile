@@ -27,21 +27,25 @@ export default {
   	borderBottomColor: '#CCC'
   },
   scoreView: {
-  	height: 100,
   	width: '100%',
   	flexDirection: 'row',
     flexWrap:'wrap'
   },
   goalScoreLeftView: {
-  	height: 100,
-  	width: 100
+  	width: '40%'
   },
-  goalScoreIconView: {
-  	height: 100,
-  	width: 100,
-  	textAlign: 'center',
+  goalScoreTextInline: {
   	flexDirection: 'row',
     flexWrap:'wrap'
+  },
+  goalScoreIconView: {
+  	width: '20%',
+  	paddingLeft: 20,
+  	paddingRight: 20,
+  	flexDirection: 'row',
+  	flex: 1,
+  	alignItems: 'center',
+    justifyContent: 'center'
   },
   goalScoreIconViewLeft: {
   	flex: 1
@@ -58,7 +62,15 @@ export default {
   	textAlign: 'center'
   },
   goalScoreRightView: {
-  	height: 100,
-  	width: 100
+  	width: '40%'
+  },
+  sportIcon: {
+  	width: 25,
+  	height: 25
+  },
+  goalScoreText: {
+  	width: '50%',
+  	height: 30,
+  	textAlign: 'right'
   }
 };
