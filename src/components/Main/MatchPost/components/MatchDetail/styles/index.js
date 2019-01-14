@@ -51,11 +51,11 @@ export default {
   	flex: 1,
   	alignItems: 'center'
   },
-  teamLogo: {
-	height: 80,
-	alignItems: 'center',
-	resizeMode: 'contain',
-	margin: 10,
+    teamLogo: {
+  	height: 80,
+  	alignItems: 'center',
+  	resizeMode: 'contain',
+  	margin: 10,
   },
   teamOfficiateView: {
   	flex: 1,
@@ -63,7 +63,7 @@ export default {
   	textAlign: 'center',
   	alignItems: 'center',
   	justifyContent: 'flex-end',
-	marginBottom: 10,
+	  marginBottom: 10,
   },
   teamOfficiateText: {
   	fontStyle: 'italic',

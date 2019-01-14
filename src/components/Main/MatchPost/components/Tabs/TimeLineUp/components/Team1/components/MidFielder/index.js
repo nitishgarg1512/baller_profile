@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 
 import styles from '../../../../styles';
+import Player from '../Player';
+
 const sportIcon = require('../../../../../../../../../../static/images/ball.png');
 
 const MidFielder = () => {
@@ -11,7 +13,9 @@ const MidFielder = () => {
             	<Text style={styles.positionTitleText}>MidFielders</Text>
         	</View>
         	<View>
-        		<Text>CC A</Text>
+        		<Player />
+                <Player />
+                <Player />
         	</View>
         </View>
     );

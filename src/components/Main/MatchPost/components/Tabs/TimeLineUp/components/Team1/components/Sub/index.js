@@ -6,11 +6,11 @@ import Player from '../Player';
 
 const sportIcon = require('../../../../../../../../../../static/images/ball.png');
 
-const GoalKeeper = () => {
+const Sub = () => {
     return (
-        <View style={styles.goalKeeperView}>
-        	<View style={styles.positionTitle}>
-            	<Text style={styles.positionTitleText}>Goalkeeper</Text>
+        <View style={styles.subView}>
+            <View style={styles.subTitle}>
+            	<Text style={styles.subTitleText}>Subs</Text>
         	</View>
         	<View>
         		<Player />
@@ -19,4 +19,4 @@ const GoalKeeper = () => {
     );
 }
 
-export default GoalKeeper;
+export default Sub;

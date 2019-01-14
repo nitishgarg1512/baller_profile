@@ -10,6 +10,7 @@ const TeamInfo = () => {
         <View style={styles.teamInfoView}>
             <Image source={team1} style={styles.teamInfoIcon} />
 			<Text style={styles.teamInfoText}>Team 1</Text>
+			<Text style={styles.teamInfoLineUpText}> Starting Line-Up</Text>
         </View>
     );
 }

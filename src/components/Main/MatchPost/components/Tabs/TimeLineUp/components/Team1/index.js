@@ -3,7 +3,14 @@ import { View, Text, ScrollView } from 'react-native';
 
 import styles from '../../styles';
 
-import { TeamInfo, Defender, GoalKeeper, MidFielder } from './components';
+import { 
+    TeamInfo,
+    Defender,
+    GoalKeeper,
+    MidFielder,
+    Striker,
+    Sub
+} from './components';
 
 const Team1 = () => {
     return (
@@ -13,6 +20,8 @@ const Team1 = () => {
 	            <GoalKeeper />
 	            <Defender />
 	            <MidFielder />
+                <Striker />
+                <Sub />
             </ScrollView>
         </View>
     );
