@@ -7,8 +7,13 @@ const sportIcon = require('../../../../../../../../../../static/images/ball.png'
 
 const Defender = () => {
     return (
-        <View>
-            <Text>Defenders</Text>
+        <View style={styles.defenderView}>
+            <View style={styles.positionTitle}>
+            	<Text style={styles.positionTitleText}>Defenders</Text>
+        	</View>
+        	<View>
+        		<Text>CC A</Text>
+        	</View>
         </View>
     );
 }

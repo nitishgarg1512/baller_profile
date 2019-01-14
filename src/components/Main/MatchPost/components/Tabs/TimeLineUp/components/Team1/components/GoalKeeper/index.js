@@ -6,8 +6,13 @@ const sportIcon = require('../../../../../../../../../../static/images/ball.png'
 
 const GoalKeeper = () => {
     return (
-        <View>
-            <Text>GoalKeeper</Text>
+        <View style={styles.goalKeeperView}>
+        	<View style={styles.positionTitle}>
+            	<Text style={styles.positionTitleText}>GoalKeeper</Text>
+        	</View>
+        	<View>
+        		<Text>CC A</Text>
+        	</View>
         </View>
     );
 }

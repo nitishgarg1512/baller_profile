@@ -7,8 +7,9 @@ import styles from '../../../../styles';
 
 const TeamInfo = () => {
     return (
-        <View>
-            <Text>Team1</Text>
+        <View style={styles.teamInfoView}>
+            <Image source={team1} style={styles.teamInfoIcon} />
+			<Text style={styles.teamInfoText}>Team 1</Text>
         </View>
     );
 }
