@@ -6,7 +6,9 @@ import styles from '../../styles';
 import { 
     Booking,
     Foul,
-    Goal
+    Goal,
+    MatchStart,
+    Substitution
 } from './items';
 
 const Team1 = () => {
@@ -14,8 +16,10 @@ const Team1 = () => {
         <View>
         	<ScrollView contentContainerStyle={styles.contentContainer}>
 	            <Booking />
+                <Substitution />
                 <Foul />
 	            <Goal />
+                <MatchStart />
             </ScrollView>
         </View>
     );

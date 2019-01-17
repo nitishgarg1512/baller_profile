@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('window');
 export default {
   container: {
     flex: 1,
-    backgroundColor: 'pink',
+    backgroundColor: '#ffffff',
   },
   contentContainer: {
   },
@@ -155,5 +155,98 @@ export default {
     paddingLeft: 5,
     paddingBottom: 5,
     flex: 3.5
+  },
+  matchStartView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCC',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: '#70ad47ff',
+  },
+  matchStartTime: {
+    paddingLeft: 5,
+    flex: 1
+  },
+  matchStartTimeText: {
+    paddingTop: 15,
+    paddingBottom: 10,
+    paddingLeft: 0,
+    paddingRight: 5,
+    flex: 0.5,
+  },
+  matchStartContentDesciption: {
+    paddingBottom: 20,
+    color: '#FFF',
+    fontSize: 16,
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  substitutionView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCC',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+  },
+  substitutionContentTitle: {
+    color: '#595959',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  substitutionContentDesciption: {
+    color: '#595959',
+    fontSize: 16,
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  substitutionIcons: {
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingBottom: 5,
+    flex: 1
+  },
+  substitutionIconTime: {
+    paddingTop: 10,
+    color: '#595959',
+    fontSize: 14,
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  substitutionIconFrame: {
+    height: 44,
+    width: 44,
+    borderRadius: 44/2,
+    backgroundColor: '#FFF',
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  substitutionContent: {
+    paddingTop: 10,
+    paddingLeft: 5,
+    paddingBottom: 5,
+    flex: 3.5
+  },
+  substitutionPlayer: {
+    paddingLeft: 5,
+    flex: 1
+  },
+  changePlayerImage: {
+    height: 54,
+    width: 54,
+    resizeMode: 'contain'
+  },
+  substitutionPlayerView: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap:'wrap'
   },
 };
