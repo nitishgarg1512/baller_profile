@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 
 import styles from './styles';
+import { Team1 } from './components';
 
 class TimeLineUp extends Component {
-
     render() {
         return (
-            <View style={styles.container} />
-        )
+            <View style={styles.container}>
+            	<Team1 />
+            </View>
+        );
     }
 }
 
