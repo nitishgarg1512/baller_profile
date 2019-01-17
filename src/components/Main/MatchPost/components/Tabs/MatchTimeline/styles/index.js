@@ -16,7 +16,7 @@ export default {
   	flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: 'red',
+    backgroundColor: '#ff0000ff',
   },
   playerView: {
   	paddingTop: 20,
@@ -41,11 +41,11 @@ export default {
   	flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
-  	width: 40,
+    height: 44,
+  	width: 44,
   },
   bookingIcons: {
-  	paddingTop: 5,
+  	paddingTop: 10,
   	paddingLeft: 10,
   	paddingBottom: 5,
   	flex: 1
@@ -70,7 +70,7 @@ export default {
   },
   bookingContentTitle: {
   	color: '#FFF',
-  	fontSize: 20,
+  	fontSize: 24,
   	fontWeight: 'bold',
   	fontStyle: 'italic',
 	fontFamily: 'calibri-italic',
@@ -87,5 +87,73 @@ export default {
   bookingPlayer: {
   	paddingLeft: 5,
   	flex: 1
-  }
+  },
+  goalView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCC',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: '#0070c0ff',
+  },
+  goalIcons: {
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingBottom: 5,
+    flex: 1
+  },
+  foulView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCC',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+  },
+  foulContentTitle: {
+    color: '#595959',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  foulContentDesciption: {
+    color: '#595959',
+    fontSize: 16,
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  foulIcons: {
+    paddingTop: 0,
+    paddingLeft: 10,
+    paddingBottom: 5,
+    flex: 1
+  },
+  foulIconTime: {
+    paddingTop: 0,
+    color: '#595959',
+    fontSize: 14,
+    fontStyle: 'italic',
+  fontFamily: 'calibri-italic',
+  },
+  foulIconFrame: {
+    height: 54,
+    width: 54,
+    borderRadius: 54/2,
+    backgroundColor: '#FFF',
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  trumpetImage: {
+    height: 54,
+    width: 54,
+    resizeMode: 'contain'
+  },
+  foulContent: {
+    paddingTop: 10,
+    paddingLeft: 5,
+    paddingBottom: 5,
+    flex: 3.5
+  },
 };

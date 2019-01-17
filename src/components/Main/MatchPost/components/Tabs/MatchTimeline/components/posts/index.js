@@ -4,7 +4,9 @@ import { View, Text, ScrollView } from 'react-native';
 import styles from '../../styles';
 
 import { 
-    Booking
+    Booking,
+    Foul,
+    Goal
 } from './items';
 
 const Team1 = () => {
@@ -12,6 +14,8 @@ const Team1 = () => {
         <View>
         	<ScrollView contentContainerStyle={styles.contentContainer}>
 	            <Booking />
+                <Foul />
+	            <Goal />
             </ScrollView>
         </View>
     );
