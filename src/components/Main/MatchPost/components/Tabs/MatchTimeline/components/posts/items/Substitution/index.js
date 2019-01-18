@@ -23,8 +23,8 @@ const Substitution = () => {
                 <Text style={styles.substitutionContentDesciption}>(team 1)</Text>
         	</View>
         	<View style={styles.substitutionPlayer}>
-        		<PlayerIn />
                 <PlayerOut />
+        		<PlayerIn />
         	</View>
         </View>
     );

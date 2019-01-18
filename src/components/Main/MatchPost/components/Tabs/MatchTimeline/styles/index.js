@@ -229,11 +229,11 @@ export default {
     paddingTop: 10,
     paddingLeft: 5,
     paddingBottom: 5,
-    flex: 3.5
+    flex: 3
   },
   substitutionPlayer: {
     paddingLeft: 5,
-    flex: 1
+    flex: 1.5
   },
   changePlayerImage: {
     height: 54,
@@ -249,4 +249,14 @@ export default {
     flexDirection: 'row',
     flexWrap:'wrap'
   },
+  arrowRight: {
+    width: 24,
+    marginRight: 12,
+    resizeMode: 'contain'
+  },
+  arrowLeft: {
+    width: 24,
+    marginRight: 12,
+    resizeMode: 'contain'
+  }
 };
