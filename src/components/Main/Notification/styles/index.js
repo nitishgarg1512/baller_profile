@@ -43,16 +43,16 @@ export default {
   },
   username: {
     fontFamily: 'calibri',
-    fontSize: 18,
+    fontSize: 13,
     textAlign: 'center',
     fontStyle: 'italic',
   },
   infoText: {
     fontFamily: 'calibri',
-    fontSize: 15,
+    fontSize: 12,
     textAlign: 'center',
     fontStyle: 'italic',
-    color: '#CCC',
+    color: '#AAAAAA',
   },
   signView: {
     alignItems: 'center',
@@ -88,14 +88,14 @@ export default {
   },
   playButtonText: {
     fontFamily: 'calibri',
-    fontSize: 15,
+    fontSize: 13,
     textAlign: 'center',
     fontStyle: 'italic',
     color: '#ffffff',
   },
   numberText: {
     fontFamily: 'calibri',
-    fontSize: 25,
+    fontSize: 20,
     textAlign: 'center',
     fontStyle: 'italic',
     color: '#0000ff',
