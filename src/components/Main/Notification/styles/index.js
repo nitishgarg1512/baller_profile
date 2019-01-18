@@ -100,4 +100,27 @@ export default {
     fontStyle: 'italic',
     color: '#0000ff',
   },
+  bgWhite: {
+    backgroundColor: '#fff',
+  },
+  disabledTab: {
+    fontFamily: 'calibri-italic',
+  },
+  activeTab: {
+    fontFamily: 'calibri-italic',
+    color: '#0071c0',
+  },
+  labelText: {
+    color: '#0071c0',
+    fontFamily: 'calibri-italic',
+  },
+  bgBlue: {
+    backgroundColor: '#0071c0',
+  },
+  flexCenterColumn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
 };
