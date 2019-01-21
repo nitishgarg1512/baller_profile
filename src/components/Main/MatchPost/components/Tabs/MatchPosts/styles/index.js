@@ -121,6 +121,7 @@ export default {
   backgroundVideo: {
     height: 160,
     width: '100%',
+    flex: 1,
   },
   contentView: {
     marginLeft: 5,
@@ -128,18 +129,40 @@ export default {
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
     flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
     backgroundColor: '#ffffff',
+  },
+  contentImageView: {
+    position: 'relative',
+  },
+  playButton: {
+    height: 50,
+    width: 50,
+    position: 'absolute',
+    top: 60,
+    left: 160,
   },
   content2View: {
     marginLeft: 5,
     marginRight: 5,
     flex: 1,
   },
+  content2ImageView: {
+    position: 'relative',
+    justifyContent: 'center',
+    flex: 1,
+    alignItems: 'stretch',
+  },
   postPicture: {
     height: 160,
     width: '100%',
     flex: 1,
+  },
+  circleBlue: {
+    height: 40,
+    width: 40,
+    position: 'absolute',
+    right: 20,
+    top: 100,
+    zIndex: 2
   }
 };
