@@ -6,12 +6,13 @@ export default {
   container: {
     flex: 1,
     backgroundColor: '#bfbfbf',
-    marginLeft: 5,
-    marginRight: 5
   },
   contentContainer: {
   },
   headerView: {
+    marginTop: 5,
+    marginLeft: 5,
+    marginRight: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
     flex: 1,
@@ -68,6 +69,8 @@ export default {
     height: 30,
   },
   footerView: {
+    marginLeft: 5,
+    marginRight: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
     flex: 1,
@@ -78,7 +81,7 @@ export default {
   footerLike: {
     paddingTop: 5,
     paddingBottom: 8,
-    paddingLeft: 5,
+    paddingLeft: 10,
     paddingRight: 5,
     flex: 1,
     alignItems: 'flex-end',
@@ -120,6 +123,8 @@ export default {
     width: '100%',
   },
   contentView: {
+    marginLeft: 5,
+    marginRight: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#CCC',
     flex: 1,
@@ -127,4 +132,14 @@ export default {
     flexDirection: 'row',
     backgroundColor: '#ffffff',
   },
+  content2View: {
+    marginLeft: 5,
+    marginRight: 5,
+    flex: 1,
+  },
+  postPicture: {
+    height: 160,
+    width: '100%',
+    flex: 1,
+  }
 };

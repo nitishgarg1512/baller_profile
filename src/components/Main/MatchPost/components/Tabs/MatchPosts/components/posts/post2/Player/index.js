@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
 import styles from '../../../../styles';
-const playerIcon = require('../../../../../../../../../../static/images/player-post-2.jpg');
+const playerIcon = require('../../../../../../../../../../static/images/player-post-1.jpg');
 
 const Player = () => {
     return (
