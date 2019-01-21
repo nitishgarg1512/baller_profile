@@ -9,15 +9,15 @@ const trumpetIcon = require('../../../../../../../../../../static/images/coi.png
 
 const Header = () => {
     return (
-        <View style={styles.postView}>
-            <View style={styles.postPlayer}>
+        <View style={styles.headerView}>
+            <View style={styles.headerPlayer}>
         		<Player />
         	</View>
-            <View style={styles.postContent}>
-            	<Text style={styles.postContentTitle}>Mena Ntueba</Text>
+            <View style={styles.headerContent}>
+            	<Text style={styles.headerContentTitle}>Mena Ntueba</Text>
         	</View>
-            <View style={styles.postIcons}>
-                <Icon name='right'  style={styles.icoNavigate} />
+            <View style={styles.headerIcons}>
+                <Icon name='arrow-forward'  style={styles.icoNavigate} />
             </View>
         </View>
     );
