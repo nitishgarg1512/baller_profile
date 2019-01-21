@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title, Text } from 'native-base';
+import { connect } from 'react-redux';
 
 import { TabMain, MatchDetail } from './components';
 
 class MatchPost extends Component {
     render() {
         const { header, headerTitle } = styles;
+        const { navigation } = this.props;
         return (
             <Container>
                 <Header style={header}>
                     <Left>
-                        <Button transparent>
+                        <Button transparent onPress={() => navigation.goBack()}>
                             <Icon name='arrow-back' style={headerTitle} />
                         </Button>
                     </Left>
@@ -38,4 +40,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MatchPost;
+export default connect(
+    null,
+    {},
+)(MatchPost);

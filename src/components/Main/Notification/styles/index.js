@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 export default {
   container: {
     flex: 1,
+    backgroundColor: '#ffffff',
   },
   headerWrapper: {
     backgroundColor: 'blue',

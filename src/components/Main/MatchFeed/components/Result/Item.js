@@ -11,7 +11,8 @@ const chelseaImg = require('../../../../../static/images/chelsea.png');
 const diegoImg = require('../../../../../static/images/diego.jpg');
 const andresImg = require('../../../../../static/images/andres.jpg');
 
-const Item = () => {
+const Item = (props) => {
+    const { navigation } = props;
     return (
         <View style={styles.itemContainer}>
             <View style={styles.group}>

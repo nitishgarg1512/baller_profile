@@ -6,6 +6,7 @@ import { View, ScrollView } from 'react-native';
 import { Header, UpcomingMatch, Result, FastestGoals } from './components';
 
 import styles from './styles';
+import selectors from './selectors';
 
 import actions from '../../../actions';
 
@@ -20,14 +21,14 @@ class MatchFeed extends React.Component {
     }
 
     render() {
-        const { navigation } = this.props;
+        const { navigation, authPlayer } = this.props;
         return (
             <View style={styles.container}>
-                <Header />
+                <Header navigation={navigation} authPlayer={authPlayer} />
                 <ScrollView>
-                    <UpcomingMatch />
-                    <Result navigation={navigation} />
-                    <FastestGoals />
+                    <UpcomingMatch navigation={navigation} />
+                    {/* <Result navigation={navigation} />
+                    <FastestGoals /> */}
                 </ScrollView>
             </View>
         )
@@ -39,7 +40,7 @@ MatchFeed.propTypes = {
 };
 
 export default connect(
-    null,
+    selectors,
     {
         ...actions.authentication,
     },

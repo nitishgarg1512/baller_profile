@@ -47,10 +47,11 @@ export default {
     marginTop: 10,
   },
   h3: {
+    marginTop: 10,
     fontFamily: 'calibri',
     fontSize: 20,
     textTransform: 'uppercase',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   group: {
     borderColor: '#AAAAAA',
