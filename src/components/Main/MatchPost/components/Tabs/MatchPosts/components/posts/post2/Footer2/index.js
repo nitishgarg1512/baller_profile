@@ -8,7 +8,7 @@ import Player from '../Player';
 const likeIcon = require('../../../../../../../../../../static/images/matchPosts/like-icon.png');
 const commentIcon = require('../../../../../../../../../../static/images/matchPosts/comment-icon.png');
 
-const Footer = () => {
+const Footer2 = () => {
     return (
         <View style={styles.footerView}>
             <View style={styles.footerLike}>
@@ -23,5 +23,5 @@ const Footer = () => {
     );
 }
 
-export default Footer;
+export default Footer2;
 
