@@ -245,5 +245,42 @@ export default {
     fontStyle: 'italic',
     fontFamily: 'calibri-italic',
     color: '#3f3f3f',
+  },
+  heatMapContainer: {
+    flex: 1,
+  },
+  heatMapMain: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  heatMapCol1: {
+    flex: 0.5
+  },
+  heatMapCol2: {
+    flex: 3,
+    backgroundColor: '#70ad47ff'
+  },
+  heatMapCol3: {
+    flex: 0.5
+  },
+  heatMapTitle: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  heatMapTitleText: {
+    justifyContent: 'center',
+    fontSize: 18,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    color: '#3f3f3f',
+    paddingTop: 16,
+    paddingBottom: 16
+  },
+  heatMapView: {
+    flex: 1,
+  },
+  heatMapItem: {
+    borderTopWidth: 1,
+    borderTopColor: '#d8d8d8'
   }
 };
