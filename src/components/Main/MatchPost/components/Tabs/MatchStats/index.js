@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import styles from './styles';
-import { MatchMan, TeamStats } from './components';
+import { MatchMan, MatchIndividual } from './components';
 
 class MatchStats extends Component {
     render() {
@@ -10,6 +10,7 @@ class MatchStats extends Component {
             <View style={styles.container}>
                 <ScrollView contentContainerStyle={styles.contentContainer}>
                     <MatchMan />
+                    <MatchIndividual />
                 </ScrollView>
             </View>
         )

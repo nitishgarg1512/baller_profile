@@ -171,9 +171,79 @@ export default {
     flex: 1,
     alignItems: 'flex-start',
   },
-  teamStatsView: {
+  individualView: {
+    paddingLeft: 10,
     borderTopWidth: 1,
-    borderTopColor: '#d8d8d8',
-    marginTop: 20
+    borderTopColor: '#d8d8d8'
   },
+  individualStatsView: {
+    paddingBottom: 20
+  },
+  individualStatsBpPoint: {
+    paddingTop: 18,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap:'wrap',
+  },
+  individualStatsBpPointNumber: {
+    flex: 0.5,
+    alignItems: 'flex-start',
+  },
+  individualStatsBpPointNumberText: {
+    fontSize: 16,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    color: '#0070c0',
+    fontWeight: 'bold'
+  },
+  individualStatsBpPointTitle: {
+    flex: 2.5,
+    paddingLeft: 30,
+    alignItems: 'flex-start',
+  },
+  individualStatsTitleText: {
+    fontSize: 16,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    color: '#3f3f3f',
+    justifyContent: 'center',
+    fontWeight: 'bold'
+  },
+  individualStatsPointList: {
+    paddingTop: 16,
+    paddingLeft: 30,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap:'wrap',
+  },
+  individualStatsPointTitle: {
+    flex: 1.5,
+    alignItems: 'flex-start',
+  },
+  individualStatsPointTitleText: {
+    fontSize: 12,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    color: '#3f3f3f',
+  },
+  individualStatsPointTotal: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  individualStatsPointTotalText: {
+    fontSize: 12,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    color: '#3f3f3f',
+  },
+  individualStatsPointPoint: {
+    flex: 0.5,
+    alignItems: 'flex-start',
+  },
+  individualStatsPointPointText: {
+    fontSize: 12,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    color: '#3f3f3f',
+  }
 };
