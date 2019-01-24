@@ -24,6 +24,7 @@ const MainNavigator = createBottomTabNavigator(
     Notification,
   },
   {
+    initialRouteName: 'MatchFeed',
     tabBarComponent: (props) => {
       const { index } = props.navigation.state;
       return (
