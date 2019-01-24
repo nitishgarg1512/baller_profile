@@ -45,6 +45,11 @@ class ProfileView extends React.Component {
     navigation.navigate(paths.client.ProfilesSetting, { id, refreshProfile: this.handleGetPlayer.bind(this) });
   }
 
+  notification = (id) => {
+    const { navigation } = this.props;
+    navigation.navigate(paths.client.Notification, { id });
+  }
+
   handleGetPlayer = () => {
     const { getPlayer, getPlayersByNation } = this.props;
 
@@ -154,9 +159,14 @@ class ProfileView extends React.Component {
                           {authPlayer.user.username !== player.user.username
                             ? null
                             : (
-                              <TouchableOpacity onPress={() => this.setting(authPlayer.id)}>
-                                <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
-                              </TouchableOpacity>
+                              <View style={styles.detailsContainerSetting}>
+                                <TouchableOpacity onPress={() => this.setting(authPlayer.id)}>
+                                  <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.notification(authPlayer.id)}>
+                                  <Icon name="notifications-outline" type="Ionicons" style={styles.settingsIcon} />
+                                </TouchableOpacity>
+                              </View>
                             )
                           }
                           {authPlayer.user.username === player.user.username

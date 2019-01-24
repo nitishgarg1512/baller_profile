@@ -5,4 +5,7 @@ export default {
     width: 30,
     height: 30,
   },
+  footerTab: {
+    backgroundColor: '#FFFFFF',
+  },
 };

@@ -4,3 +4,4 @@ export { default as Teams } from './Teams';
 export { default as Welcome } from './Welcome';
 export { default as Root } from './Root';
 export { default as Main } from './Main';
+export { default as Notification } from './Notification';

@@ -20,4 +20,5 @@ export default keyMirror({
   MatchCreation: null,
   MainScreen: null,
   MatchPost: null,
+  Notification: null,
 });

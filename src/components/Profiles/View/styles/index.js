@@ -45,6 +45,9 @@ export default {
     flex: 1,
     alignItems: 'center',
   },
+  detailsContainerSetting: {
+    flexDirection: 'row',
+  },
   settingsIcon: {
     fontSize: 18,
     color: '#3d6688',

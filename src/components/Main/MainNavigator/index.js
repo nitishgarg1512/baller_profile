@@ -4,7 +4,7 @@ import { Image } from 'react-native';
 import { Button, Text, Icon, Footer, FooterTab } from 'native-base';
 
 import MatchFeed from '../MatchFeed';
-import Notification from '../Notification';
+import MainNotification from '../MainNotification';
 import Stats from '../Stats';
 import Team from '../Team';
 
@@ -21,7 +21,7 @@ const MainNavigator = createBottomTabNavigator(
     Team,
     Stats,
     MatchFeed,
-    Notification,
+    MainNotification,
   },
   {
     initialRouteName: 'MatchFeed',
@@ -29,7 +29,7 @@ const MainNavigator = createBottomTabNavigator(
       const { index } = props.navigation.state;
       return (
         <Footer>
-          <FooterTab>
+          <FooterTab style={styles.footerTab}>
             <Button
               active={index === 0}
               onPress={() => props.navigation.navigate('Team')}>
@@ -47,7 +47,7 @@ const MainNavigator = createBottomTabNavigator(
             </Button>
             <Button
               active={index === 3}
-              onPress={() => props.navigation.navigate('Notification')}>
+              onPress={() => props.navigation.navigate('MainNotification')}>
               <Image source={notification} style={styles.icoStyle} />
             </Button>
             <Button

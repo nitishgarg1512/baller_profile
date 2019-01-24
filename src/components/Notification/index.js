@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 
-import actions from '../../../actions';
+import actions from '../../actions';
 
 import styles from './styles';
 import { Header, TabsView } from './components';
@@ -14,9 +14,10 @@ class Notification extends React.Component {
     }
 
     render() {
+        const { navigation } = this.props;
         return (
             <View style={styles.container}>
-                <Header />
+                <Header navigation={navigation} />
                 <TabsView />
             </View>
         )

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -27,7 +28,7 @@ const Item = (props) => {
                         </View>
                         <View style={styles.leagueCol2}>
                             <TouchableOpacity>
-                                <Ionicons name="ios-notifications-outline" size={30} />
+                                <Icon name="notifications-outline" fontSize={30} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -45,7 +46,7 @@ const Item = (props) => {
                         <View style={styles.seperateVertical} />
                         <View style={styles.infoMatch}>
                             <TouchableOpacity style={styles.notificationsItem}>
-                                <Ionicons name="ios-notifications-outline" size={30} />
+                                <Icon name="notifications-outline" fontSize={30} />
                                 <Text style={styles.pdLeft10}>34</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.likeItem}>

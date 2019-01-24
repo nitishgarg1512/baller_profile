@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import { Welcome, Authentication, Teams, Profiles, Root, Main } from './components';
+import { Welcome, Authentication, Teams, Profiles, Root, Main, Notification } from './components';
 import { initialRoute } from './common/constants';
 import { reducers, middleware } from './store';
 
@@ -32,6 +32,12 @@ const AuthRouter = createStackNavigator({
   TeamsView: Teams.View,
   TeamsSquad: Teams.Squad,
   MatchCreation: Teams.MatchCreation,
+  Notification: {
+    screen: Notification,
+    navigationOptions: {
+      header: null,
+    },
+  },
   MainScreen: {
     screen: Main.MainNavigator,
     navigationOptions: {
