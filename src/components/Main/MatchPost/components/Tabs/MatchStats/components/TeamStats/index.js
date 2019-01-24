@@ -1,16 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import Man from './Man';
+import styles from '../../styles';
 import Stats from './Stats';
 
-const MatchMan = () => {
+const TeamStats = () => {
     return (
         <View>
-            <Man />
             <Stats />
         </View>
     );
 }
 
-export default MatchMan;
+export default TeamStats;

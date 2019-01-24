@@ -170,5 +170,10 @@ export default {
   statsTeam2Point: {
     flex: 1,
     alignItems: 'flex-start',
-  }
+  },
+  teamStatsView: {
+    borderTopWidth: 1,
+    borderTopColor: '#d8d8d8',
+    marginTop: 20
+  },
 };
