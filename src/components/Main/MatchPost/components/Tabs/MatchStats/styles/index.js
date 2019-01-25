@@ -280,7 +280,74 @@ export default {
     flex: 1,
   },
   heatMapItem: {
+    marginTop: 10,
     borderTopWidth: 1,
     borderTopColor: '#d8d8d8'
-  }
+  },
+  heatMapRaws: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  boxItem: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ffffff',
+    borderLeftWidth: 1,
+    borderLeftColor: '#ffffff',
+    height: 60,
+    width: 80,
+    flexDirection: 'row',
+  },
+  heatBallImage: {
+    height: 22,
+    width: 22,
+    resizeMode: 'contain',
+    marginRight: 4,
+    marginTop: 30
+  },
+  heatBallNumber: {
+    alignItems: 'flex-end',
+    color: '#ffffff',
+    fontSize: 14,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    justifyContent: 'flex-end',
+    marginTop: 40,
+  },
+  boxCol1: {
+    flex: 1,
+  },
+  boxCol2: {
+    flex: 1.3,
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
+  boxCol3: {
+    flex: 0.7,
+  },
+  boxCol1Trumpet: {
+    flex: 0.5,
+  },
+  boxCol2Trumpet: {
+    flex: 2.5,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginLeft: 10
+  },
+  trumpetIcon: {
+    height: 44,
+    width: 44,
+    resizeMode: 'contain',
+    marginTop: 20
+  },
+  heatTrumpetNumber: {
+    alignItems: 'flex-end',
+    color: '#ffffff',
+    fontSize: 14,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    justifyContent: 'flex-end',
+    marginTop: 42,
+    marginLeft: -10
+  },
 };
