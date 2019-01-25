@@ -32,12 +32,7 @@ const AuthRouter = createStackNavigator({
   TeamsView: Teams.View,
   TeamsSquad: Teams.Squad,
   MatchCreation: Teams.MatchCreation,
-  Notification: {
-    screen: Notification,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  Notification,
   MainScreen: {
     screen: Main.MainNavigator,
     navigationOptions: {

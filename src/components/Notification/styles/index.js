@@ -1,9 +1,15 @@
 import { StyleSheet, Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export default {
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+  },
+  navigationText: {
+    fontFamily: 'calibri',
+    fontSize: 20,
+    color: '#fff',
   },
   w20: {
     width: 20,
@@ -129,5 +135,88 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+  },
+  modalContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginTop: 30,
+  },
+  displayFlexCenterRow: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  TeamsSelectionTitle2: {
+    marginTop: 50,
+    fontFamily: 'calibri-bold',
+    fontWeight: 'bold',
+    color: '#000',
+    fontSize: 25,
+    textAlign: 'center',
+  },
+  TeamsSelectionModalCard: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  TeamsSelectionModalCardImage: {
+    borderRadius: 5,
+    borderWidth: 4,
+    borderColor: '#fff',
+    margin: 10,
+    marginBottom: 30,
+    elevation: 1,
+    shadowColor: 'grey',
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    shadowOffset: { width: 0, height: 0 },
+  },
+  teamCardImage: {
+    height: 125,
+    width: 125,
+  },
+  displayFlexCenterColumn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  TeamsSelectionModalDetailsText2: {
+    fontFamily: 'calibri-italic',
+    fontSize: 18,
+    textAlign: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  footerModal: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+  },
+  footerButtonModal: {
+    backgroundColor: '#000',
+    color: '#fff',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 16,
+    paddingBottom: 16,
+    elevation: 7,
+    shadowOffset: { width: 5, height: 5 },
+    shadowColor: 'grey',
+    shadowOpacity: 1,
+    shadowRadius: 10,
+  },
+  bottomMainButtonTextModal: {
+    color: '#fff',
+    fontSize: 18,
+    fontFamily: 'calibri',
+    textAlign: 'center',
   },
 };

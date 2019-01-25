@@ -21,12 +21,14 @@ class TabsView extends React.Component {
 
     render() {
         const { index, routes } = this.state;
+        const { onOpenJoinTeam, onOpenMatchRequest } = this.props;
+
         return (
             <TabView
                 navigationState={this.state}
                 tabStyle={styles.bgWhite}
                 renderScene={SceneMap({
-                    first: () => <Team />,
+                    first: () => <Team onOpenJoinTeam={onOpenJoinTeam} onOpenMatchRequest={onOpenMatchRequest} />,
                     second: () => <You />,
                 })}
                 renderTabBar={props => (

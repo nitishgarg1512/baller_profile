@@ -13,6 +13,7 @@ const leagueImg = require('../../../../../static/images/league.png');
 const chelseaImg = require('../../../../../static/images/chelsea.png');
 const diegoImg = require('../../../../../static/images/diego.jpg');
 const andresImg = require('../../../../../static/images/andres.jpg');
+const notification = require('../../../../../static/images/notification.png');
 
 const Item = (props) => {
     const { navigation } = props;
@@ -28,7 +29,7 @@ const Item = (props) => {
                         </View>
                         <View style={styles.leagueCol2}>
                             <TouchableOpacity>
-                                <Icon name="notifications-outline" fontSize={30} />
+                                <Image source={notification} style={styles.icoStyle} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -46,7 +47,7 @@ const Item = (props) => {
                         <View style={styles.seperateVertical} />
                         <View style={styles.infoMatch}>
                             <TouchableOpacity style={styles.notificationsItem}>
-                                <Icon name="notifications-outline" fontSize={30} />
+                                <Image source={notification} style={styles.icoStyle} />
                                 <Text style={styles.pdLeft10}>34</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.likeItem}>

@@ -9,6 +9,10 @@ export default {
     paddingRight: 10,
     paddingLeft: 10,
   },
+  icoStyle: {
+    width: 25,
+    height: 25,
+  },
   headerContainer: {
     height: 50,
   },

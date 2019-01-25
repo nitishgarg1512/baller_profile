@@ -10,33 +10,13 @@ import styles from '../../../styles';
 class Item3 extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            modalVisible: false,
-        };
     }
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-    displayModal() {
-        return (
-            <Modal
-                isOpen={this.state.modalVisible}
-            >
-                <View>
-                    <View><Text>Match Request!</Text></View>
-                </View>
-            </Modal>
-        );
-    }
-
 
     render() {
         const { itemView, avatar, infoView, username,
             infoText, signView, playButton, playButtonText } = styles;
-        const modal = this.displayModal();
+        const { onOpenJoinTeam } = this.props;
+
         return (
             <View style={itemView}>
                 <Image source={diegoImg} style={avatar} />
@@ -45,11 +25,10 @@ class Item3 extends React.Component {
                     <Text style={infoText}>You have been selected to play this match</Text>
                 </View>
                 <View style={signView}>
-                    <TouchableOpacity style={playButton} onPress={this.setModalVisible.bind(this, true)}>
+                    <TouchableOpacity style={playButton} onPress={onOpenJoinTeam}>
                         <Text style={playButtonText} >Play?</Text>
                     </TouchableOpacity>
                 </View>
-                {modal}
             </View>
         );
     }
