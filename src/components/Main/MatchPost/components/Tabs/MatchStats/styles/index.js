@@ -350,4 +350,93 @@ export default {
     marginTop: 42,
     marginLeft: -10
   },
+  boxLeftGoal: {
+    flex: 0.7,
+    borderLeftWidth: 2,
+    borderLeftColor: '#ffffff',
+  },
+  boxRightGoal: {
+    flex: 0.7,
+    borderRightWidth: 2,
+    borderRightColor: '#ffffff',
+  },
+  boxHasHorizontal: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ffffff',
+    borderLeftWidth: 1,
+    borderLeftColor: '#ffffff',
+    height: 60,
+    width: 80,
+  },
+  boxHorizontalBar: {
+    height: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ffffff',
+  },
+  boxItemHasHorizontal: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 40,
+  },
+  heatBallImageHasHorizontal: {
+    height: 22,
+    width: 22,
+    resizeMode: 'contain',
+    marginRight: 4,
+    marginTop: 10,
+  },
+  heatBallNumberHasHorizontal: {
+    alignItems: 'flex-end',
+    color: '#ffffff',
+    fontSize: 14,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+    justifyContent: 'flex-end',
+    marginTop: 22
+  },
+  heatSmallBox: {
+    height: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ffffff',
+    borderLeftWidth: 2,
+    borderLeftColor: '#ffffff',
+    marginLeft: -1.5
+  },
+  heatRightSmallBox: {
+    height: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ffffff',
+    borderRightWidth: 2,
+    borderRightColor: '#ffffff',
+    marginRight: 5.5
+  },
+  boxHorizontalTopBar: {
+    height: 20,
+    borderTopWidth: 2,
+    borderTopColor: '#ffffff',
+  },
+  heatTopSmallBox2: {
+    height: 20,
+    borderTopWidth: 2,
+    borderTopColor: '#ffffff',
+    borderLeftWidth: 2,
+    borderLeftColor: '#ffffff',
+    marginLeft: -1.5,
+    marginTop: 39
+  },
+  boxLastCol2Trumpet: {
+    flex: 2.3,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginLeft: 10
+  },
+  boxRightGoal2: {
+    flex: 0.7,
+    borderRightWidth: 2,
+    borderRightColor: '#ffffff',
+    borderTopWidth: 2,
+    borderTopColor: '#ffffff',
+    marginTop: 39
+  }
 };

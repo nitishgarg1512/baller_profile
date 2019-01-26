@@ -14,6 +14,7 @@ const Box4 = () => {
                 <Text style={styles.heatBallNumber}>1</Text>
             </View>
             <View style={styles.boxCol3}>
+                <View style={styles.heatSmallBox}></View>
             </View>
         </View>
     );
