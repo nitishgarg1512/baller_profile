@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import styles from '../../../styles';
-import { Raw1, Raw2, Raw3, Raw4, Raw5, Raw6 } from '../Boxes';
+import { Raw1, Raw2, Raw3, Raw4, Raw5, Raw6 } from '../Raws';
 
 const Heat2 = () => {
     return (
@@ -12,13 +12,16 @@ const Heat2 = () => {
             </View>
              <View style={styles.heatMapMain}>
                 <View style={styles.heatMapCol1}>
-                    <Text>Col 1</Text>
                 </View>
                 <View style={styles.heatMapCol2}>
-                <Text>Col 2</Text>
+                    <Raw1 />
+                    <Raw2 />
+                    <Raw3 />
+                    <Raw4 />
+                    <Raw5 />
+                    <Raw6 />
                 </View>
                 <View style={styles.heatMapCol3}>
-                <Text>Col 3</Text>
                 </View>
             </View>
         </View>
