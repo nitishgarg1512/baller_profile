@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Container, Icon, Content } from 'native-base';
 
 import Modal from 'react-native-modalbox';
@@ -12,6 +12,8 @@ import styles from './styles';
 import { Header, TabsView } from './components';
 
 import { UppercasedText } from '../common/components';
+
+const diegoImg = require('../../static/images/diego.jpg');
 
 class Notification extends React.Component {
     static navigationOptions = {
@@ -40,38 +42,30 @@ class Notification extends React.Component {
 
     joinTeamPopup() {
         return (
-            <Container>
-                <Content>
-                    <View style={styles.modalContainer}>
-                        <View style={styles.displayFlexCenterRow}>
-                            <UppercasedText style={styles.TeamsSelectionTitle2}>
-                                You're almost there!
-              </UppercasedText>
-                        </View>
-                        <View style={styles.TeamsSelectionModalCard}>
-                            <View style={styles.TeamsSelectionModalCardImage}>
-                                <Image
-                                    style={styles.teamCardImage}
-                                    source={selectedTeam && selectedTeam.team_badge ? { uri: selectedTeam.team_badge } : images.team}
-                                    resizeMode="cover"
-                                />
-                            </View>
-                            <View style={styles.displayFlexCenterColumn}>
-                                <Text style={styles.TeamsSelectionModalDetailsText2}>
-                                    The {navigation.getParam('team_name') || ' '} team captain and team admins have been notified... They will add you to the squad as soon as posible
-                </Text>
-                            </View>
-                        </View>
+            <Modal
+                style={styles.modal}
+                position='center'
+                isOpen={this.state.joinTeamVisible}
+            >
+                <View style={styles.modalView}>
+                    <View style={styles.modalViewImage}>
+                        <Image source={diegoImg} style={styles.modalImage} />
                     </View>
-                </Content>
+                    <Text style={styles.modalName}>Diego Costa</Text>
+                    <Text style={styles.modalUsername}>@Diego</Text>
+                    <Text style={styles.modalMessage}>Want to join Chelsea</Text>
+                </View>
                 <View style={styles.footerModal}>
-                    <TouchableOpacity onPress={this.onClose} style={styles.footerButtonModal}>
+                    <TouchableOpacity onPress={this.joinTeamVisible.bind(this, false)} style={styles.footerButtonModal}>
                         <UppercasedText style={styles.bottomMainButtonTextModal}>
-                            JOIN
-            </UppercasedText>
+                            Join
+                        </UppercasedText>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this.joinTeamVisible.bind(this, false)} style={styles.footerButtonModal2}>
+                        <Text>Reject</Text>
                     </TouchableOpacity>
                 </View>
-            </Container>
+            </Modal>
         );
     }
 
@@ -83,10 +77,27 @@ class Notification extends React.Component {
         return (
             <Modal
                 style={styles.modal}
+                position='center'
                 isOpen={this.state.matchRequestVisible}
             >
-                <View>
-                    <View><Text>Match Request!</Text></View>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalTitle}>Match Request!</Text>
+                    <View style={styles.modalViewImage}>
+                        <Image source={diegoImg} style={styles.modalImage} />
+                    </View>
+                    <Text style={styles.modalName}>Barcelona vs Chelsea</Text>
+                    <Text style={styles.modalUsername}>Blaugrana</Text>
+                    <Text style={styles.modalMessage}>Do you accept the match?</Text>
+                </View>
+                <View style={styles.footerModal}>
+                    <TouchableOpacity onPress={this.matchRequestVisible.bind(this, false)} style={styles.footerButtonModal}>
+                        <UppercasedText style={styles.bottomMainButtonTextModal}>
+                            PLAY THIS MATCH
+                        </UppercasedText>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this.matchRequestVisible.bind(this, false)} style={styles.footerButtonModal2}>
+                        <Text>Reject</Text>
+                    </TouchableOpacity>
                 </View>
             </Modal>
         );

@@ -13,7 +13,7 @@ const Team = (props) => {
             <Item2 />
             <Item3 onOpenJoinTeam={onOpenJoinTeam} />
             <Item4 />
-            <Item5 />
+            <Item5 onOpenMatchRequest={onOpenMatchRequest}/>
             <Item6 />
         </View>
     );

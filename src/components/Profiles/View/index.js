@@ -164,7 +164,7 @@ class ProfileView extends React.Component {
                                   <Icon name="cog" type="Entypo" style={styles.settingsIcon} />
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.notification(authPlayer.id)}>
-                                  <Icon name="notifications-outline" type="Ionicons" style={styles.settingsIcon} />
+                                  <Image source={images.notification} style={styles.icoStyle} />
                                 </TouchableOpacity>
                               </View>
                             )

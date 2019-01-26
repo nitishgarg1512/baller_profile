@@ -52,6 +52,10 @@ export default {
     fontSize: 18,
     color: '#3d6688',
   },
+  icoStyle: {
+    width: 18,
+    height: 18,
+  },
   pt20: {
     paddingTop: 20,
   },
