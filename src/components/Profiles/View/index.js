@@ -127,7 +127,7 @@ class ProfileView extends React.Component {
             <View style={[styles.headerContainer, styles.py30]}>
               <View style={[styles.flexStartRow]}>
                 <TouchableOpacity style={styles.w20} onPress={() => navigation.goBack()}>
-                  <Icon name="arrow-left" type="Feather" />
+                  <Icon name="arrow-back" />
                 </TouchableOpacity>
                 <View style={styles.searchPlayer}>
                   <Text style={[styles.fontBasic, styles.fontSize20, styles.colorBlack]}>

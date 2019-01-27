@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Platform } from 'react-native';
 import { Input as NativeInput, Icon, Label, Item } from 'native-base';
 
 class Input extends React.Component {
@@ -37,7 +38,7 @@ class Input extends React.Component {
 
     return (
       <Item floatingLabel style={error ? { ...itemStyle, borderBottomColor: 'red' } : itemStyle} error={!!error}>
-        <Label style={labelStyle}>
+        <Label style={[labelStyle, Platform.OS === 'android' ? { paddingTop: 10 } : {} ]}>
           {label}
         </Label>
         <NativeInput
