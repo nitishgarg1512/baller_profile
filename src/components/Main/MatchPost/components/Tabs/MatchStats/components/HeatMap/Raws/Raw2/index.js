@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View } from 'react-native';
 
 import styles from '../../../../styles';
 import { Box4, Box5, Box6 } from '../../Boxes';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { GoalScoreLeft, GoalScoreIcon, GoalScoreRight } from './goalScore';
 
 

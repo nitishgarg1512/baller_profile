@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title, Text } from 'native-base';
 
 import { TabMain, MatchDetail } from './components';
@@ -22,8 +22,10 @@ class MatchPost extends Component {
                         </Button>
                     </Right>
                 </Header>
-                <MatchDetail />
-                <TabMain />
+                <ScrollView>
+                    <MatchDetail />
+                    <TabMain />
+                </ScrollView>
             </Container>
         )
     }
