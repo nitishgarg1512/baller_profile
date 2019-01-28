@@ -10,7 +10,6 @@ export default {
   contentContainer: {
   },
   teamInfoView: {
-  	height: 50,
   	borderBottomWidth: 1,
   	borderBottomColor: '#CCC',
   	flex: 1,
@@ -40,7 +39,6 @@ export default {
 	fontFamily: 'calibri-italic',
   },
   goalKeeperView: {
-  	height: 100,
   	borderBottomWidth: 1,
   	borderBottomColor: '#CCC'
   },
@@ -107,7 +105,7 @@ export default {
   playerNameText: {
   	paddingLeft: 30,
   	paddingTop: 10,
-  	flex: 2,
+  	flex: 2.5,
   	textAlign: 'left',
   	flexDirection: 'row',
     alignItems: 'center',
@@ -118,7 +116,7 @@ export default {
 	fontFamily: 'calibri-italic',
   },
   playerNumberText: {
-  	flex: 1,
+  	flex: 0.5,
   	paddingLeft: 30,
   	paddingRight: 30,
   	paddingTop: 10,

@@ -258,5 +258,12 @@ export default {
     width: 24,
     marginRight: 12,
     resizeMode: 'contain'
-  }
+  },
+  bookingContentTimeValue: {
+    paddingBottom: 20,
+    color: '#FFF',
+    fontSize: 14,
+    fontStyle: 'italic',
+    fontFamily: 'calibri-italic',
+  },
 };
