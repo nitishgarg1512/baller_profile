@@ -19,4 +19,4 @@ react-native run-ios --simulator="iPhone 8"
 ### Build APK ###
 
 $ cd android
-$ ./gradlew assembleRelease
+$ ./gradlew assembleRelease# bp_backend
