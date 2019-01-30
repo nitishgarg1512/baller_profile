@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View } from 'react-native';
 
 import styles from '../../styles';
 
@@ -15,14 +15,12 @@ import {
 const Team1 = () => {
     return (
         <View>
-        	<ScrollView contentContainerStyle={styles.contentContainer}>
-	            <TeamInfo />
-	            <GoalKeeper />
-	            <Defender />
-	            <MidFielder />
-                <Striker />
-                <Sub />
-            </ScrollView>
+            <TeamInfo />
+            <GoalKeeper />
+            <Defender />
+            <MidFielder />
+            <Striker />
+            <Sub />
         </View>
     );
 }

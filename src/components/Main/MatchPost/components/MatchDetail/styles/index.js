@@ -4,7 +4,6 @@ const { width, height } = Dimensions.get('window');
 
 export default {
   container: {
-    height: 200,
     backgroundColor: 'white',
     color: '#CCC',
  	flex: 1,
@@ -18,11 +17,9 @@ export default {
     flexWrap:'wrap'
   },
   leagueText: {
-  	paddingRight: 20,
-  	height: 50
+  	paddingRight: 20
   },
   teamView: {
-  	height: 130,
   	width: '100%',
   	borderBottomWidth: 1,
   	borderBottomColor: '#CCC'

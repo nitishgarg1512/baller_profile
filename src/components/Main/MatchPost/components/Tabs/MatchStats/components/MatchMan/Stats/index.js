@@ -3,7 +3,6 @@ import { View, Image, Text } from 'react-native';
 
 import styles from '../../../styles';
 
-const playButton = require('../../../../../../../../../static/images/matchPosts/play-icon.png');
 const Team1Logo = require('../../../../../../../../../static/images/team1.png');
 const Team2Logo = require('../../../../../../../../../static/images/team2.png');
 

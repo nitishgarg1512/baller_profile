@@ -8,11 +8,9 @@ class MatchStats extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView contentContainerStyle={styles.contentContainer}>
-                    <MatchMan />
-                    <MatchIndividual />
-                    <HeatMap />
-                </ScrollView>
+                <MatchMan />
+                <MatchIndividual />
+                <HeatMap />
             </View>
         )
     }

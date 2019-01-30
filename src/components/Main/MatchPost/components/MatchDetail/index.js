@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 
-import { Container, Header } from 'native-base';
 import { GoalScore, League, Team } from './components';
 
 import styles from './styles';
