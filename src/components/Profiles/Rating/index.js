@@ -145,11 +145,13 @@ class Rating extends React.Component {
                 </View>
                 <View style={styles.hrLineSecondary} />
                 <View style={styles.attackingContainer}>
-                  <View />
-                  <Text style={styles.attackingText}>
-                    Attacking
-                  </Text>
-                  <View>
+                  <View style={{flex: 1}} />
+                  <View style={{flex: 1}}>
+                    <Text style={styles.attackingText}>
+                      Attacking
+                    </Text>
+                  </View>
+                  <View style={{ flex: 1, alignItems: 'flex-end' }}>
                       <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
                   </View>
                 </View>
@@ -199,6 +201,18 @@ class Rating extends React.Component {
                       <Text style={styles.skillButtonText}>
                         Off Ball Runs
                       </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <View style={styles.flexItemsBeforeEnd}>
+                  <View style={styles.flexItemsBeforeEndItem}>
+                      <TouchableOpacity>
+                        <Text style={styles.flexItemsBeforeEndText}>Defending</Text>
+                      </TouchableOpacity>
+                  </View>
+                  <View style={styles.flexItemsBeforeEndItem}>
+                    <TouchableOpacity>
+                      <Text style={styles.flexItemsBeforeEndText}>Attracking</Text>
                     </TouchableOpacity>
                   </View>
                 </View>

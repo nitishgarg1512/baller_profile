@@ -331,9 +331,20 @@ export default {
     flexDirection: 'column',
   },
   headerIcon: {
-    fontSize: 35,
-    color: 'rgba(255,255,255,.3)',
-    paddingRight: 25,
-    paddingTop: 10,
+    fontSize: 20,
+    color: '#AAAAAA',
+  },
+  flexItemsBeforeEnd: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  flexItemsBeforeEndItem: {
+    flex: 1,
+  },
+  flexItemsBeforeEndText: {
+    alignSelf: 'center',
+    fontSize: 20,
+    fontFamily: 'calibri',
+    textAlign: 'center',
   },
 };
