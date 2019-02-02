@@ -284,18 +284,12 @@ class ProfileView extends React.Component {
                     </View>
                   </View>
                 </View>
-                {/* STATS */}
                 <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
                   <View style={styles.profileContentMainPadding}>
                     <View style={styles.flexSpaceBetweenRow}>
                       <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                        Ratings
+                      Appearances
                       </Text>
-                      <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesRating, { player })}>
-                        <Text style={[styles.fontSize15, styles.fontItalic, styles.colorBlack]}>
-                          <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
-                        </Text>
-                      </TouchableOpacity>
                     </View>
                   </View>
                   <View style={styles.hrLineSecondary} />
@@ -328,7 +322,6 @@ class ProfileView extends React.Component {
                     </View>
                   </View>
                 </View>
-                {/* END STATS */}
                 <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
                   <View style={styles.profileContentMainPadding}>
                     <TouchableOpacity onPress={() => navigation.navigate(paths.client.ProfilesRating, { player })}>
