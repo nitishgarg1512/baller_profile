@@ -14,13 +14,11 @@ import {
 const Team1 = () => {
     return (
         <View>
-        	<ScrollView contentContainerStyle={styles.contentContainer}>
-	            <Booking />
-                <Substitution />
-                <Foul />
-	            <Goal />
-                <MatchStart />
-            </ScrollView>
+            <Booking />
+            <Substitution />
+            <Foul />
+            <Goal />
+            <MatchStart />
         </View>
     );
 }

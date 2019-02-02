@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 
 import styles from '../../../../styles';
-import Player from '../Player';
 
 const MatchStart = () => {
     return (
@@ -16,7 +15,7 @@ const MatchStart = () => {
         	</View>
         	<View style={styles.matchStartTime}>
         		<View style={styles.matchStartTimeText}>
-                    <Text style={styles.bookingContentDesciption}>10:00am</Text>
+                    <Text style={styles.bookingContentTimeValue}>10:00am</Text>
                 </View>
         	</View>
         </View>

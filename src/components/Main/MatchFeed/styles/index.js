@@ -14,6 +14,7 @@ export default {
     height: 25,
   },
   headerContainer: {
+    marginTop: 10,
     height: 50,
   },
   logoImg: {

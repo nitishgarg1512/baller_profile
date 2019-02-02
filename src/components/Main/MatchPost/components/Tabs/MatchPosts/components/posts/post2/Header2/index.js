@@ -5,8 +5,6 @@ import { Icon } from 'native-base';
 import styles from '../../../../styles';
 import Player from '../Player';
 
-const trumpetIcon = require('../../../../../../../../../../static/images/coi.png');
-
 const Header2 = () => {
     return (
         <View style={styles.headerView}>

@@ -1,11 +1,9 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { Icon } from 'native-base';
 
 import styles from '../../../../styles';
 import Player from '../Player';
-
-const trumpetIcon = require('../../../../../../../../../../static/images/coi.png');
 
 const Header = () => {
     return (
