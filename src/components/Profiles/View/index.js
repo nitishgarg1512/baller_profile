@@ -258,38 +258,29 @@ class ProfileView extends React.Component {
                   </View>
                 </View>
                 <View style={[styles.profileContentSecondaryCard, styles.mt20]}>
-                  <View style={styles.profileContentMainPadding}>
+                  <View style={[styles.profileContentMainPadding, styles.statsCardTop]}>
                     <Text style={[styles.fontSize15, styles.fontBasic, styles.colorGray]}>
-                      Appearances
+                    Stats
                     </Text>
+                    <Right>
+                      <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesStats)}>
+                        <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
+                      </TouchableOpacity>
+                    </Right>
                   </View>
                   <View style={styles.hrLineSecondary} />
-                  <View style={styles.profileContentMainPadding}>
-                    <View style={[styles.flexCenterRow, styles.mt10]}>
-                      <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                        2017/2018
-                      </Text>
-                      <Right>
-                        <View style={styles.flexCenterRow}>
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                            {player.matches_played}
-                          </Text>
-                          <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
-                        </View>
-                      </Right>
+                  <View style={[styles.profileContentMainPadding, styles.alignHorzontical]}>
+                    <View style={styles.statsCol}>
+                      <Text style={styles.statsContentColTitle}>Appearances</Text>
+                      <Text style={styles.statsContentPoint}>22</Text>
                     </View>
-                    <View style={[styles.flexCenterRow, styles.mt10]}>
-                      <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                        Total
-                      </Text>
-                      <Right>
-                        <View style={styles.flexCenterRow}>
-                          <Text style={[styles.fontBasic, styles.colorBlack, styles.fontSize15]}>
-                            {player.matches_played}
-                          </Text>
-                          <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
-                        </View>
-                      </Right>
+                    <View style={styles.statsCol}>
+                      <Text style={styles.statsContentColTitle}>Goals</Text>
+                      <Text style={styles.statsContentPoint}>14</Text>
+                    </View>
+                    <View style={styles.statsCol}>
+                      <Text style={styles.statsContentColTitle}>BP Points</Text>
+                      <Text style={styles.statsContentPoint}>101</Text>
                     </View>
                   </View>
                 </View>
