@@ -71,11 +71,10 @@ export default {
     elevation: 0,
     borderRadius: 5,
     backgroundColor: '#fff',
-    width: '100%',
     padding: 10,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   skillsContainer: {
@@ -330,5 +329,11 @@ export default {
     justifyContent: 'center',
     alignItems: 'flex-end',
     flexDirection: 'column',
+  },
+  headerIcon: {
+    fontSize: 35,
+    color: 'rgba(255,255,255,.3)',
+    paddingRight: 25,
+    paddingTop: 10,
   },
 };

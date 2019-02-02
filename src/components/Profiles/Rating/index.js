@@ -145,9 +145,13 @@ class Rating extends React.Component {
                 </View>
                 <View style={styles.hrLineSecondary} />
                 <View style={styles.attackingContainer}>
+                  <View />
                   <Text style={styles.attackingText}>
                     Attacking
                   </Text>
+                  <View>
+                      <Icon style={styles.headerIcon} type="EvilIcons" name="close" />
+                  </View>
                 </View>
                 <View style={styles.hrLineSecondary} />
                 <View style={styles.secondarySkillsContainer}>
