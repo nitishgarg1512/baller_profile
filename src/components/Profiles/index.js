@@ -4,6 +4,7 @@ import NationalityView from './NationalityView';
 import Rating from './Rating';
 import View from './View';
 import Setting from './Setting';
+import Stats from './Stats';
 
 export default {
   ConnectionsView,
@@ -12,4 +13,5 @@ export default {
   Rating,
   View,
   Setting,
+  Stats
 };

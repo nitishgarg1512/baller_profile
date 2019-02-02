@@ -15,6 +15,7 @@ export default keyMirror({
   ProfilesNationality: null,
   ProfilesRating: null,
   ProfilesSetting: null,
+  ProfilesStats: null,
   TeamsView: null,
   TeamsSquad: null,
   MatchCreation: null,

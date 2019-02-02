@@ -263,7 +263,9 @@ class ProfileView extends React.Component {
                     Stats
                     </Text>
                     <Right>
-                    <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
+                      <TouchableOpacity onPress={() => navigation.push(paths.client.ProfilesStats)}>
+                        <Icon style={[styles.colorBlack, styles.fontSize20, styles.ml10]} name="ios-arrow-dropright" type="Ionicons" />
+                      </TouchableOpacity>
                     </Right>
                   </View>
                   <View style={styles.hrLineSecondary} />
