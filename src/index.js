@@ -29,6 +29,7 @@ const AuthRouter = createStackNavigator({
   ProfilesNationality: Profiles.NationalityView,
   ProfilesRating: Profiles.Rating,
   ProfilesSetting: Profiles.Setting,
+  ProfilesStats: Profiles.Stats,
   TeamsView: Teams.View,
   TeamsSquad: Teams.Squad,
   MatchCreation: Teams.MatchCreation,

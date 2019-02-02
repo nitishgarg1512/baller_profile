@@ -322,4 +322,29 @@ export default {
     elevation: 4,
     height: 50,
   },
+  statsCardTop: {
+    flexDirection: 'row'
+  },
+  alignHorzontical: {
+    paddingTop: 20,
+    paddingRight: 40,
+    paddingBottom: 30,
+    paddingLeft: 40,
+    flexDirection: 'row'
+  },
+  statsCol: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  statsContentColTitle: {
+    fontFamily: 'calibri-italic',
+    fontSize: 9,
+    color: '#595959',
+  },
+  statsContentPoint: {
+    fontFamily: 'calibri-italic',
+    fontSize: 20,
+    color: '#3f3f3f',
+    paddingTop: 20
+  }
 };
