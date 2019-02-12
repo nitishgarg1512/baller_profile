@@ -161,6 +161,8 @@ export default {
     fontFamily: 'calibri',
     fontSize: 20,
     color: '#fff',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
   },
   bottomMainButtonText: {
     color: '#fff',
@@ -330,4 +332,50 @@ export default {
     alignItems: 'flex-end',
     flexDirection: 'column',
   },
+  bookingView: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        paddingBottom: 10
+    },
+    bookingIconFrame: {
+        height: 44,
+        width: 44,
+        borderRadius: 44/2,
+        backgroundColor: '#FFF',
+        position: 'relative',
+        alignItems: 'center',
+    justifyContent: 'center',
+    },
+    playerImage: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 44,
+        width: 44,
+    },
+    bookingIcons: {
+        alignItems: 'flex-end',
+        flex: 1
+    },
+    navigationRightText: {
+        fontFamily: 'calibri-italic',
+        color: '#000000',
+        fontWeight: 'bold',
+        fontSize: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 5
+    },
+    navigationLeftText: {
+        alignItems: 'flex-start',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    overView: {
+        backgroundColor: '#bfbfbf',
+        
+    }
 };
