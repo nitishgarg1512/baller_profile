@@ -1,14 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Profile from './Profile';
+import Defence from './Defence';
 
 import styles from '../../styles';
 
 const StatOverView = () => {
     return (
-    	<View style={styles.statOverView}>
-            <Profile/>
-        </View>
+        <ScrollView>
+            <View style={styles.statOverView}>
+                <Profile />
+                <Defence />
+            </View>
+        </ScrollView>
     );
 }
 

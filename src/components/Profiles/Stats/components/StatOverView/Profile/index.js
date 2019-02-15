@@ -24,9 +24,6 @@ const Profile = () => {
                         <View  style={styles.navigateTitleContentView}>
                             <Text style={styles.navigateTitleText}>Appearances</Text>
                         </View>
-                        <View style={styles.navigateTitleImageContentView}>
-                            <Image source={psgLogo}  style={styles.navigateTitleImage}/>
-                        </View>
                     </View>
                     <View style={[styles.navigateItemCol, styles.navigatePointView]}>
                         <View>

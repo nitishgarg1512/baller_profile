@@ -162,7 +162,8 @@ export default {
     fontSize: 20,
     color: '#fff',
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    fontStyle: 'italic',
   },
   bottomMainButtonText: {
     color: '#fff',
@@ -403,6 +404,11 @@ export default {
       paddingBottom: 10,
       flexDirection: 'row',
     },
+    navigateItemSectionCol: {
+      paddingTop: 5,
+      paddingBottom: 5,
+      flexDirection: 'row',
+    },
     navigateTitleView: {
       flex: 3,
       paddingLeft: 15,
@@ -412,6 +418,7 @@ export default {
       flex: 1
     },
     navigateTitleText: {
+      fontFamily: 'calibri-italic',
       fontSize: 12,
       color: '#595959',
       paddingTop: 3
@@ -465,4 +472,10 @@ export default {
     fontSize20: {
       fontSize: 20,
     },
+    defenceOverView: {
+      margin: 5,
+    },
+    navigateSectionTitleText: {
+      fontWeight: 'bold',
+    }
 };
