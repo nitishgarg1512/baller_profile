@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
+import { StatOverView } from './components';
 
 import styles from './styles';
 
@@ -45,7 +46,7 @@ class Stats extends React.Component {
     render() {
         return (
             <View style={styles.overView}>
-                <Text>123</Text>
+                <StatOverView />
             </View>
         );
     }

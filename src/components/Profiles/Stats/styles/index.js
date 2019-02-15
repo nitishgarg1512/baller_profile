@@ -375,7 +375,94 @@ export default {
         justifyContent: 'center',
     },
     overView: {
-        backgroundColor: '#bfbfbf',
-        
-    }
+    },
+    statOverView: {
+      display: 'flex',
+    },
+    profileOverView: {
+
+    },
+    profilePictureView: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingBottom: 10,
+      paddingTop: 10,
+    },
+    profileStatNavigate: {
+      backgroundColor: '#fff',
+    },
+    navigateItemView: {
+      justifyContent: 'center',
+      flexDirection: 'row',
+      borderWidth: 0.5,
+      borderColor: '#e7e7e7',
+    },
+    navigateItemCol: {
+      paddingTop: 10,
+      paddingBottom: 10,
+      flexDirection: 'row',
+    },
+    navigateTitleView: {
+      flex: 3,
+      paddingLeft: 15,
+      alignItems: 'flex-start',
+    },
+    navigatePointView: {
+      flex: 1
+    },
+    navigateTitleText: {
+      fontSize: 12,
+      color: '#595959',
+      paddingTop: 3
+    },
+    navigatePointText: {
+      fontSize: 14,
+      color: '#595959',
+      paddingTop: 3
+    },
+    navigateTitleImage: {
+      height: 24,
+      width: 24,
+      borderRadius: 24/2,
+      justifyContent: 'center',
+    },
+    navigateTitleContentView: {
+      flex: 1
+    },
+    navigateTitleImageContentView: {
+      flex: 1
+    },
+    playerPictureView: {
+      
+    },
+    playerPicture: {
+      height: 64,
+      width: 64,
+      borderRadius: 64/2,
+    },
+    playerMainTeamView: {
+    },
+    playerMainTeamPicture: {
+      height: 28,
+      width: 28,
+      borderRadius: 28/2,
+      marginLeft: 10,
+    },
+    fontSize10: {
+      fontSize: 10,
+    },
+    ml10: {
+      marginLeft: 10,
+    },
+    colorBlack: {
+      color: '#000000',
+    },
+    navigateIcon: {
+      paddingRight: 10,
+      justifyContent: 'center',
+    },
+    fontSize20: {
+      fontSize: 20,
+    },
 };
