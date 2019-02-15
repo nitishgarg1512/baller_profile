@@ -477,5 +477,17 @@ export default {
     },
     navigateSectionTitleText: {
       fontWeight: 'bold',
+    },
+    navigateSectionTitleRightText: {
+      fontSize: 8,
+      color: '#595959',
+      paddingTop: 3
+    },
+    navigateSectionTitleRightView: {
+      flexDirection: 'row',
+    },
+    navigateSectionTitleRightValueText: {
+      fontSize: 11,
+      color: '#595959',
     }
 };

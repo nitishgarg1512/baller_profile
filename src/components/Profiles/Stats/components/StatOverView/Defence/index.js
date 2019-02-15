@@ -5,7 +5,6 @@ import { Icon, Thumbnail, Right } from 'native-base';
 import styles from '../../../styles';
 
 const psgLogo = require('../../../../../../static/images/psg-logo.png');
-const Team1Logo = require('../../../../../../static/images/diego.jpg');
 
 const Defence = () => {
     return (
