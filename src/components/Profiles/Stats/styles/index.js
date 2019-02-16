@@ -376,6 +376,5 @@ export default {
     },
     overView: {
         backgroundColor: '#bfbfbf',
-        
     }
 };
